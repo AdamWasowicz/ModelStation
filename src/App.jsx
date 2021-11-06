@@ -1,8 +1,8 @@
-import react from "react";
+import React from 'react';
 import './App.scss';
 
-const App = () => {
-    <header>Wąsacz Wąsiewski</header>
-};
+const App = () => (
+	<header>Wąsascz Wąsiewski</header>
+);
 
 export default App;
