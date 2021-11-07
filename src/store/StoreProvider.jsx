@@ -10,6 +10,7 @@ export const StoreContext = createContext(null);
 const StoreProvider = ( { children} ) => {
     const [user, setUser] = useState(null);
     const [posts, setPosts] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
 
     const fetchPosts = async () => {
         const { data } = await request.get('/api/v1/post');
@@ -28,7 +29,10 @@ const StoreProvider = ( { children} ) => {
             setPosts,
 
             user,
-            setUser
+            setUser,
+
+            currentPage,
+            setCurrentPage
         }>
             {children}
         </StoreContext.Provider>

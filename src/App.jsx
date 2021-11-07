@@ -3,9 +3,14 @@ import './App.scss';
 
 import StoreProvider from './store/StoreProvider';
 
+//Components
+import Header from './components/Header';
+
+
+
 const App = () => (
 	<StoreProvider>
-		<header>Adam</header>
+		<Header/>
 	</StoreProvider>
 );
 
