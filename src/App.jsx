@@ -1,8 +1,12 @@
 import React from 'react';
 import './App.scss';
 
+import StoreProvider from './store/StoreProvider';
+
 const App = () => (
-	<header>Wąsascz Wąsiewski</header>
+	<StoreProvider>
+		<header>Adam</header>
+	</StoreProvider>
 );
 
 export default App;
