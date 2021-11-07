@@ -1,0 +1,17 @@
+.modal
+{
+    //Position
+    position: fixed;
+    top: 50%;
+    left: 50;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+
+
+    //Backdrop
+    &::backdrop
+    {
+        //Background blur
+        backdrop-filter: blur(3px);
+    }
+}

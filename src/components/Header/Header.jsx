@@ -11,6 +11,7 @@ const Header = () => {
         <header className={block()}>
             <div className={block('bannerImage')}alt='bannerImage'>Image</div>
             <div className={block('title')}>Title</div>
+            <button>ModalTest</button>
         </header>
     )
 }
