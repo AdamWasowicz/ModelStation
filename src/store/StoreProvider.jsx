@@ -1,5 +1,4 @@
 import React, {createContext, useState, useEffect} from "react";
-//import { createContext } from "react/cjs/react.production.min";
 import request from "../helpers/request";
 
 require("regenerator-runtime/runtime");

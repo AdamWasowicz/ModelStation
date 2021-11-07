@@ -1,10 +1,9 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import bemCssModule from 'bem-css-modules';
 
 //Styles
 import { default as ModalStyles} from './Modal.module.scss';
-import { useEffect } from 'react/cjs/react.production.min';
 const style = bemCssModule(ModalStyles);
 
 
@@ -54,7 +53,7 @@ const Modal = ({ children, handleOnClose, isOpen, closeOnBackgroundClick }) =>
             modal.removeEventListener('cancel', handleCancel);
         }
 
-    }, handleOnClose);
+    }, [handleOnClose]);
 
 
     //Handlers

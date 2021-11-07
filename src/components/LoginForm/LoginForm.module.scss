@@ -1,0 +1,25 @@
+.loginForm
+{
+    //Flex
+    display: flex;
+    flex-direction: column;
+
+
+    //Validation Message
+    &__validateMessage
+    {
+        color: red;
+    }
+
+
+    //FormRow
+    &__row
+    {
+        //Position
+        margin-top: 10px;
+
+        //Flex
+        display: flex;
+        justify-content: space-around;
+    }
+}
