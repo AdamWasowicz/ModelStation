@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import bemCssModules from 'bem-css-modules';
 
 //ImportedComponents
@@ -54,6 +54,12 @@ const LoginForm = ({ handleOnClose, isOpen }) => {
         setPassword('');
         setValidateMessage('');
     }
+
+    useEffect(() => {
+        if (isOpen)
+            resetStateOfInputs;
+
+    }, [isOpen])
 
 
     //ValidationMessageComponent
