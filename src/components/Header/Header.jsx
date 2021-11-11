@@ -1,12 +1,14 @@
 import React, {useState, useContext } from 'react'
 import bemCssModules from 'bem-css-modules'
+import StoreProvider, { StoreContext } from '../../store/StoreProvider';
 
 //Styles
 import { default as HeaderStyles } from './Header.module.scss'
-import LoginForm from '../LoginForm/LoginForm';
-import StoreProvider, { StoreContext } from '../../store/StoreProvider';
-
 const block = bemCssModules(HeaderStyles);
+
+//Components
+import LoginForm from '../LoginForm/LoginForm';
+
 
 const Header = () => {
     //State
@@ -14,7 +16,6 @@ const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
     //User
     const { user, setUser} = useContext(StoreContext);
-    console.log('Header->StoreContext', StoreContext);
 
     //Handlers
     const handleOnClose = () => setIsOpen(false);
@@ -23,7 +24,6 @@ const Header = () => {
             setUser(null);
         else
             setIsOpen(true);
-            
     }
 
 

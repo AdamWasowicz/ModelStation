@@ -11,19 +11,8 @@ const StoreProvider = ( { children} ) => {
     const [posts, setPosts] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
 
-    const fetchPosts = async () => {
-        const { data } = await request.get('/api/v1/post');
-
-        setPosts(data);
-    }
-
-    useEffect(() => {
-        fetchPosts();
-        console.log("I did it")
-    }, []);
-
     return (
-        <StoreContext.Provider value={
+        <StoreContext.Provider value={{
             posts,
             setPosts,
 
@@ -32,7 +21,7 @@ const StoreProvider = ( { children} ) => {
 
             currentPage,
             setCurrentPage
-        }>
+        }}>
             {children}
         </StoreContext.Provider>
     );
