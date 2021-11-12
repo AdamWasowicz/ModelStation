@@ -1,0 +1,187 @@
+.PostSmall
+{
+    //Size
+    width: 50%;
+    height: 500px;
+
+    //Position
+    margin-bottom: 40px;
+    margin-left: auto;
+    margin-right: auto;
+
+
+    //Flex
+    display: flex;
+    flex-direction: row;
+        
+
+    //Color
+    background-color: rgb(241, 219, 219);
+    border: 2px solid purple;
+
+
+    //Like SideBar
+    &__likeSideBar
+    {
+        //Size
+        width: 20%;
+        height: 100%;
+
+
+        //Flex
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        
+        //Color
+        background-color:salmon;
+
+
+        //LikeUp Button
+        &__likeUpButton
+        {
+            //Size
+            width: 80%;
+            height: 20%;
+
+
+            //Color
+            background-color: greenyellow;
+        }
+
+
+        //LikeDownButton
+        &__likeDownButton
+        {
+            //Size
+            width: 80%;
+            height: 20%;
+
+
+            //Color
+            background-color: red;
+        }
+
+
+        //LikeCounter
+        &__likeCounter
+        {
+            //Size
+            width: 80%;
+            height: 20%;
+
+
+            //Flex
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+
+
+            //Color
+            background-color: rgb(104, 104, 148);
+        }
+    }
+
+    //Left Part of Post
+    &__Main
+    {
+        //Size
+        width: 100%;
+        height: 100%;
+
+
+        //Flex
+        display: flex;
+        flex-direction: column;
+
+
+        //Color
+        background-color: rgb(113, 114, 114);
+
+
+        &__Information
+        {
+            //Size
+            width: 100%;
+
+            flex-grow: 1.5;
+
+            //Color
+            background-color: rgb(76, 138, 107);
+
+
+            &__UserNameANDpostCategory
+            {
+                //Size
+                width: 100%;
+                height: 40%;
+
+                //Flex
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+
+
+                //Color
+                background-color: yellow;
+            }
+
+            &__Title
+            {
+                //Size
+                width: 100%;
+                height: 60%;
+
+                //Color
+                background-color: rgb(36, 216, 207);
+            }
+        }
+
+        &__PostContent
+        {
+            //Size
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 8;
+
+
+            //Color
+            background-color: rgb(136, 106, 136);
+
+
+            //Text
+            &__Text
+            {
+                //Size
+                width: 100%;
+
+
+                //Flex
+                flex-grow: 1.5;
+
+
+                //Color
+                background-color:slateblue;
+            }
+
+            //Photos
+            &__Photos
+            {
+                //Size
+                width: 100%;
+
+
+                //Flex
+                flex-grow: 8;
+
+
+                //Color
+                background-color:rgb(207, 84, 84);
+            }
+        }
+    }
+}
