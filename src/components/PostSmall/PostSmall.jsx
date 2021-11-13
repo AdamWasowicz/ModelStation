@@ -6,7 +6,10 @@ import { default as PostSmallStyles } from './PostSmall.module.scss'
 const style = bemCssModules(PostSmallStyles);
 
 
-const PostSmall = () => {
+const PostSmall = (postObject) => {
+    console.log(postObject);
+    const post = postObject.postObject;
+    
     return (
         <React.Fragment>
             <div className={style()}>
@@ -16,7 +19,7 @@ const PostSmall = () => {
                     </button>
 
                     <div className={style('likeSideBar__likeCounter')}>
-                        likeCounter
+                        {post.likes}
                     </div>
 
                     <button className={style('likeSideBar__likeDownButton')}>
@@ -27,12 +30,12 @@ const PostSmall = () => {
                 <div className={style('Main')}>
                     <div className={style('Main__Information')}>
                         <div className={style('Main__Information__UserNameANDpostCategory')}>
-                            <h4>User</h4>
-                            <h4>PostCategory</h4>
+                            <h4>{post.userName}</h4>
+                            {post.postCategoryId != null? <h4>PostCategory</h4> : null}
                         </div>
 
                         <div className={style('Main__Information__Title')}>
-                            Title
+                            {post.title}
                         </div>
                     </div>
 
@@ -40,7 +43,7 @@ const PostSmall = () => {
                         >
                         <div className={style('Main__PostContent__Text')}
                         >
-                            Text
+                            {post.text}
                         </div>
 
                         <div className={style('Main__PostContent__Photos')}
