@@ -18,7 +18,7 @@ const style = bemCssModules(ContentStyles);
 
 
 const Content = () => {
-    //Context
+    //useContext
     const { posts, setPosts, currentPage, setCurrentPage, query } = useContext(StoreContext);
 
     const {loading, error, hasMore} = postQueryExecutor(

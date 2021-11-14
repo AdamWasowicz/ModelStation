@@ -1,5 +1,6 @@
-import React, {useState, useContext } from 'react'
+import React, {useState, useContext, useEffect } from 'react'
 import bemCssModules from 'bem-css-modules'
+import { API_address } from '../../Constants';
 
 //Styles
 import { default as PostSmallStyles } from './PostSmall.module.scss'
@@ -7,9 +8,22 @@ const style = bemCssModules(PostSmallStyles);
 
 
 const PostSmall = React.forwardRef((postObject, ref) => {
-    console.log(postObject);
     const post = postObject.postObject;
-    
+
+    //useState
+    const [photos, setPhotos] = useState([]);
+
+    useEffect( () => {
+        let urlArray = [];
+
+        post.files.forEach(element => {
+            urlArray.push(`${API_address}/api/v1/fileStorage/file/name/${element.storageName}`)
+        })
+
+        setPhotos(urlArray);
+
+    }, []);
+
     return (
         <React.Fragment>
             <div className={style()} ref={ref}>
@@ -46,10 +60,10 @@ const PostSmall = React.forwardRef((postObject, ref) => {
                             {post.text}
                         </div>
 
-                        <div className={style('Main__PostContent__Photos')}
+                        {photos.length != 0 ?  (<div className={style('Main__PostContent__Photos')}
                         >
-                            Photo
-                        </div>
+                            <img src={photos[0]}/>
+                        </div>) : null}
                     </div>
                 </div>
             </div>

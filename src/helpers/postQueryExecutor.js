@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useEffect, useState, useContext } from "react";
+import { API_address } from "../Constants";
+
 
 export default function postQueryExecutor(PostCategory, Title, UserName, CurrentPage, NumberOfPosts, SortOrder, SortAtr, posts, setPosts)
 {
@@ -18,7 +20,7 @@ export default function postQueryExecutor(PostCategory, Title, UserName, Current
         let cancel
         axios({
             method: 'GET',
-            url: 'https://localhost:44363/api/v1/post/query',
+            url: `${API_address}/api/v1/post/query`,
             params: {
                 PostCategory: PostCategory, 
                 Title: Title,

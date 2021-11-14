@@ -1,0 +1,1 @@
+export const API_address = "https://localhost:44363";
