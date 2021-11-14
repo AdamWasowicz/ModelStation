@@ -15,7 +15,7 @@ const Header = () => {
     //Modal
     const [isOpen, setIsOpen] = useState(false);
     //User
-    const { user, setUser} = useContext(StoreContext);
+    const { user, setUser, query, setQuery, currentPage, setCurrentPage} = useContext(StoreContext);
 
     //Handlers
     const handleOnClose = () => setIsOpen(false);
@@ -26,11 +26,18 @@ const Header = () => {
             setIsOpen(true);
     }
 
+    const handleQueryChange = (event) =>{
+        setQuery(event.target.value);
+        setCurrentPage(1);
+    }
+    
+
 
     return (
         <header className={block()}>
             <div className={block('bannerImage')}alt='bannerImage'>Image</div>
             <div className={block('title')}>Title</div>
+            <input value={query} onChange={handleQueryChange}></input>
             <button onClick={handleOnClick}>ModalTest</button>
             <LoginForm handleOnClose={handleOnClose} isOpen={isOpen}/>
         </header>

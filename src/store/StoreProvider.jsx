@@ -10,17 +10,17 @@ const StoreProvider = ( { children} ) => {
     const [user, setUser] = useState(null);
     const [posts, setPosts] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
+    const [query, setQuery] = useState("");
 
     return (
         <StoreContext.Provider value={{
-            posts,
-            setPosts,
+            posts, setPosts,
 
-            user,
-            setUser,
+            user, setUser,
 
-            currentPage,
-            setCurrentPage
+            currentPage, setCurrentPage,
+
+            query, setQuery
         }}>
             {children}
         </StoreContext.Provider>

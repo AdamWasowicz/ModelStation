@@ -6,13 +6,13 @@ import { default as PostSmallStyles } from './PostSmall.module.scss'
 const style = bemCssModules(PostSmallStyles);
 
 
-const PostSmall = (postObject) => {
+const PostSmall = React.forwardRef((postObject, ref) => {
     console.log(postObject);
     const post = postObject.postObject;
     
     return (
         <React.Fragment>
-            <div className={style()}>
+            <div className={style()} ref={ref}>
                 <div className={style('likeSideBar')}>
                     <button className={style('likeSideBar__likeUpButton')}>
                         LikeUp
@@ -55,6 +55,6 @@ const PostSmall = (postObject) => {
             </div>
         </React.Fragment>
     )
-}
+});
 
 export default PostSmall;

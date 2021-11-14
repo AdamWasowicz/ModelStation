@@ -9,11 +9,13 @@ export default function postQueryExecutor(PostCategory, Title, UserName, Current
 
 
     useEffect( () => {
-        setLoading(true);
-        setError(false);
+        setPosts([])
+    }, [Title])
 
-        let cancel;
-
+    useEffect(() => {
+        setLoading(true)
+        setError(false)
+        let cancel
         axios({
             method: 'GET',
             url: 'https://localhost:44363/api/v1/post/query',
@@ -26,21 +28,19 @@ export default function postQueryExecutor(PostCategory, Title, UserName, Current
                 OrderByDirection: SortOrder,
                 SortAtribute: SortAtr
             },
-            cancelToken: new axios.CancelToken(c => cancel = c)
-        })
-        .then(result => {
-            console.log(result);
-            setPosts(...new Set([...posts, result.data.posts]));
-
-            setHasMore(result.data.totalPages != CurrentPage)
-            setLoading(false);
-        })
-        .catch(e => {
-            if (axios.isCancel(e)) return
-            setError(true)
+          cancelToken: new axios.CancelToken(c => cancel = c)
+        }).then(res => {
+          setPosts(prevPosts => {
+            return [...new Set([...prevPosts, ...res.data.posts])]
           })
+          setHasMore(res.data.posts.length == NumberOfPosts)
+          setLoading(false)
+        }).catch(e => {
+          if (axios.isCancel(e)) return
+          setError(true)
+        })
         return () => cancel()
-    }, [CurrentPage])
-
-    return {loading, error, hasMore}
+      }, [Title, CurrentPage])
+    
+      return { loading, error, hasMore }
 }
