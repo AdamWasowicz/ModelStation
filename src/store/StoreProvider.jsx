@@ -8,6 +8,7 @@ export const StoreContext = createContext(null);
 
 const StoreProvider = ( { children} ) => {
     const [user, setUser] = useState(null);
+    const [jwt, setJwt] = useState('');
     const [posts, setPosts] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [query, setQuery] = useState("");
@@ -17,6 +18,8 @@ const StoreProvider = ( { children} ) => {
             posts, setPosts,
 
             user, setUser,
+
+            jwt, setJwt,
 
             currentPage, setCurrentPage,
 

@@ -1,6 +1,6 @@
 import React, {useState, useContext, useEffect } from 'react'
 import bemCssModules from 'bem-css-modules'
-import { API_address } from '../../Constants';
+import { API_address, fileStorageName, fileStorageName_API_route } from '../../Constants';
 
 //Styles
 import { default as PostSmallStyles } from './PostSmall.module.scss'
@@ -17,7 +17,7 @@ const PostSmall = React.forwardRef((postObject, ref) => {
         let urlArray = [];
 
         post.files.forEach(element => {
-            urlArray.push(`${API_address}/api/v1/fileStorage/file/name/${element.storageName}`)
+            urlArray.push(`${API_address}${fileStorageName_API_route}${element.storageName}`)
         })
 
         setPhotos(urlArray);
@@ -62,7 +62,7 @@ const PostSmall = React.forwardRef((postObject, ref) => {
 
                         {photos.length != 0 ?  (<div className={style('Main__PostContent__Photos')}
                         >
-                            <img src={photos[0]}/>
+                            <img src={photos[0]} className={style('Main__PostContent__Photos__image')}/>
                         </div>) : null}
                     </div>
                 </div>

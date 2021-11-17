@@ -4,6 +4,8 @@ import bemCssModules from 'bem-css-modules';
 //ImportedComponents
 import Modal from '../Modal/Modal';
 import { StoreContext } from '../../store/StoreProvider';
+import LoginHelper from '../../helpers/loginHelper';
+
 
 //Styles
 import { default as LoginFormStyles } from './LoginForm.module.scss';
@@ -17,7 +19,7 @@ const LoginForm = ({ handleOnClose, isOpen }) => {
     const [validateMessage, setValidateMessage] = useState('')
 
     //Context
-    const { setUser } = useContext(StoreContext);
+    const { setUser, setJwt } = useContext(StoreContext);
 
 
     //Handlers
@@ -31,21 +33,18 @@ const LoginForm = ({ handleOnClose, isOpen }) => {
     {
         //Strzał do API
         event.preventDefault();
-        //const { data, status } = await requestAnimationFrame.post('/adresApi',
-        //{ login, password }
-        //);
-        //
-        //if (status === 200)
-        //{
-        //    setUser(data.user);
-        //    resetStateOfInputs();
-        //    handleOnClose();
-        //}
-        //else
-        //{
-        //   setValidateMessage(data.message);
-        //}
-        console.log('LoginForm->Zaloguj');
+        const error = await LoginHelper(login, password, setUser, setJwt);
+        console.log(error);
+        if (error)
+        {
+           setValidateMessage('Błąd logowania');
+        }
+        else
+        {
+            resetStateOfInputs();
+            handleOnClose();
+        }
+        console.log('LoginForm->handleOnSubmit');
     }
 
     //Functions
@@ -58,7 +57,6 @@ const LoginForm = ({ handleOnClose, isOpen }) => {
     useEffect(() => {
         if (isOpen)
             resetStateOfInputs;
-
     }, [isOpen])
 
 
