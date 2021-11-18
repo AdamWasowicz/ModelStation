@@ -12,6 +12,7 @@ const StoreProvider = ( { children} ) => {
     const [posts, setPosts] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [query, setQuery] = useState("");
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     return (
         <StoreContext.Provider value={{
@@ -23,7 +24,9 @@ const StoreProvider = ( { children} ) => {
 
             currentPage, setCurrentPage,
 
-            query, setQuery
+            query, setQuery,
+
+            isModalOpen, setIsModalOpen
         }}>
             {children}
         </StoreContext.Provider>
