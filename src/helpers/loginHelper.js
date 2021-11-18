@@ -2,7 +2,7 @@ import axios from "axios";
 import { API_address, login_API_route } from "../Constants";
 
 
-export default async function LoginHelper(login, password, setUser, setJwt)
+export default async function LoginHelper(login, password, setLoggedIn)
 {
     let error = false;
 
@@ -16,16 +16,20 @@ export default async function LoginHelper(login, password, setUser, setJwt)
         }).then(result => {
             if (result.status === 200)
             {
-                setUser(result.data.user);
-                setJwt(result.data.jwt);
+                window.localStorage.setItem("jwt", JSON.stringify(result.data.jwt));
+                window.localStorage.setItem("user", JSON.stringify(result.data.user));
+                
+                setLoggedIn(true);
             }
             else
             {
                 error = true;
             }
+            return error;
+
         }).catch(e => {
             error = true;
         });
-
+        
       return error; 
 }

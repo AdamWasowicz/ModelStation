@@ -1,3 +1,5 @@
+@import "../../colors";
+
 .Content
 {
     //Size
@@ -8,7 +10,7 @@
     padding: 30px;
 
     //Colors
-    background-color: rgb(0, 238, 255);
+    background-color: $content-background-color;
 
 
     //Border

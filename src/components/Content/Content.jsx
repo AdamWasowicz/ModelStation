@@ -40,7 +40,6 @@ const Content = () => {
 
     return (
         <React.Fragment>
-            {console.log('rendering', posts)}
             <div className={style()}>
                 {posts.map((post, index) => {
                     if (posts.length == index + 1)

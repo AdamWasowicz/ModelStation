@@ -1,4 +1,4 @@
-import React, {useContext } from 'react'
+import React, {useContext, useState } from 'react'
 import bemCssModules from 'bem-css-modules'
 import { StoreContext } from '../../store/StoreProvider';
 
@@ -9,30 +9,27 @@ const style = bemCssModules(MenuStyles);
 //Components
 import LoginForm from '../LoginForm/LoginForm';
 
+
 const Menu = () => {
     //Context
-    const { isModalOpen, user, setUser, setIsModalOpen, setJwt } = useContext(StoreContext)
+    const { isModalOpen, setIsModalOpen, isLoggedIn, setIsLoggedIn} = useContext(StoreContext)
 
     //Handlers
     const handleOnClose = () => setIsModalOpen(false);
 
     const handleOnClick = () => {
-        if (Boolean(user))
-            setUser(null);
-        else
             setIsModalOpen(true);
     }
 
     const handleLogOut = () => {
-        setUser(null);
-        setJwt('');
+        window.localStorage.clear();
+        setIsLoggedIn(false);
     }
-    
 
     return (
         <React.Fragment>
             <div className={style()}>
-                { user == null 
+                { (!isLoggedIn)
                     ? <button className={style('loginButton')}onClick={handleOnClick}>Zaloguj</button>
                     : <button className={style('loginButton')}onClick={handleLogOut}>Wyloguj</button>
                 }

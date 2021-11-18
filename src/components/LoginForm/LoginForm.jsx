@@ -19,7 +19,7 @@ const LoginForm = ({ handleOnClose, isOpen }) => {
     const [validateMessage, setValidateMessage] = useState('')
 
     //Context
-    const { setUser, setJwt } = useContext(StoreContext);
+    const { setIsLoggedIn } = useContext(StoreContext);
 
 
     //Handlers
@@ -33,8 +33,7 @@ const LoginForm = ({ handleOnClose, isOpen }) => {
     {
         //Strzał do API
         event.preventDefault();
-        const error = await LoginHelper(login, password, setUser, setJwt);
-        console.log(error);
+        const error = await LoginHelper(login, password, setIsLoggedIn);
         if (error)
         {
            setValidateMessage('Błąd logowania');
@@ -44,7 +43,6 @@ const LoginForm = ({ handleOnClose, isOpen }) => {
             resetStateOfInputs();
             handleOnClose();
         }
-        console.log('LoginForm->handleOnSubmit');
     }
 
     //Functions
@@ -64,7 +62,6 @@ const LoginForm = ({ handleOnClose, isOpen }) => {
     const validateMessageComponent = validateMessage.length
      ? <p className={style('validateMessage')}>{validateMessage}</p> 
      : null;
-
 
 
     return (

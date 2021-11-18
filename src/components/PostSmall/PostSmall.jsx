@@ -1,18 +1,34 @@
-import React, {useState, useContext, useEffect } from 'react'
+import React, {useState, useEffect, useContext } from 'react'
 import bemCssModules from 'bem-css-modules'
-import { API_address, fileStorageName, fileStorageName_API_route } from '../../Constants';
+import { API_address, fileStorageName_API_route } from '../../Constants';
+import { StoreContext } from '../../store/StoreProvider';
+
 
 //Styles
+import { faArrowUp, faArrowDown } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { default as PostSmallStyles } from './PostSmall.module.scss'
 const style = bemCssModules(PostSmallStyles);
 
+//Functions
+import { LikePostHelper_GET } from '../../helpers/likePostHelper';
+
 
 const PostSmall = React.forwardRef((postObject, ref) => {
+    //Post
     const post = postObject.postObject;
 
     //useState
+    const [postData, setPostData] = useState(null);
     const [photos, setPhotos] = useState([]);
+    const [currentLikeStatus, setCurrentLikeStatus] = useState(0);
+    const [error, setError] = useState(false);
 
+    //useContext
+    const { isLoggedIn } = useContext(StoreContext);
+
+
+    //useEffect
     useEffect( () => {
         let urlArray = [];
 
@@ -21,24 +37,38 @@ const PostSmall = React.forwardRef((postObject, ref) => {
         })
 
         setPhotos(urlArray);
-
+        setPostData(post);
     }, []);
+
+    useEffect( () => {
+        CheckIfUserLikedPost();
+    }, [isLoggedIn])
+
+    //Functions
+    const CheckIfUserLikedPost = async () => {
+        if (isLoggedIn)
+        {
+            const cerror = await LikePostHelper_GET(JSON.parse(window.localStorage.getItem('jwt')), post.id);      
+        }
+    }
 
     return (
         <React.Fragment>
             <div className={style()} ref={ref}>
                 <div className={style('likeSideBar')}>
-                    <button className={style('likeSideBar__likeUpButton')}>
-                        LikeUp
-                    </button>
+                    <div className={style('likeSideBar__likeContainer')}>
+                        <button className={style('likeSideBar__likeContainer__likeUpButton')}>
+                            <FontAwesomeIcon icon={faArrowUp} />
+                        </button>
 
-                    <div className={style('likeSideBar__likeCounter')}>
-                        {post.likes}
+                        <div className={style('likeSideBar__likeContainer__likeCounter')}>
+                            {post.likes}
+                        </div>
+
+                        <button className={style('likeSideBar__likeContainer__likeDownButton')}>
+                            <FontAwesomeIcon icon={faArrowDown} />
+                        </button>
                     </div>
-
-                    <button className={style('likeSideBar__likeDownButton')}>
-                        LikeDown
-                    </button>
                 </div>
 
                 <div className={style('Main')}>

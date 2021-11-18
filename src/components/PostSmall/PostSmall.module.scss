@@ -1,13 +1,21 @@
-.PostSmall
-{
-    //Size
-    width: 50%;
-    height: 400px;
+//variables
+$like-arrow-font-size: 50px;
+$like-arrow-base-color: white;
+$like-arrow-background-color: transparent;
+$like-arrow-up-active-color: green;
+$like-arrow-down-active-color: red;
 
-    
+
+.PostSmall {
+    //Size
+    width: 60%;
+    height: 600px;
+    min-width: 600px;
+
+
     //Overflow
     overflow: hidden;
-    
+
 
     //Position
     margin-bottom: 40px;
@@ -18,66 +26,28 @@
     //Flex
     display: flex;
     flex-direction: row;
-        
+
 
     //Color
     background-color: rgb(241, 219, 219);
     border: 2px solid purple;
 
 
-
     //Like SideBar
-    &__likeSideBar
-    {
+    &__likeSideBar {
         //Size
         width: 20%;
         height: 100%;
 
 
-        //Flex
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-        
-
         //Color
-        background-color:salmon;
+        background-color: salmon;
 
 
-        //LikeUp Button
-        &__likeUpButton
-        {
+        &__likeContainer {
+
             //Size
-            width: 80%;
-            height: 20%;
-
-
-            //Color
-            background-color: greenyellow;
-        }
-
-
-        //LikeDownButton
-        &__likeDownButton
-        {
-            //Size
-            width: 80%;
-            height: 20%;
-
-
-            //Color
-            background-color: red;
-        }
-
-
-        //LikeCounter
-        &__likeCounter
-        {
-            //Size
-            width: 80%;
-            height: 20%;
-
+            height: 200px;
 
             //Flex
             display: flex;
@@ -86,14 +56,92 @@
             align-items: center;
 
 
-            //Color
-            background-color: rgb(104, 104, 148);
+            //LikeUp Button
+            &__likeUpButton, &__likeDownButton{
+                //Size
+                width: 80%;
+                height: 30%;
+
+
+                //Font
+                font-size: $like-arrow-font-size;
+
+
+                //Color
+                color: $like-arrow-base-color;
+                background-color: $like-arrow-background-color;
+
+                &-Active {
+                    //Size
+                    width: 80%;
+                    height: 30%;
+
+
+                    //Font
+                    font-size: $like-arrow-font-size;
+
+
+                    //Color
+                    background-color: $like-arrow-background-color;
+                    color: $like-arrow-up-active-color;
+                }
+            }
+
+
+            //LikeDownButton
+            &__likeDownButton {
+                //Size
+                width: 80%;
+                height: 30%;
+
+                //Font
+                font-size: $like-arrow-font-size;
+
+
+                //Color
+                color: $like-arrow-base-color;
+                background-color: $like-arrow-background-color;
+
+                &-Active
+                {
+                    //Size
+                    width: 80%;
+                    height: 30%;
+
+
+                    //Font
+                    font-size: $like-arrow-font-size;
+
+
+                    //Color
+                    background-color: $like-arrow-background-color;
+                    color: $like-arrow-down-active-color;
+                }
+            }
+
+
+            //LikeCounter
+            &__likeCounter {
+                //Size
+                width: 80%;
+                height: 20%;
+
+
+                //Flex
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+
+
+                //Color
+                background-color: rgb(104, 104, 148);
+            }
         }
     }
 
     //Right Part of Post
-    &__Main
-    {
+    &__Main {
         //Size
         width: 100%;
         height: 400px;
@@ -108,8 +156,7 @@
         background-color: rgb(113, 114, 114);
 
 
-        &__Information
-        {
+        &__Information {
             //Size
             width: 100%;
 
@@ -119,8 +166,7 @@
             background-color: rgb(76, 138, 107);
 
 
-            &__UserNameANDpostCategory
-            {
+            &__UserNameANDpostCategory {
                 //Size
                 width: 100%;
                 height: 40%;
@@ -136,8 +182,7 @@
                 background-color: yellow;
             }
 
-            &__Title
-            {
+            &__Title {
                 //Size
                 width: 100%;
                 height: 60%;
@@ -147,8 +192,7 @@
             }
         }
 
-        &__PostContent
-        {
+        &__PostContent {
             //Size
             width: 100%;
 
@@ -162,8 +206,7 @@
 
 
             //Text
-            &__Text
-            {
+            &__Text {
                 //Size
                 width: 100%;
 
@@ -173,12 +216,11 @@
 
 
                 //Color
-                background-color:slateblue;
+                background-color: slateblue;
             }
 
             //Photos
-            &__Photos
-            {
+            &__Photos {
                 //Size
                 width: 100%;
 
@@ -188,11 +230,10 @@
 
 
                 //Color
-                background-color:rgb(207, 84, 84);
-                
+                background-color: rgb(207, 84, 84);
 
-                &__image
-                {
+
+                &__image {
                     width: 100%;
                     height: 100%;
                     display: block;
