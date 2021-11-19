@@ -10,7 +10,7 @@ const StoreProvider = ( { children} ) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [query, setQuery] = useState("");
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(JSON.parse(window.localStorage.getItem('jwt')) ? true : false);
 
     return (
         <StoreContext.Provider value={{

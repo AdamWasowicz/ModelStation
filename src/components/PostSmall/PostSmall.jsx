@@ -11,7 +11,7 @@ import { default as PostSmallStyles } from './PostSmall.module.scss'
 const style = bemCssModules(PostSmallStyles);
 
 //Functions
-import { LikePostHelper_GET } from '../../helpers/likePostHelper';
+import { LikePostHelper_GET, LikedPostHelper_POST } from '../../helpers/likePostHelper';
 
 
 const PostSmall = React.forwardRef((postObject, ref) => {
@@ -19,9 +19,9 @@ const PostSmall = React.forwardRef((postObject, ref) => {
     const post = postObject.postObject;
 
     //useState
-    const [postData, setPostData] = useState(null);
     const [photos, setPhotos] = useState([]);
     const [currentLikeStatus, setCurrentLikeStatus] = useState(0);
+    const [amountOfLikes, setAmountOfLikes] = useState(post.likes);
     const [error, setError] = useState(false);
 
     //useContext
@@ -37,35 +37,89 @@ const PostSmall = React.forwardRef((postObject, ref) => {
         })
 
         setPhotos(urlArray);
-        setPostData(post);
     }, []);
 
     useEffect( () => {
         CheckIfUserLikedPost();
     }, [isLoggedIn])
 
+
     //Functions
     const CheckIfUserLikedPost = async () => {
         if (isLoggedIn)
         {
-            const cerror = await LikePostHelper_GET(JSON.parse(window.localStorage.getItem('jwt')), post.id);      
+            const {error, value} = await LikePostHelper_GET(JSON.parse(window.localStorage.getItem('jwt')), post.id);
+            
+
+            setCurrentLikeStatus(value);
         }
     }
+
+    
+    //Handlers
+    const likeUpButtonHandler = async () => {
+        if (currentLikeStatus === 1)
+        {
+            await LikedPostHelper_POST(JSON.parse(window.localStorage.getItem('jwt')), 0, post.id);
+            setCurrentLikeStatus(0);
+            setAmountOfLikes(amountOfLikes - 1)
+
+        }
+        else if (currentLikeStatus === -1)
+        {
+            await LikedPostHelper_POST(JSON.parse(window.localStorage.getItem('jwt')), 1, post.id);
+            setCurrentLikeStatus(1);
+            setAmountOfLikes(amountOfLikes + 2)
+        }
+        else
+        {
+            await LikedPostHelper_POST(JSON.parse(window.localStorage.getItem('jwt')), 1, post.id);
+            setCurrentLikeStatus(1);
+            setAmountOfLikes(amountOfLikes + 1)
+        }
+    }
+
+    const likeDownButtonHandler = async () => {
+        if (currentLikeStatus === -1)
+        {
+            await LikedPostHelper_POST(JSON.parse(window.localStorage.getItem('jwt')), 0, post.id);
+            setCurrentLikeStatus(0);
+            setAmountOfLikes(amountOfLikes + 1)
+
+        }
+        else if (currentLikeStatus === 1)
+        {
+            await LikedPostHelper_POST(JSON.parse(window.localStorage.getItem('jwt')), -1, post.id);
+            setCurrentLikeStatus(-1);
+            setAmountOfLikes(amountOfLikes - 2)
+        }
+        else
+        {
+            await LikedPostHelper_POST(JSON.parse(window.localStorage.getItem('jwt')), -1, post.id);
+            setCurrentLikeStatus(-1);
+            setAmountOfLikes(amountOfLikes - 1)
+        }
+    }
+
 
     return (
         <React.Fragment>
             <div className={style()} ref={ref}>
                 <div className={style('likeSideBar')}>
                     <div className={style('likeSideBar__likeContainer')}>
-                        <button className={style('likeSideBar__likeContainer__likeUpButton')}>
+                        <button className={currentLikeStatus == 1 
+                        ? style('likeSideBar__likeContainer__likeUpButton-Active')
+                        : style('likeSideBar__likeContainer__likeUpButton')} onClick={isLoggedIn ? likeUpButtonHandler: null}>
                             <FontAwesomeIcon icon={faArrowUp} />
                         </button>
 
                         <div className={style('likeSideBar__likeContainer__likeCounter')}>
-                            {post.likes}
+                            {amountOfLikes}
                         </div>
 
-                        <button className={style('likeSideBar__likeContainer__likeDownButton')}>
+                        <button className={currentLikeStatus == -1 
+                            ? style('likeSideBar__likeContainer__likeDownButton-Active')
+                            : style('likeSideBar__likeContainer__likeDownButton')} onClick={isLoggedIn ? likeDownButtonHandler : null}>
                             <FontAwesomeIcon icon={faArrowDown} />
                         </button>
                     </div>
