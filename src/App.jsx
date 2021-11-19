@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import './App.scss';
 
 //StoreProvider
@@ -13,8 +14,10 @@ const App = () => {
 	return (
 		<StoreProvider>
 			<Menu/>
-			<Header/>
-			<Content/>
+			<Router>
+				<Header/>
+				<Content/>
+			</Router>
 		</StoreProvider>
 	);
 };

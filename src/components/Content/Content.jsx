@@ -1,9 +1,12 @@
-import React, {useState, useContext, useRef, useCallback, useEffect } from 'react'
+import React, {useState, useContext, useRef, useCallback, useEffect } from 
+'react';
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+
 import bemCssModules from 'bem-css-modules'
 
 //Components
 import PostSmall from '../PostSmall';
-
+import CreatePost from '../CreatePost';
 
 //Other
 import postQueryExecutor from '../../helpers/postQueryExecutor';
@@ -41,12 +44,19 @@ const Content = () => {
     return (
         <React.Fragment>
             <div className={style()}>
-                {posts.map((post, index) => {
-                    if (posts.length == index + 1)
-                        return <PostSmall key={index} ref={lastPostElementRef} postObject={post}/>
-                    else
-                        return <PostSmall key={index} postObject={post}/>
-                })}
+                <Routes>
+                    <Route path='/'>
+                        {posts.map((post, index) => {
+                            if (posts.length == index + 1)
+                                return <PostSmall key={index} ref={lastPostElementRef} postObject={post}/>
+                            else
+                                return <PostSmall key={index} postObject={post}/>
+                        })}
+                    </Route>
+
+                    <Route path='createpost' element={<CreatePost/>}/>
+                </Routes>
+                <Link to="createpost">createPost</Link>    
             </div>
         </React.Fragment>
     )

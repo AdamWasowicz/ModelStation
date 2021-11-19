@@ -29,10 +29,20 @@ const Menu = () => {
     return (
         <React.Fragment>
             <div className={style()}>
-                { (!isLoggedIn)
-                    ? <button className={style('loginButton')}onClick={handleOnClick}>Zaloguj</button>
-                    : <button className={style('loginButton')}onClick={handleLogOut}>Wyloguj</button>
-                }
+                <div>
+                    <div>
+                        <button>
+                            CreatePost
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    {(!isLoggedIn)
+                        ? <button className={style('loginButton')}onClick={handleOnClick}>Zaloguj</button>
+                        : <button className={style('loginButton')}onClick=          {handleLogOut}>Wyloguj</button>
+                    }
+                </div>
             </div>
             <LoginForm handleOnClose={handleOnClose} isOpen={isModalOpen}/>
         </React.Fragment>
