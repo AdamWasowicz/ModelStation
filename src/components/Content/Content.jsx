@@ -1,6 +1,6 @@
 import React, {useState, useContext, useRef, useCallback, useEffect } from 
 'react';
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import bemCssModules from 'bem-css-modules'
 
@@ -45,18 +45,16 @@ const Content = () => {
         <React.Fragment>
             <div className={style()}>
                 <Routes>
-                    <Route path='/'>
-                        {posts.map((post, index) => {
-                            if (posts.length == index + 1)
-                                return <PostSmall key={index} ref={lastPostElementRef} postObject={post}/>
-                            else
-                                return <PostSmall key={index} postObject={post}/>
+                        {
+                            posts.map((post, index) => {
+                                if (posts.length == index + 1)
+                                    <Route path='/' element={<PostSmall key={index} ref={lastPostElementRef} postObject={post}/>}/>
+                                else
+                                    <Route path='/' element={<PostSmall key={index} postObject={post}/>}/>
                         })}
-                    </Route>
 
                     <Route path='createpost' element={<CreatePost/>}/>
-                </Routes>
-                <Link to="createpost">createPost</Link>    
+                </Routes> 
             </div>
         </React.Fragment>
     )

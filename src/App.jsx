@@ -13,8 +13,8 @@ import Content from './components/Content';
 const App = () => {
 	return (
 		<StoreProvider>
-			<Menu/>
 			<Router>
+				<Menu/>
 				<Header/>
 				<Content/>
 			</Router>

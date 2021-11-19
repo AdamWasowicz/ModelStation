@@ -1,4 +1,5 @@
 import React, {useContext, useState } from 'react'
+import { Link } from 'react-router-dom';
 import bemCssModules from 'bem-css-modules'
 import { StoreContext } from '../../store/StoreProvider';
 
@@ -30,11 +31,11 @@ const Menu = () => {
         <React.Fragment>
             <div className={style()}>
                 <div>
-                    <div>
-                        <button>
-                            CreatePost
-                        </button>
-                    </div>
+                    { 
+                        isLoggedIn
+                        ? <button><Link to="createpost">createPost</Link></button>
+                        : null
+                    }
                 </div>
 
                 <div>

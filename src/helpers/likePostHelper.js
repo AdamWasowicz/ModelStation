@@ -1,8 +1,5 @@
 import axios from "axios";
-import {
-    API_address,
-    likeComment_API_route,
-    likedComment_create_or_edit_API_route
+import { API_address, likeComment_API_route, likedComment_create_or_edit_API_route
 } from "../Constants";
 
 
@@ -13,7 +10,6 @@ export async function LikePostHelper_GET(jwt, postId) {
     await axios({
         method: 'GET',
         url: `${API_address}${likeComment_API_route}` + postId,
-        //url: `https://localhost:44363/api/v1/likedpost/post/id/${postId}`,
         headers: {
             Authorization: "Bearer " + jwt
         },
