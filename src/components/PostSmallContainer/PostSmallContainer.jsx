@@ -37,8 +37,6 @@ const PostSmallContainer = () => {
         if (node) observer.current.observe(node);
   }, [loading, hasMore]);
   
-    console.log('PostSmallContainer');
-    console.log(posts);
 
     return (
         <React.Fragment>

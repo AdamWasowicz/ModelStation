@@ -10,7 +10,7 @@ const bemstyle = bemCssModules(CreatePostStyle);
 
 
 //Components
-import PostCategoryContainer from '../PostCategoryContainer/PostCategoryContainer';
+import PostCategoryContainer from '../PostCategoryContainer';
 import NotLoggedException from '../NotLoggedException';
 
 
@@ -32,7 +32,7 @@ const CreatePost = () => {
         const handleTextChange = (event) => setText(event.target.value);
         const handleFileChange = (event) => setFiles(event.target.files);
         const handlePostCategoryNameChange = (event) => setPostCategoryName(event.target.value);
-        const handleUpload = async () => await uploadPost(JSON.parse(window.localStorage.getItem('jwt')), title, text, files);
+        const handleUpload = async () => await uploadPost(JSON.parse(window.localStorage.getItem('jwt')), title, text, postCategoryName, files);
 
 
         return (
@@ -57,7 +57,7 @@ const CreatePost = () => {
 
                         <div>
                             <label htmlFor="file">Zdjęcie</label>
-                            <input type="file" id="file" onChange={handleFileChange} />
+                            <input type="file" id="file" accept=".png, .jpg, .jpeg"onChange={handleFileChange} />
                         </div>
 
                         <button onClick={handleUpload}>
@@ -66,7 +66,7 @@ const CreatePost = () => {
                     </div>
 
                     <div>
-                        <PostCategoryContainer />
+                        <PostCategoryContainer setCategoryName={setPostCategoryName} />
                     </div>
                 </div>
             </React.Fragment>

@@ -2,17 +2,21 @@ import axios from "axios";
 import { API_address, uploadPost_API_route } from "../Constants";
 
 
-export async function uploadPost(jwt, title, text, image) {
+export async function uploadPost(jwt, title, text, categoryName, images) {
     var result = 0;
-    console.log(image);
 
     //FormData
     let bodyFormData = new FormData();
     bodyFormData.append('Title', title);
     bodyFormData.append("Text", text);
-    bodyFormData.append("Files", [...image]);
-
-    console.log(bodyFormData);
+    if (categoryName.length > 0)
+        bodyFormData.append("PostCategoryName", categoryName);
+    if (images != null)
+    {
+        images.foreach( (img) => {
+            bodyFormData.append("Files", img);
+        })
+    }
 
 
     axios({
@@ -25,11 +29,11 @@ export async function uploadPost(jwt, title, text, image) {
         },
     }).then(function (response) {
         console.log(response);
-          result = 1;
+        result = 1;
     }).catch(function (response)
     {
         console.log(response);
-          result = -1;
+        result = -1;
     });
 
     return result;

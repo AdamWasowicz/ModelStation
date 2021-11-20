@@ -14,9 +14,7 @@ export async function LikePostHelper_GET(jwt, postId) {
             Authorization: "Bearer " + jwt
         },
     }).then(result => {
-        console.log(result);
         if (result.status === 200) {
-            console.log(result);
             value = result.data.value;
         } else {
             value = 0;
@@ -27,7 +25,6 @@ export async function LikePostHelper_GET(jwt, postId) {
         error = true;
     });
 
-    console.log('LikePostHelper_GET : END')
     return {error, value};
 }
 

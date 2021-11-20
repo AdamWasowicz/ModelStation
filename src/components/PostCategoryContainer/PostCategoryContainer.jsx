@@ -7,38 +7,44 @@ import { default as PostCategoryContainerStyle } from './PostCategoryContainer.m
 const style = bemCssModules(PostCategoryContainerStyle);
 
 
+//Components
+import PostCategory from '../PostCategory/PostCategory';
+
+
 //Functions
 import { postCategory_GET } from '../../helpers/postCategoryHelper';
 
 
-const PostCategoryContainer = (setCategoryName) => {
+const PostCategoryContainer = ({setCategoryName}) => {
 
     //useState
     const [postCategories, setPostCategories] = useState([]);
+
 
     //useEffect
     useEffect( () => {
         handleGET();
     }, [])
 
+
     //Functions
     const handleGET = async () => {
         setPostCategories(await postCategory_GET(JSON.parse(window.localStorage.getItem('jwt')), setPostCategories));
     }
     
+
     //Handlers
-    const handleOnComponentClick = (event) => {
-        setCategoryName(event.target.value);
-    }
+    
 
     return (
         <React.Fragment>
             <div className={style('')}>
+                <h2>Dostępne kategorie</h2>
                 <ul>
                     { 
                         postCategories.length > 0
                         ? postCategories.map((pc, index) => {
-                            return <li key={index}>{pc.name}</li>
+                            return <PostCategory key={index} pcObject={pc} handleOnClick={setCategoryName}/>
                         })
                         : null
                     }

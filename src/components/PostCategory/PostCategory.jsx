@@ -3,30 +3,42 @@ import bemCssModules from 'bem-css-modules'
 
 
 //Styles
-import { default as PostCategory } from './PostCategory.module.scss'
-const style = bemCssModules(PostCategory);
+import { default as PostCategoryStyle } from './PostCategory.module.scss'
+const style = bemCssModules(PostCategoryStyle);
 
 
 //Functions
 
 
-const PostCategory = () => {
+const PostCategory = ({pcObject, handleOnClick}) => {
 
     //useState
-    const [postCategory, setPostCategory] = useState({});
+    const [postCategoryObject, setPostCategoryObject] = useState({});
 
     //useEffect
+    useEffect( () => {
+        setPostCategoryObject(pcObject);
+    }, [])
+
 
     //Functions
-    
-    //Handlers
-    const handleOnClick = (event) => {
 
+
+    //Handlers
+    const handleOnCategoryClick = (event) => {
+        handleOnClick(postCategoryObject.name);
     }
+    
+
 
     return (
         <React.Fragment>
-            
+            <li onClick={handleOnCategoryClick}>
+                <div>
+                    <label>{'Nazwa: ' + postCategoryObject.name}</label>
+                    <label>{'Opis: ' + postCategoryObject.description}</label>
+                </div>
+            </li>
         </React.Fragment>
     )
 };

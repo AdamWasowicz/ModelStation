@@ -130,7 +130,7 @@ const PostSmall = React.forwardRef((postObject, ref) => {
                     <div className={style('Main__Information')}>
                         <div className={style('Main__Information__UserNameANDpostCategory')}>
                             <h4>{post.userName}</h4>
-                            {post.postCategoryId != null? <h4>PostCategory</h4> : null}
+                            {post.postCategoryId != null ? <h4>{post.postCategoryName}</h4> : null}
                         </div>
 
                         <div className={style('Main__Information__Title')}>
