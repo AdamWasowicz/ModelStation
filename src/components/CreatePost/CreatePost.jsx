@@ -18,15 +18,11 @@ const CreatePost = () => {
     //Handlers
     const handleTitleChange = (event) => setTitle(event.target.value);
     const handleTextChange = (event) => setText(event.target.value);
-    const handleFileChange = (event) => 
-    {
-        setFiles(event.target.files[0]);
-    }
+    const handleFileChange = (event) => setFiles(event.target.files);
 
     const handleUpload = async () =>
     {
         let result = await uploadPost(JSON.parse(window.localStorage.getItem('jwt')), title, text, files);
-
         console.log(result);
     }
 

@@ -38,10 +38,15 @@ const PostSmall = React.forwardRef((postObject, ref) => {
         })
 
         setPhotos(urlArray);
+        
     }, []);
+
 
     useEffect( () => {
         CheckIfUserLikedPost();
+
+        if (isLoggedIn == false)
+            setCurrentLikeStatus(0);
     }, [isLoggedIn])
 
 
@@ -51,7 +56,6 @@ const PostSmall = React.forwardRef((postObject, ref) => {
         {
             const {error, value} = await LikePostHelper_GET(JSON.parse(window.localStorage.getItem('jwt')), post.id);
             
-
             setCurrentLikeStatus(value);
         }
     }

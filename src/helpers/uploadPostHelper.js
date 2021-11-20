@@ -10,7 +10,7 @@ export async function uploadPost(jwt, title, text, image) {
     let bodyFormData = new FormData();
     bodyFormData.append('Title', title);
     bodyFormData.append("Text", text);
-    bodyFormData.append("Files", image);
+    bodyFormData.append("Files", [...image]);
 
     console.log(bodyFormData);
 
