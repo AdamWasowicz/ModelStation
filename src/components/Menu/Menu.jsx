@@ -17,11 +17,7 @@ const Menu = () => {
 
     //Handlers
     const handleOnClose = () => setIsModalOpen(false);
-
-    const handleOnClick = () => {
-            setIsModalOpen(true);
-    }
-
+    const handleOnClick = () => setIsModalOpen(true);  
     const handleLogOut = () => {
         window.localStorage.clear();
         setIsLoggedIn(false);
@@ -39,9 +35,10 @@ const Menu = () => {
                 </div>
 
                 <div>
-                    {(!isLoggedIn)
+                    {
+                        !isLoggedIn
                         ? <button className={style('loginButton')}onClick={handleOnClick}>Zaloguj</button>
-                        : <button className={style('loginButton')}onClick=          {handleLogOut}>Wyloguj</button>
+                        : <button className={style('loginButton')}onClick=     {handleLogOut}>Wyloguj</button>
                     }
                 </div>
             </div>

@@ -12,7 +12,6 @@ const style = bemCssModules(PostSmallStyles);
 
 //Functions
 import { LikePostHelper_GET, LikedPostHelper_POST } from '../../helpers/likePostHelper';
-import { Route } from 'react-router';
 
 
 const PostSmall = React.forwardRef((postObject, ref) => {
@@ -40,8 +39,6 @@ const PostSmall = React.forwardRef((postObject, ref) => {
         setPhotos(urlArray);
         
     }, []);
-
-
     useEffect( () => {
         CheckIfUserLikedPost();
 
@@ -83,7 +80,6 @@ const PostSmall = React.forwardRef((postObject, ref) => {
             setAmountOfLikes(amountOfLikes + 1)
         }
     }
-
     const likeDownButtonHandler = async () => {
         if (currentLikeStatus === -1)
         {

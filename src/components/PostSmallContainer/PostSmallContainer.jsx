@@ -1,6 +1,5 @@
 import React, { useContext, useRef, useCallback } from 
 'react';
-
 import bemCssModules from 'bem-css-modules'
 
 //Components
@@ -49,7 +48,8 @@ const PostSmallContainer = () => {
                         return <PostSmall key={index} ref={lastPostElementRef} postObject={post}/>
                     else
                         return <PostSmall key={index} postObject={post}/>
-            })}
+                })
+            }
         </React.Fragment>
     )
 }
