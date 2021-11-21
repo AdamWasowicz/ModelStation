@@ -31,15 +31,21 @@ export default function postQueryExecutor(PostCategory, Title, UserName, Current
                 SortAtribute: SortAtr
             },
           cancelToken: new axios.CancelToken(c => cancel = c)
+          
         }).then(res => {
+
           setPosts(prevPosts => {
             return [...new Set([...prevPosts, ...res.data.posts])]
-          })
-          setHasMore(res.data.posts.length == NumberOfPosts)
-          setLoading(false)
+          });
+
+          setHasMore(res.data.posts.length == NumberOfPosts);
+          setLoading(false);
+
         }).catch(e => {
+
           if (axios.isCancel(e)) return
-          setError(true)
+          setError(true);
+          setLoading(false);
         })
         return () => cancel()
       }, [Title, CurrentPage])

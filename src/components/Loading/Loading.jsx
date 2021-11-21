@@ -27,9 +27,11 @@ const Loading = () => {
 
     return (
         <React.Fragment>
-            <div className={style('')}> 
+            <div className="Loading"> 
                 <h1>Ładowanie zawartości</h1>
-                <FontAwesomeIcon className={style('__LoadingIcon')} icon={faSpinner} />
+                <div className="LoadingIcon">
+                    <FontAwesomeIcon icon={faSpinner} />
+                </div>
             </div>
         </React.Fragment>
     )

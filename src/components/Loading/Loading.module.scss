@@ -1,27 +1,65 @@
 @import "../../colors";
 
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+
 .Loading
 {
+    //Position
+    margin-left: auto;
+    margin-right: auto;
+
+
     //Size
     width: $component-base-width;
     height: $component-base-height;
+
+    //Padding
+    padding: 10px;
 
 
     //Color
     background-color: chartreuse;
 
 
-    //LoadingIcon
-    &__LoadingIcon {
-        animation: spin;
+    h1 {
+        //Text
+        text-align: center;
+
+        
+        //Font
+        font-size: 50px;
     }
 
-    @keyframes spin {
-        from {
-            transform: rotate(0deg);
-        }
-        to{
-            transform: rotate(360deg);
-        }
+
+    //LoadingIcon
+    .LoadingIcon {
+        //Size
+        width: 300px;
+
+
+        //Position
+        margin-right: auto;
+        margin-left: auto;
+        z-index: 1;
+
+
+        //Animation
+        animation: spin 1s linear infinite;
+
+
+        //Font
+        font-size: 300px;
+
+
+        //Color
     }
 }

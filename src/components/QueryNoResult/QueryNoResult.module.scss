@@ -1,0 +1,16 @@
+@import "../../colors";
+
+.QueryNoResult {
+    //Size
+    width: $component-base-width;
+    height: $component-base-width;
+
+
+    //Position
+    margin-left: auto;
+    margin-right: auto;
+
+
+    //Color
+    background-color: coral;
+}

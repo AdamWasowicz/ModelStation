@@ -39,7 +39,7 @@ const PostSmallContainer = () => {
         if (node) observer.current.observe(node);
     }, [loading, hasMore]);
 
-    if (query.length > 0 && post.length > 0) {
+    if (loading == false && posts.length > 0 ) {
         return (
             <React.Fragment>
                 {
