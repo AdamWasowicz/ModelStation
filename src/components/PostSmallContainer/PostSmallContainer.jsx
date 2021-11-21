@@ -4,7 +4,8 @@ import bemCssModules from 'bem-css-modules'
 
 //Components
 import PostSmall from '../PostSmall';
-import QueryNoResult from '../QueryNoResult/QueryNoResult';
+import QueryNoResult from '../QueryNoResult';
+import Loading from '../Loading';
 
 //Other
 import postQueryExecutor from '../../helpers/postQueryExecutor';
@@ -54,7 +55,7 @@ const PostSmallContainer = () => {
     }
     else if (loading == true)
     {
-        return <div>a</div>
+        return <Loading/>
     }
     else
     {

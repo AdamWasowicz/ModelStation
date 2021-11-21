@@ -1,0 +1,27 @@
+@import "../../colors";
+
+.Loading
+{
+    //Size
+    width: $component-base-width;
+    height: $component-base-height;
+
+
+    //Color
+    background-color: chartreuse;
+
+
+    //LoadingIcon
+    &__LoadingIcon {
+        animation: spin;
+    }
+
+    @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+        to{
+            transform: rotate(360deg);
+        }
+    }
+}
