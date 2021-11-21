@@ -35,6 +35,14 @@ const Menu = () => {
                 </div>
 
                 <div>
+                    { 
+                        isLoggedIn
+                        ? <button><Link to="editpost">editPost</Link></button>
+                        : null
+                    }
+                </div>
+
+                <div>
                     {
                         !isLoggedIn
                         ? <button className={style('loginButton')}onClick={handleOnClick}>Zaloguj</button>

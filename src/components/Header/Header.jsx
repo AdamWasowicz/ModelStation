@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import bemCssModules from 'bem-css-modules'
+import React, { useContext } from 'react';
+import bemCssModules from 'bem-css-modules';
 import { StoreContext } from '../../store/StoreProvider';
 
 //Styles
@@ -14,8 +14,6 @@ const Header = () => {
         setQuery(event.target.value);
         setCurrentPage(1);
     }
-    
-
 
     return (
         <header className={block()}>

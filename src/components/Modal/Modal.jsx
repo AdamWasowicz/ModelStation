@@ -35,7 +35,6 @@ const Modal = ({ children, handleOnClose, isOpen, closeOnBackgroundClick }) =>
         }
 
     }, [isOpen]);
-
     //HandleClose
     useEffect( () => {
         const { current: modal } = modalRef;

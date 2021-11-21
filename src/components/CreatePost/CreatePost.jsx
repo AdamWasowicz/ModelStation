@@ -41,22 +41,22 @@ const CreatePost = () => {
                     <h1>Tworzenie nowego postu</h1>
                     <div>
                         <div>
-                            <label htmlFor="title">Tytuł</label>
+                            <label htmlFor="title">Tytuł: </label>
                             <input type="text" id="title" value={title} onChange={handleTitleChange} />
                         </div>
 
                         <div>
-                            <label htmlFor="text">Zawartość</label>
+                            <label htmlFor="text">Zawartość: </label>
                             <input type="text" id="text" value={text} onChange={handleTextChange} />
                         </div>
 
                         <div>
-                            <label htmlFor="text">Nazwa kategori</label>
-                            <input type="text" id="text" value={postCategoryName} onChange={handlePostCategoryNameChange} />
+                            <label htmlFor="text">Kategoria: </label>
+                            <input type="text" disabled={true} id="text" value={postCategoryName} onChange={handlePostCategoryNameChange} />
                         </div>
 
                         <div>
-                            <label htmlFor="file">Zdjęcie</label>
+                            <label htmlFor="file">Zdjęcia: </label>
                             <input type="file" id="file" accept=".png, .jpg, .jpeg"onChange={handleFileChange} />
                         </div>
 

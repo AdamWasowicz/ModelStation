@@ -1,0 +1,89 @@
+@import "../../colors";
+
+.EditPost {
+    //Size
+    max-width: $component-base-width;
+    max-height: $component-base-height;
+
+
+    //Position
+    margin-right: auto;
+    margin-left: auto;
+
+
+    //Flex
+    display: flex;
+    flex-direction: column;
+
+
+    //Color
+    background-color: darkcyan;
+
+
+    //H4
+    > h4
+    {
+        //Size
+        padding: 10px;
+
+        //Text
+        text-align: center;
+
+
+        //Font
+        font-size: 30px;
+    }
+
+
+    //Content
+    .EditPost_Content
+    {
+        //Size
+        height: 300px;
+
+        //Flex
+        display: flex;
+        flex-direction: row;
+
+
+        //Color
+        background-color: darkcyan;
+
+
+        //LeftPart
+        .LeftPart {
+            //Size
+            width: 50%;
+            padding: 10px;
+
+
+            //Color
+            background-color: darkmagenta;
+        }
+
+
+        //RightPart
+        .RightPart {
+            //Size
+            width: 50%;
+            padding: 10px;
+
+
+            //Color
+            background-color: rgb(62, 238, 85);
+        }
+
+
+        //UpdateButton
+        .UpdateButton {
+            //Size
+            padding: 10px;
+            width: 100%;
+
+
+            //Display
+            display: block;
+        }
+
+    }
+}

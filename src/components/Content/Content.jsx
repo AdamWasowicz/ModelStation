@@ -5,7 +5,8 @@ import bemCssModules from 'bem-css-modules'
 
 //Components
 import CreatePost from '../CreatePost';
-import PostSmallContainer from '../PostSmallContainer/PostSmallContainer';
+import PostSmallContainer from '../PostSmallContainer';
+import EditPost from '../EditPost';
 
 
 //Styles
@@ -22,6 +23,7 @@ const Content = () => {
                 <Routes>
                     <Route path='/' element={<PostSmallContainer/>}/>
                     <Route path='createpost' element={<CreatePost/>}/>
+                    <Route path='editpost' element={<EditPost/>}/>
                 </Routes> 
             </div>
         </React.Fragment>
