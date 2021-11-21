@@ -1,0 +1,12 @@
+@import "../../colors";
+
+.UserHasNoPostsException
+{
+    //Size
+    width: $component-base-width;
+    height: $component-base-height;
+
+
+    //Color
+    background-color: darkseagreen;
+}
