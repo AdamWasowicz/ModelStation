@@ -1,13 +1,13 @@
 import axios from "axios";
 import { API_address, getUserPosts_APU_route } from "../Constants";
 
-export async function GetUserPosts(jwt, userId)
+export async function GetUserPosts(jwt, userId, setUserPosts, setLoading)
 {
     let error = false;
     let data = [];
 
     await axios({
-        method: 'POST',
+        method: 'GET',
         url: `${API_address}${getUserPosts_APU_route}/${userId}`,
         headers: {
             Authorization: "Bearer " + jwt
@@ -15,16 +15,25 @@ export async function GetUserPosts(jwt, userId)
     }).then(result => {
         if (result.status === 200) {
             console.log(result);
+            
+            setUserPosts(result.data);
+            setLoading(false);
+
             data = result.data;
             error = false;
         } else {
-            result = false;
+            setPosts([]);
+            setLoading(false);
+
             error = true;
         }
     }).catch(e => {
-        result = false;
+
+        setUserPosts([]);
+        setLoading(false);
         error = true;
     });
 
+    console.log('END', error, data);
     return { error, data };
 }
