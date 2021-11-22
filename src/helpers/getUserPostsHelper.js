@@ -13,9 +13,7 @@ export async function GetUserPosts(jwt, userId, setUserPosts, setLoading)
             Authorization: "Bearer " + jwt
         }
     }).then(result => {
-        if (result.status === 200) {
-            console.log(result);
-            
+        if (result.status === 200) {  
             setUserPosts(result.data);
             setLoading(false);
 
@@ -34,6 +32,5 @@ export async function GetUserPosts(jwt, userId, setUserPosts, setLoading)
         error = true;
     });
 
-    console.log('END', error, data);
     return { error, data };
 }

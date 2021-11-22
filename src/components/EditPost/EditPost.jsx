@@ -94,7 +94,9 @@ const EditPost = () => {
 
                     <PostCategoryContainer setCategoryName={setPostCategoryName}/>
 
-                    <button className='UpdateButton'>Aktułalizuj</button>
+                    <div className='UpdateButton'>
+                        <button>Aktułalizuj</button>
+                    </div>
                 </div>
             )
         }

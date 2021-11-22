@@ -2,8 +2,7 @@
 
 .EditPost {
     //Size
-    width: $component-base-width + 300;
-    height: 800px;
+    width: $component-base-width + 200px;
 
 
     //Position
@@ -18,6 +17,10 @@
 
     //Color
     background-color: darkcyan;
+
+
+    //Border
+    border: 2px solid white;
 
 
     //H4
@@ -39,7 +42,8 @@
     .EditPost_Content
     {
         //Size
-        height: 400px;
+        width: 100%;
+        height: 300px;
 
         //Flex
         display: flex;
@@ -66,24 +70,30 @@
         .RightPart {
             //Size
             width: 50%;
-            padding: 10px;
 
 
             //Color
             background-color: rgb(62, 238, 85);
         }
+    }
 
 
-        //UpdateButton
-        .UpdateButton {
+    //UpdateButton
+    .UpdateButton {
+        //Size
+        width: 100%;
+        height: 50px;
+
+
+        //Display
+        display: block;
+
+
+        button
+        {
             //Size
-            padding: 10px;
             width: 100%;
-
-
-            //Display
-            display: block;
+            height: 100%;
         }
-
     }
 }
