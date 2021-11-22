@@ -2,8 +2,8 @@
 
 .EditPost {
     //Size
-    max-width: $component-base-width;
-    max-height: $component-base-height;
+    width: $component-base-width + 300;
+    height: 800px;
 
 
     //Position
@@ -39,7 +39,7 @@
     .EditPost_Content
     {
         //Size
-        height: 300px;
+        height: 400px;
 
         //Flex
         display: flex;

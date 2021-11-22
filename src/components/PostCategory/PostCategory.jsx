@@ -33,12 +33,10 @@ const PostCategory = ({pcObject, handleOnClick}) => {
 
     return (
         <React.Fragment>
-            <li onClick={handleOnCategoryClick}>
-                <div>
-                    <label>{'Nazwa: ' + postCategoryObject.name}</label>
-                    <label>{'Opis: ' + postCategoryObject.description}</label>
-                </div>
-            </li>
+            <div onClick={handleOnCategoryClick} className='PostCategory'>
+                <label className="Prop">{'Nazwa: ' + postCategoryObject.name}</label>
+                <label className="Prop">{'Opis: ' + postCategoryObject.description}</label>
+            </div>
         </React.Fragment>
     )
 };

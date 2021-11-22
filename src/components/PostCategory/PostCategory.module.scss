@@ -1,0 +1,40 @@
+.PostCategory
+{
+    //Size
+    width: 100%;
+    height: 75px;
+
+    
+    //Padding
+    padding: 10px;
+
+
+    //Position
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 20px;
+
+
+    //Display
+    display: flex;
+    flex-direction: column;
+
+    //Color
+    background-color: cadetblue;
+
+
+    //Prop
+    .Prop
+    {
+        //Size
+        width: 100%;
+
+        
+        //Position
+        margin-bottom: 5px;
+
+        
+        //Color
+        background-color: chartreuse;
+    }
+}
