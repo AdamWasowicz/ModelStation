@@ -1,4 +1,5 @@
 import React, {useState, useEffect, useContext } from 'react'
+import { useNavigate } from 'react-router';
 import bemCssModules from 'bem-css-modules'
 import { API_address, fileStorageName_API_route } from '../../Constants';
 import { StoreContext } from '../../store/StoreProvider';
@@ -10,8 +11,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { default as PostSmallStyles } from './PostSmall.module.scss'
 const style = bemCssModules(PostSmallStyles);
 
-//Functions
+//Helpers
 import { LikePostHelper_GET, LikedPostHelper_POST } from '../../helpers/likePostHelper';
+
 
 
 const PostSmall = React.forwardRef((postObject, ref) => {
@@ -19,10 +21,12 @@ const PostSmall = React.forwardRef((postObject, ref) => {
     const post = postObject.postObject;
 
     //useState
+    const [id, setId] = useState(postObject.postObject.id);
     const [photos, setPhotos] = useState([]);
     const [currentLikeStatus, setCurrentLikeStatus] = useState(0);
     const [amountOfLikes, setAmountOfLikes] = useState(post.likes);
     const [error, setError] = useState(false);
+    const navigate = useNavigate();
 
     //useContext
     const { isLoggedIn } = useContext(StoreContext);
@@ -56,6 +60,10 @@ const PostSmall = React.forwardRef((postObject, ref) => {
             setCurrentLikeStatus(value);
         }
     }
+    const RedirectToPostBig = () => {
+        navigate(`post/` + id);
+    }
+    
 
     
     //Handlers
@@ -101,11 +109,14 @@ const PostSmall = React.forwardRef((postObject, ref) => {
             setAmountOfLikes(amountOfLikes - 1)
         }
     }
+    const handleReditect = (event) => {
+        RedirectToPostBig();
+    }
 
 
     return (
         <React.Fragment>
-            <div className={style()} ref={ref}>
+            <div className={style()} ref={ref} >
                 <div className={style('likeSideBar')}>
                     <div className={style('likeSideBar__likeContainer')}>
                         <button className={currentLikeStatus == 1 
@@ -126,14 +137,14 @@ const PostSmall = React.forwardRef((postObject, ref) => {
                     </div>
                 </div>
 
-                <div className={style('Main')}>
+                <div className={style('Main')} onClick={handleReditect}>
                     <div className={style('Main__Information')}>
                         <div className={style('Main__Information__UserNameANDpostCategory')}>
                             <h4>{post.userName}</h4>
                             {post.postCategoryId != null ? <h4>{post.postCategoryName}</h4> : null}
                         </div>
 
-                        <div className={style('Main__Information__Title')}>
+                        <div className={style('Main__Information__Title')} >
                             {post.title}
                         </div>
                     </div>

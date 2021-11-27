@@ -1,11 +1,12 @@
-import React, { useContext, useRef, useCallback } from
-    'react';
+import React, { useContext, useRef, useCallback } from 'react';
 import bemCssModules from 'bem-css-modules'
+
 
 //Components
 import PostSmall from '../PostSmall';
 import QueryNoResult from '../QueryNoResult';
 import Loading from '../Loading';
+
 
 //Other
 import postQueryExecutor from '../../helpers/postQueryExecutor';
@@ -15,7 +16,6 @@ import StoreProvider, { StoreContext } from '../../store/StoreProvider';
 //Styles
 import { default as PostSmallContainerStyles } from './PostSmallContainer.module.scss'
 const style = bemCssModules(PostSmallContainerStyles);
-
 
 
 
@@ -39,9 +39,14 @@ const PostSmallContainer = () => {
         if (node) observer.current.observe(node);
     }, [loading, hasMore]);
 
+
+    
+
+
+
     if (loading == false && posts.length > 0 ) {
         return (
-            <React.Fragment>
+            <div className='PostSmallContainer'>
                 {
                     posts.map((post, index) => {
                         if (posts.length == index + 1)
@@ -50,7 +55,7 @@ const PostSmallContainer = () => {
                             return <PostSmall key={index} postObject={post} />
                     })
                 }
-            </React.Fragment>
+            </div>
         )
     }
     else if (loading == true)

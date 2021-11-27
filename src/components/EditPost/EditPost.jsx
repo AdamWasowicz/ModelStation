@@ -37,7 +37,6 @@ const EditPost = () => {
     const [error, setError] = useState(false);
 
 
-
     //Handlers
     const handleInputFieldsClear = () =>
     {
@@ -53,6 +52,7 @@ const EditPost = () => {
         setLoading(true);
         const { result } = await updatePost(postId, title, text, postCategoryName);
         if (result == 1)
+            handleInputFieldsClear();
             setPostData([]);
             await GetPosts();
             setLoading();
@@ -68,9 +68,6 @@ const EditPost = () => {
             alert("Formularz został wypełniony niepoprawnie");
         }
     }
-
-
-    //Validator
     const handleFormValidation = () => {
         if (!(title.length > 0 && title.length <= 32))
             return false;
@@ -96,6 +93,8 @@ const EditPost = () => {
         setError(error);
     };
     
+
+
     if (isLoggedIn) {
 
         //useEffect

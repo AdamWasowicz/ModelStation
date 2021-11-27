@@ -9,3 +9,4 @@ export const uploadPost_API_route = "/api/v1/post/withpostcategoryname";
 export const postCategory_GET_API_route = '/api/v1/postcategory';
 export const getUserPosts_APU_route = '/api/v1/post/user/id';
 export const patchPost_API_route = '/api/v1/post/postcategoryname';
+export const getPostByUserId = '/api/v1/post'
