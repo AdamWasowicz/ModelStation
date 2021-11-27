@@ -9,6 +9,7 @@ import StoreProvider from './store/StoreProvider';
 import Header from './components/Header';
 import Menu from './components/Menu';
 import Content from './components/Content';
+import Footer from './components/Footer';
 
 const App = () => {
 	return (
@@ -17,6 +18,7 @@ const App = () => {
 				<Menu/>
 				<Header/>
 				<Content/>
+				<Footer/>
 			</Router>
 		</StoreProvider>
 	);
