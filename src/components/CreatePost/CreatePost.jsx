@@ -57,7 +57,7 @@ const CreatePost = () => {
 
                         <div>
                             <label htmlFor="file">Zdjęcia: </label>
-                            <input type="file" id="file" accept=".png, .jpg, .jpeg"onChange={handleFileChange} />
+                            <input type="file" id="file" accept=".png, .jpg, .jpeg" onChange={handleFileChange} />
                         </div>
 
                         <button onClick={handleUpload}>

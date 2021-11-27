@@ -6,7 +6,7 @@ import bemCssModules from 'bem-css-modules'
 
 //Helpers
 import { GetUserPosts } from '../../helpers/getUserPostsHelper';
-
+import { updatePost } from '../../helpers/updatePostHelper';
 
 //Styles
 import { default as EditPostStyles } from './EditPost.module.scss'
@@ -37,9 +37,49 @@ const EditPost = () => {
     const [error, setError] = useState(false);
 
 
+
     //Handlers
+    const handleInputFieldsClear = () =>
+    {
+        setPostId(null);
+        setTitle("");
+        setText("");
+        setPostCategoryName("");
+    }
+    const handlePostCategoryNameChange = (event) => setPostCategoryName(event.target.value);
     const handleTitleChange = (event) => setTitle(event.target.value);
     const handleTextChange = (event) => setText(event.target.value);
+    const handlePostUpdate = async () => {
+        setLoading(true);
+        const { result } = await updatePost(postId, title, text, postCategoryName);
+        if (result == 1)
+            setPostData([]);
+            await GetPosts();
+            setLoading();
+        setLoading(false);
+    }
+    const handleFormSend = (event) => {
+        if (handleFormValidation)
+        {
+            handlePostUpdate();
+        }
+        else
+        {
+            alert("Formularz został wypełniony niepoprawnie");
+        }
+    }
+
+
+    //Validator
+    const handleFormValidation = () => {
+        if (!(title.length > 0 && title.length <= 32))
+            return false;
+
+        if (!(text.length <= 256))
+            return false;
+
+        return true;
+    }
     
 
     //Functions
@@ -48,20 +88,20 @@ const EditPost = () => {
         setPostId(postObject.id);
         setTitle(postObject.title);
         setText(postObject.text);
+        setPostCategoryName(postObject.postCategoryName != null ? postObject.postCategoryName : "");
     }
+    const GetPosts = async () => {
+        const { error, data } = await GetUserPosts(JSON.parse(window.localStorage.getItem('jwt')), JSON.parse(window.localStorage.getItem('user')).id, setUserPosts, setLoading);
+
+        setError(error);
+    };
     
     if (isLoggedIn) {
-        //Functions
-        const GetPosts = async () => {
-            const { error, data } = await GetUserPosts(JSON.parse(window.localStorage.getItem('jwt')), JSON.parse(window.localStorage.getItem('user')).id, setUserPosts, setLoading);
-
-            setError(error);
-        };
 
         //useEffect
         useEffect( () => {
             GetPosts();
-        }, [] );
+        }, [userPosts] );
 
 
         if (loading == false && userPosts.length > 0 && error == false) {
@@ -78,12 +118,12 @@ const EditPost = () => {
 
                             <div>
                                 <label htmlFor="postCategoryName">Kategoria: </label>
-                                <input type="text" disabled={true} id="postCategoryName" value={postCategoryName} />
+                                <input type="text" id="postCategoryName" value={postCategoryName} onChange={handlePostCategoryNameChange}/>
                             </div>
 
                             <div>
                                 <label htmlFor="text">Zawartość: </label>
-                                <textarea name='text' rows={4} cols={25} type="text" id="text" value={text} onChange={handleTextChange} />
+                                <textarea name='text' rows={4} cols={25} type="text" id="text" value={text} onChange={handleTextChange}/>
                             </div>
                         </div>
 
@@ -95,7 +135,7 @@ const EditPost = () => {
                     <PostCategoryContainer setCategoryName={setPostCategoryName}/>
 
                     <div className='UpdateButton'>
-                        <button>Aktułalizuj</button>
+                        <button onClick={handleFormSend}>Aktułalizuj</button>
                     </div>
                 </div>
             )

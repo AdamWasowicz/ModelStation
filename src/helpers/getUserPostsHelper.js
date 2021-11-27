@@ -31,6 +31,8 @@ export async function GetUserPosts(jwt, userId, setUserPosts, setLoading)
         setLoading(false);
         error = true;
     });
+    
+    setLoading(false);
 
     return { error, data };
 }
