@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router';
 import bemCssModules from 'bem-css-modules'
 import { StoreContext } from '../../store/StoreProvider';
+import { API_address, fileStorageName_API_route } from '../../Constants';
 
 
 //Styles
@@ -112,10 +113,10 @@ const PostBig = () => {
         return (
             <div className='PostBig'>
                 <div className='likeSideBar'>
-                    <div className='likeSideBar__likeContainer'>
+                    <div className='likeContainer'>
                         <button className={currentLikeStatus == 1
-                            ? 'likeSideBar__likeContainer__likeUpButton-Active'
-                            : 'likeSideBar__likeContainer__likeUpButton'}
+                            ? 'likeUpButton-Active'
+                            : 'likeUpButton'}
                             onClick={isLoggedIn ? likeUpButtonHandler : null}>
                             <FontAwesomeIcon icon={faArrowUp} />
                         </button>
@@ -126,8 +127,8 @@ const PostBig = () => {
 
                         <button className={
                             currentLikeStatus == -1
-                                ? 'likeSideBar__likeContainer__likeDownButton-Active'
-                                : 'likeSideBar__likeContainer__likeDownButton'}
+                                ? 'likeDownButton-Active'
+                                : 'likeDownButton'}
                             onClick={isLoggedIn ? likeDownButtonHandler : null}>
                             <FontAwesomeIcon icon={faArrowDown} />
                         </button>
@@ -152,8 +153,8 @@ const PostBig = () => {
                             {post.text}
                         </div>
 
-                        {photos.length != 0 ? (<div className='Photos'>
-                            <img src={photos[0]} className='image' />
+                        {post.files.length != 0 ? (<div className='Photos'>
+                            <img src={`${API_address}${fileStorageName_API_route}${post.files[0].storageName}`} className='image' />
                         </div>) : null}
                     </div>
                 </div>

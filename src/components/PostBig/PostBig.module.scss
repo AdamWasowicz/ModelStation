@@ -1,5 +1,247 @@
+//variables
+$like-arrow-font-size: 50px;
+$like-arrow-base-color: white;
+$like-arrow-background-color: transparent;
+$like-arrow-up-active-color: green;
+$like-arrow-down-active-color: red;
+
+
 .PostBig {
     //Size
-    width: 500px;
-    height: 500px;
+    width: 100%;
+    height: 600px;
+    min-width: 600px;
+
+
+    //Overflow
+    overflow: hidden;
+
+
+    //Position
+    margin-bottom: 40px;
+    margin-left: auto;
+    margin-right: auto;
+
+
+    //Flex
+    display: flex;
+    flex-direction: row;
+
+
+    //Color
+    background-color: rgb(241, 219, 219);
+    border: 2px solid purple;
+
+
+    //Like SideBar
+    .likeSideBar {
+        //Size
+        width: 20%;
+        height: 100%;
+
+
+        //Color
+        background-color: salmon;
+
+
+        .likeContainer {
+
+            //Size
+            height: 200px;
+
+            //Flex
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+
+
+            //LikeUp Button
+            .likeUpButton, .likeDownButton{
+                //Size
+                width: 80%;
+                height: 30%;
+
+
+                //Font
+                font-size: $like-arrow-font-size;
+
+
+                //Color
+                color: $like-arrow-base-color;
+                background-color: $like-arrow-background-color;
+
+                &-Active {
+                    //Size
+                    width: 80%;
+                    height: 30%;
+
+
+                    //Font
+                    font-size: $like-arrow-font-size;
+
+
+                    //Color
+                    background-color: $like-arrow-background-color;
+                    color: $like-arrow-up-active-color;
+                }
+            }
+
+
+            //LikeDownButton
+            .likeDownButton {
+                //Size
+                width: 80%;
+                height: 30%;
+
+                //Font
+                font-size: $like-arrow-font-size;
+
+
+                //Color
+                color: $like-arrow-base-color;
+                background-color: $like-arrow-background-color;
+
+                &-Active
+                {
+                    //Size
+                    width: 80%;
+                    height: 30%;
+
+
+                    //Font
+                    font-size: $like-arrow-font-size;
+
+
+                    //Color
+                    background-color: $like-arrow-background-color;
+                    color: $like-arrow-down-active-color;
+                }
+            }
+
+
+            //LikeCounter
+            .likeCounter {
+                //Size
+                width: 80%;
+                height: 20%;
+
+
+                //Flex
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+
+
+                //Color
+                background-color: rgb(104, 104, 148);
+            }
+        }
+    }
+
+    //Right Part of Post
+    .Main {
+        //Size
+        width: 100%;
+        height: 400px;
+
+
+        //Flex
+        display: flex;
+        flex-direction: column;
+
+
+        //Color
+        background-color: rgb(113, 114, 114);
+
+
+        .Information {
+            //Size
+            width: 100%;
+
+            flex-grow: 1.5;
+
+            //Color
+            background-color: rgb(76, 138, 107);
+
+
+            .UserNameANDpostCategory {
+                //Size
+                width: 100%;
+                height: 40%;
+
+                //Flex
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+
+
+                //Color
+                background-color: yellow;
+            }
+
+            .Title {
+                //Size
+                width: 100%;
+                height: 60%;
+
+                //Color
+                background-color: rgb(36, 216, 207);
+            }
+        }
+
+        .PostContent {
+            //Size
+            width: 100%;
+
+            display: flex;
+            flex-direction: column;
+            flex-grow: 8;
+
+
+            //Color
+            background-color: rgb(136, 106, 136);
+
+
+            //Text
+            .Text {
+                //Size
+                width: 100%;
+
+
+                //Flex
+                flex-grow: 1.5;
+
+
+                //Color
+                background-color: slateblue;
+            }
+
+            //Photos
+            .Photos {
+                //Size
+                width: 100%;
+
+
+                //Flex
+                flex-grow: 8;
+
+
+                //Color
+                background-color: rgb(207, 84, 84);
+
+
+                .image {
+                    width: 100%;
+                    height: 100%;
+                    display: block;
+                    margin-left: auto;
+                    margin-right: auto;
+                    object-fit: contain;
+                }
+            }
+        }
+    }
 }
