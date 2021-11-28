@@ -13,6 +13,7 @@ import { GetCommentsByPostId } from '../../helpers/getCommentsByPostIdHelper';
 
 
 //Components
+import Comment from '../Comment';
 
 //Functions
 
@@ -47,7 +48,13 @@ const CommentContainer = () => {
 
     return (
         <div className='CommentContainer'>
-            a
+            {
+                comments.length > 0 
+                ? comments.map( (comment, index) => {
+                    return <Comment commentObject={comment} key={index}/>
+                })
+                : null
+            }
         </div>
     )
 };
