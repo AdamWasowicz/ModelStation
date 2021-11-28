@@ -1,7 +1,18 @@
 //Color
-$content-background-color: rgb(70, 67, 67);
+    //MainColors
+    $main-color-1: #161616;
+    $main-color-2: #595959;
+    $main-color-3: #8C8C8C;
+    $main-color-4: #BFBFBF;
+    $main-color-5: #F2F2F2;
+    $main-color-6: #5297E6;
+
+    //Other
+    $content-background-color: rgb(70, 67, 67);
+
 
 
 //Size
-$component-base-width: 600px;
-$component-base-height: 600px;
+    //Default
+    $component-base-width: 600px;
+    $component-base-height: 600px;
