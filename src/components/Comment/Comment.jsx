@@ -5,7 +5,7 @@ import {StoreContext} from '../../store/StoreProvider'
 
 
 //Styles
-import { faArrowUp, faArrowDown } from "@fortawesome/free-solid-svg-icons";
+import { faArrowUp, faArrowDown, faEdit, faTrashAlt} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { default as CommentStyle } from './Comment.module.scss'
 const style = bemCssModules(CommentStyle);
@@ -52,23 +52,23 @@ const Comment = ({ commentObject }) => {
 
     return (
         <div className='Comment'>
-            <div className='likeSideBar'>
-                <div className='likeContainer'>
+            <div className='LikeSideBar'>
+                <div className='LikeContainer'>
                     <button className={
                             currentLikeStatus == 1
-                            ? 'likeUpButton-Active'
-                            : 'likeUpButton'}>
+                            ? 'LikeUpButton-Active'
+                            : 'LikeUpButton'}>
                         <FontAwesomeIcon icon={faArrowUp} />
                     </button>
 
-                    <div className='likeCounter'>
+                    <div className='LikeCounter'>
                         {amountOfLikes}
                     </div>
 
                     <button className={
                             currentLikeStatus == -1
-                                ? 'likeDownButton-Active'
-                                : 'likeDownButton'}>
+                                ? 'LikeDownButton-Active'
+                                : 'LikeDownButton'}>
                         <FontAwesomeIcon icon={faArrowDown} />
                     </button>
                 </div>
@@ -76,18 +76,34 @@ const Comment = ({ commentObject }) => {
 
             <div className='Main'>
                 <div className='UserInformation'>
+                    <div className='UserName'>
+                        {comment.userName}
+                    </div>
 
+                    <div className='UserImage'>
+                        UserImage
+                    </div>
                 </div>
 
                 <div className='CommentContent'>
-
+                    <div className='Text'>
+                        {comment.text}
+                    </div>
                 </div>
             </div>
 
             {
                 isLoggedIn == true && parseJwt(JSON.parse(window.localStorage.getItem('jwt'))).UserId == comment.userId
-                ? <div className='manipulationPanel'>
-                    manipulationPanel
+                ? <div className='ManipulationPanel'>
+
+                    <button className='EditButton'>
+                        <FontAwesomeIcon icon={faEdit} />
+                    </button>
+
+                    <button className='DeleteButton'>
+                        <FontAwesomeIcon icon={faTrashAlt} />
+                    </button>
+
                 </div>
                 : null 
             }
