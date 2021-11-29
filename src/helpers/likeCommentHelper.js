@@ -1,15 +1,16 @@
 import axios from "axios";
-import { API_address, likePost_API_route, likedPost_create_or_edit_API_route
-} from "../Constants";
+import { API_address, getLikedComment_APi_route, patchLikedComment_API_route } from "../Constants";
 
 
-export async function LikePostHelper_GET(jwt, postId) {
+export async function LikeCommentHelper_GET(commentId) {
+    const jwt = JSON.parse(window.localStorage.getItem('jwt'));
     let error = false;
     let value = 0;
+    const url = `${API_address}${getLikedComment_APi_route}/` + commentId
 
     await axios({
         method: 'GET',
-        url: `${API_address}${likePost_API_route}` + postId,
+        url: url,
         headers: {
             Authorization: "Bearer " + jwt
         },
@@ -28,38 +29,33 @@ export async function LikePostHelper_GET(jwt, postId) {
     return {error, value};
 }
 
-export async function LikedPostHelper_POST(jwt, newValue, postId)
+export async function LikedCommentHelper_PATCH(newValue, commentId)
 {
+    const jwt = JSON.parse(window.localStorage.getItem('jwt'));
     let error = false;
-    let result = true;
 
     await axios({
-        method: 'POST',
-        url: `${API_address}${likedPost_create_or_edit_API_route}`,
+        method: 'PATCH',
+        url: `${API_address}${patchLikedComment_API_route}`,
         headers: {
             Authorization: "Bearer " + jwt
         },
         data: {
-            postId: postId,
+            commentId: commentId,
             value: newValue
         },
     }).then(result => {
         if (result.status === 200) {
             console.log(result);
-
-            result = true;
             error = false;
         } else {
-            result = false;
             error = true;
         }
 
     }).catch(e => {
         console.log(e);
-        result = false;
         error = true;
     });
 
-    console.log('LikePostHelper_POST : END')
     return error;
 }

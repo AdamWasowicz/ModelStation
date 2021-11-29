@@ -56,7 +56,6 @@ const PostBig = () => {
 
     //Functions
     const CheckIfUserLikedPost = async () => {
-        console.log(isLoggedIn);
         if (isLoggedIn) {
             const { error, value } = await LikePostHelper_GET(JSON.parse(window.localStorage.getItem('jwt')), postId);
 

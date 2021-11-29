@@ -4,6 +4,10 @@ import bemCssModules from 'bem-css-modules'
 import {StoreContext} from '../../store/StoreProvider'
 
 
+//Helpers
+import { LikeCommentHelper_GET, LikedCommentHelper_PATCH } from '../../helpers/likeCommentHelper';
+
+
 //Styles
 import { faArrowUp, faArrowDown, faEdit, faTrashAlt} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -29,12 +33,49 @@ const Comment = ({ commentObject }) => {
     const postId = useParams().postId;
 
 
+    //useEffect
+    useEffect( () => {
+        if (isLoggedIn)
+            CheckIfUserLikedComment();
+        else if (isLoggedIn == false)
+            setCurrentLikeStatus(0);
+    }, [isLoggedIn])
+
+
     //Handlers
     const likeUpButtonHandler = async () => {
-
+        if (currentLikeStatus == 1) {
+            await LikedCommentHelper_PATCH(0, comment.id);
+            setCurrentLikeStatus(0);
+            setAmountOfLikes(amountOfLikes - 1);
+        }
+        else if (currentLikeStatus === -1) {
+            await LikedCommentHelper_PATCH(1, comment.id);
+            setCurrentLikeStatus(1);
+            setAmountOfLikes(amountOfLikes + 2);
+        }
+        else {
+            await LikedCommentHelper_PATCH(1, comment.id);
+            setCurrentLikeStatus(1);
+            setAmountOfLikes(amountOfLikes + 1);
+        }
     }
     const likeDownButtonHandler = async () => {
-
+        if (currentLikeStatus === 1) {
+            await LikedCommentHelper_PATCH(-1, comment.id);
+            setCurrentLikeStatus(-1);
+            setAmountOfLikes(amountOfLikes - 2);
+        }
+        else if (currentLikeStatus === -1) {
+            await LikedCommentHelper_PATCH(0, comment.id);
+            setCurrentLikeStatus(0);
+            setAmountOfLikes(amountOfLikes + 1);
+        }
+        else {
+            await LikedCommentHelper_PATCH(-1, comment.id);
+            setCurrentLikeStatus(-1);
+            setAmountOfLikes(amountOfLikes - 1);
+        }
     }
 
 
@@ -49,15 +90,25 @@ const Comment = ({ commentObject }) => {
     
         return JSON.parse(jsonPayload);
     };
+    const CheckIfUserLikedComment = async () => {
+        if (isLoggedIn)
+        {
+            const { error, value} = await LikeCommentHelper_GET(comment.id);
+            setCurrentLikeStatus(value);
+        }
+    }
+
 
     return (
         <div className='Comment'>
             <div className='LikeSideBar'>
                 <div className='LikeContainer'>
-                    <button className={
+                    <button 
+                        className={
                             currentLikeStatus == 1
                             ? 'LikeUpButton-Active'
-                            : 'LikeUpButton'}>
+                            : 'LikeUpButton'}
+                        onClick={likeUpButtonHandler}>
                         <FontAwesomeIcon icon={faArrowUp} />
                     </button>
 
@@ -65,10 +116,12 @@ const Comment = ({ commentObject }) => {
                         {amountOfLikes}
                     </div>
 
-                    <button className={
+                    <button 
+                        className={
                             currentLikeStatus == -1
                                 ? 'LikeDownButton-Active'
-                                : 'LikeDownButton'}>
+                                : 'LikeDownButton'}
+                        onClick={likeDownButtonHandler}>
                         <FontAwesomeIcon icon={faArrowDown} />
                     </button>
                 </div>

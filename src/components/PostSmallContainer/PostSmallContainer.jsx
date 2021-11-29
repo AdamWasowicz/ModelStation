@@ -44,7 +44,7 @@ const PostSmallContainer = () => {
 
 
 
-    if (loading == false && posts.length > 0 ) {
+    if (loading == false && posts.length > 0 || loading == true && posts.length > 0) {
         return (
             <div className='PostSmallContainer'>
                 {
@@ -58,7 +58,7 @@ const PostSmallContainer = () => {
             </div>
         )
     }
-    else if (loading == true)
+    else if (loading == true && posts.length < 1)
     {
         return <Loading/>
     }
