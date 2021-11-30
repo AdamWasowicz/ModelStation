@@ -9,6 +9,7 @@ const style = bemCssModules(PostBigContainerStyle);
 
 //Components
 import PostBig from '../PostBig';
+import CreateComment from '../CreateComment';
 import CommentWraper from '../CommentWraper';
 
 
@@ -28,6 +29,7 @@ const PostBigContainer = () => {
     return (
         <div className='PostBigContainer'>
             <PostBig/>
+            <CreateComment/>
             <CommentWraper/>
         </div>
     )

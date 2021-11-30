@@ -5,9 +5,7 @@ export async function GetCommentsByPostId(postId, setComments, setLoading)
 {
     let error = false;
     let data = null;
-    console.log(postId);
     const url = `${API_address}${getCommentsByPostId_API_route}/` + postId
-    console.log(url);
 
     await axios({
         method: 'GET',
@@ -24,7 +22,6 @@ export async function GetCommentsByPostId(postId, setComments, setLoading)
     });
     
     setLoading(false);
-    console.log('end');
 
     return { error, data };
 }

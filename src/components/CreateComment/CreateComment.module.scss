@@ -1,0 +1,140 @@
+@import '../../StyleConstants.scss';
+
+.CreateComment {
+    //Size
+    width: 100%;
+    height: 250px;
+
+
+    //Position
+    margin-bottom: 20px;
+
+
+    //Flex
+    display: flex;
+    flex-direction: row;
+    
+
+    //Color
+    border: 2px solid red;
+
+
+    //Main
+    .Main {
+        //Flex
+        display: flex;
+        flex-direction: row;
+        flex-grow: 7;
+
+
+        //Color
+        border: 2px solid rgb(238, 16, 0);
+
+
+        //UserInformation
+        .UserInformation {
+            //Flex
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            flex-basis: 20%;
+
+
+            //Padding
+            padding: 10px;
+
+
+            //Color
+            border: 2px solid black;
+
+
+            //UserName
+            .UserName {
+
+                //Size
+                width: 100%;
+
+
+                //Padding
+                padding: 10px;
+
+
+                //Position
+                margin-left: auto;
+                margin-right: auto;
+
+
+                //Text
+                text-align: center;
+
+
+                //Font
+
+
+                //Color
+                border: 2px solid seagreen;
+            }
+
+
+            //UserImage
+            .UserImage {
+               //Size
+               width: 150px;
+               height: 150px;
+
+
+               //Position
+               margin-left: auto;
+               margin-right: auto;
+
+               //Color
+               border: 2px solid rgb(45, 24, 235); 
+            }
+        }
+
+
+        //CommentContent
+        .CommentContent {
+            //Flex
+            flex-grow: 2;
+
+
+            //Padding
+            padding: 10px;
+
+
+            //Color
+            border: 2px solid white;
+
+
+            //Text
+            .Text {
+
+                //Size
+                width: 100%;
+                height: 100%;
+
+
+                //Padding
+                padding: 10px;
+
+
+                word-break: break-word;
+                overflow: hidden;
+                text-overflow: ellipsis;
+
+                //Color
+                border: 2px solid blue;
+            }
+        }
+    }
+
+    //ControlPanel
+    .ControlPanel {
+        flex-basis: 15%;
+
+
+        //Color
+        border: 2px solid limegreen;
+    }
+}
