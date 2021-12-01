@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_address, getCommentsByPostId_API_route, getLikedComment_APi_route, patchLikedComment_API_route, postComment_API_route, patchComment_API_route } from "../Constants";
+import { API_address, getCommentsByPostId_API_route, getLikedComment_APi_route, patchLikedComment_API_route, postComment_API_route, patchComment_API_route, deleteComment_API_route } from "../Constants";
 
 export async function GetCommentsByPostId(postId, setComments, setLoading)
 {
@@ -25,7 +25,6 @@ export async function GetCommentsByPostId(postId, setComments, setLoading)
 
     return { error, data };
 }
-
 
 export async function LikeCommentHelper_GET(commentId) {
     const jwt = JSON.parse(window.localStorage.getItem('jwt'));
@@ -53,7 +52,6 @@ export async function LikeCommentHelper_GET(commentId) {
 
     return {error, value};
 }
-
 
 export async function LikedCommentHelper_PATCH(newValue, commentId)
 {
@@ -86,7 +84,6 @@ export async function LikedCommentHelper_PATCH(newValue, commentId)
     return error;
 }
 
-
 export async function Post_Comment(text, postId) {
     var result = 0;
     const jwt = JSON.parse(window.localStorage.getItem('jwt'));
@@ -115,7 +112,6 @@ export async function Post_Comment(text, postId) {
     return result;
 }
 
-
 export async function Comment_PATCH(text, postId) {
     var result = 0;
     const jwt = JSON.parse(window.localStorage.getItem('jwt'));
@@ -140,4 +136,29 @@ export async function Comment_PATCH(text, postId) {
     });
 
     return result;
+}
+
+export async function Comment_DELETE(commentId)
+{
+    const jwt = JSON.parse(window.localStorage.getItem('jwt'));
+    let error = false;
+    const url = `${API_address}${deleteComment_API_route}/${commentId}`
+    console.log(url)
+
+    await axios({
+        method: 'DELETE',
+        url: url,
+        headers: {
+            Authorization: "Bearer " + jwt
+        }
+    }).then(result => {
+        console.log(result);
+        error = false;
+
+    }).catch(e => {
+        console.log(e);
+        error = true;
+    });
+
+    return error;
 }

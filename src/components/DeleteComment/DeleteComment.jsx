@@ -9,11 +9,32 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { default as DeleteCommentStyle } from './DeleteComment.module.scss'
 
 
+//Helpers
+import { Comment_DELETE } from '../../helpers/CommentHelper';
+
+
 //Components
 import Modal from '../Modal';
 
 
-const DeleteComment = ({commentObject, handleOnCancel}) => {
+const DeleteComment = ({commentObject, handleOnCancel, HandleCommentDeletion}) => {
+    //Handlers
+    const DeleteButtonClickHandler = (event) => {
+        DeleteComment();
+        HandleCommentDeletion(commentObject.id);
+        handleOnCancel();
+    }
+
+
+    //Functions
+    const DeleteComment = async () => {
+        const error = await Comment_DELETE(commentObject.id);
+    }
+
+
+
+
+
     return (
         <Modal closeOnBackgroundClick={false} isOpen={true} handleOnClose={null} >
             <div className='DeleteComment'>
@@ -28,7 +49,7 @@ const DeleteComment = ({commentObject, handleOnCancel}) => {
                 </div>
 
                 <div className='ActionButtons'>
-                    <button className='DeleteButton'>
+                    <button className='DeleteButton' onClick={DeleteButtonClickHandler}>
                         <FontAwesomeIcon icon={faTrashAlt} />
                     </button>
 

@@ -17,7 +17,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { default as CommentStyle } from './Comment.module.scss'
 
 
-const Comment = ({ commentObject }) => {
+const Comment = ({ commentObject, HandleCommentDeletion }) => {
 
     //useState
     const [comment, setCommentObject] = useState(commentObject);
@@ -29,6 +29,7 @@ const Comment = ({ commentObject }) => {
     const [loading, setLoading] = useState(true);
     const [editMode, setEditMode] = useState(false);
     const [deleteMode, setDeleteMode] = useState(false);
+    const [visible, setVisible] = useState(true);
 
 
     //useContext
@@ -105,6 +106,10 @@ const Comment = ({ commentObject }) => {
     const CloseDeleteModeHandler = () => {
         setDeleteMode(false);
     }
+    const HandleDelete = (id) => {
+        setVisible(false);
+        HandleCommentDeletion(id)
+    }
 
 
     //Functions
@@ -138,11 +143,12 @@ const Comment = ({ commentObject }) => {
 
 
 
+    if (visible)
     return (
         <div className='Comment'>
             {
                 deleteMode
-                ? <DeleteComment commentObject={commentObject} handleOnCancel={CloseDeleteModeHandler}/>
+                ? <DeleteComment commentObject={commentObject} handleOnCancel={CloseDeleteModeHandler} HandleCommentDeletion={HandleDelete}/>
                 : null
             }
             <div className='LikeSideBar'>
@@ -216,7 +222,9 @@ const Comment = ({ commentObject }) => {
                 : null 
             }
         </div>
-    );
+    )
+    else
+        return null;
 }
 
 export default Comment;

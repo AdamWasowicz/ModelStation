@@ -42,6 +42,7 @@ const CommentContainer = () => {
     }, [])
 
 
+
     //Functions
     const GetComments = async () => {
         const { error, data } = await GetCommentsByPostId(postId, setComments, setLoading);
@@ -53,6 +54,18 @@ const CommentContainer = () => {
         setComments([]);
         GetComments();
         setLoading(false);
+    }
+    const HandleCommentDeletion = (commentId) => {
+        const objectToRemove = comments.find(c => c.id == commentId);
+        const objectToRemoveId = comments.indexOf(objectToRemove)
+
+        if (objectToRemoveId != -1)
+        {
+            let arrayOfComments = comments;
+            arrayOfComments.splice(objectToRemoveId, 1) 
+            setComments([]);
+            setComments(arrayOfComments);
+        }
     }
 
     
@@ -69,7 +82,7 @@ const CommentContainer = () => {
                 {
                     comments.length > 0 
                     ? comments.map( (comment, index) => {
-                        return <Comment commentObject={comment} key={index}/>
+                        return <Comment commentObject={comment} key={index} HandleCommentDeletion={HandleCommentDeletion}/>
                     })
                     : null
                 }
