@@ -4,7 +4,11 @@ import {StoreContext} from '../../store/StoreProvider'
 
 
 //Helpers
-import { LikeCommentHelper_GET, LikedCommentHelper_PATCH, Comment_PATCH} from '../../helpers/CommentHelper';
+import { LikeCommentHelper_GET, LikedCommentHelper_PATCH, Comment_PATCH } from '../../helpers/CommentHelper';
+
+
+//Components
+import DeleteComment from '../DeleteComment';
 
 
 //Styles
@@ -24,6 +28,7 @@ const Comment = ({ commentObject }) => {
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(true);
     const [editMode, setEditMode] = useState(false);
+    const [deleteMode, setDeleteMode] = useState(false);
 
 
     //useContext
@@ -86,6 +91,7 @@ const Comment = ({ commentObject }) => {
         setEditCommentText(commentText);
         setEditMode(!editMode);
     }
+    const EnterDeleteModeHandler = (event) => setDeleteMode(true);
     const SendPatchHandler = (event) => {
         if (ValidateForm())
         {
@@ -96,11 +102,8 @@ const Comment = ({ commentObject }) => {
             alert("Komentarz musi mieć przynajmniej jeden znak oraz nie być dłuższy niż 256 znaków")
         }
     }
-    const ValidateForm = () => {
-        if (commentText > 0 && commentText < 256)
-            return true;
-        
-        return false;
+    const CloseDeleteModeHandler = () => {
+        setDeleteMode(false);
     }
 
 
@@ -126,10 +129,22 @@ const Comment = ({ commentObject }) => {
         await Comment_PATCH(editCommentText, postId);
         setCommentText(editCommentText);
     }
+    const ValidateForm = () => {
+        if (commentText > 0 && commentText < 256)
+            return true;
+        
+        return false;
+    }
+
 
 
     return (
         <div className='Comment'>
+            {
+                deleteMode
+                ? <DeleteComment commentObject={commentObject} handleOnCancel={CloseDeleteModeHandler}/>
+                : null
+            }
             <div className='LikeSideBar'>
                 <div className='LikeContainer'>
                     <button 
@@ -189,7 +204,7 @@ const Comment = ({ commentObject }) => {
 
                     {
                         !editMode
-                        ? <button className='DeleteButton'>
+                        ? <button className='DeleteButton' onClick={EnterDeleteModeHandler}>
                             <FontAwesomeIcon icon={faTrashAlt} />
                         </button>
                         : <button className='SaveButton' onClick={SendPatchHandler}>

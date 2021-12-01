@@ -1,0 +1,99 @@
+@import '../../StyleConstants.scss';
+
+.DeleteComment {
+    //Size
+    width: 500px;
+    height: 500px;
+
+
+    //Padding
+    padding: 10px;
+
+    //Flex
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    
+    //Color
+    border: 2px solid greenyellow;
+    background-color: grey;
+
+    //Information
+    .Information {
+        //Size
+        height: 20%;
+
+
+        //Color
+        border: 2px solid red;
+    }
+
+
+    //CommentText
+    .CommentText {
+        //Size
+        height: 40%;
+
+
+        //Paddig
+        padding: 10px;
+
+        
+        //Color
+        border: 2px solid greenyellow;
+    }
+
+    
+    //ActionButtons
+    .ActionButtons {
+        //Size
+        height: 20%;
+
+        //Padding
+        padding: 10px;
+
+
+        //Flex
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+
+        //Color
+        border: 2px solid pink;
+
+        .Button {
+            //Size
+            width: 40%;
+            height: 100%;
+
+            
+            //Font
+            color: white;
+            font-size: 50px;
+
+            background-color: transparent;
+        }
+
+        
+        //DeleteButton
+        .DeleteButton {
+            @extend .Button;
+        }
+        .DeleteButton:hover {
+            color: $delete-button-hover-color;
+            border: 2px solid $delete-button-hover-color
+        }
+
+
+        //CancelButton
+        .CancelButton {
+            @extend .Button;
+        }
+        .CancelButton:hover {
+            color: $cancel-button-hover-color;
+            border: 2px solid $cancel-button-hover-color;
+        }
+    }
+}
