@@ -7,9 +7,7 @@ import { default as PostBigContainerStyle } from './PostBigContainer.module.scss
 
 //Components
 import PostBig from '../PostBig';
-import CreateComment from '../CreateComment';
-import CommentWraper from '../CommentWraper';
-
+import CommentContainer from '../CommentContainer';
 
 //Functions
 
@@ -29,7 +27,7 @@ const PostBigContainer = () => {
     return (
         <div className='PostBigContainer'>
             <PostBig/>
-            <CommentWraper/>
+            <CommentContainer/>
         </div>
     )
 };

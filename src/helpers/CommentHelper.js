@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_address, getCommentsByPostId_API_route, getLikedComment_APi_route, patchLikedComment_API_route, postComment_API_route } from "../Constants";
+import { API_address, getCommentsByPostId_API_route, getLikedComment_APi_route, patchLikedComment_API_route, postComment_API_route, patchComment_API_route } from "../Constants";
 
 export async function GetCommentsByPostId(postId, setComments, setLoading)
 {
@@ -112,5 +112,32 @@ export async function Post_Comment(text, postId) {
     });
 
     console.log('Post_Comment->End')
+    return result;
+}
+
+
+export async function Comment_PATCH(text, postId) {
+    var result = 0;
+    const jwt = JSON.parse(window.localStorage.getItem('jwt'));
+
+    axios({
+        method: "POST",
+        url: `${API_address}${patchComment_API_route}`,
+        data: {
+            text: text,
+            postId: postId
+        },
+        headers: {
+            Authorization: "Bearer " + jwt
+        },
+    }).then(function (response) {
+        console.log(response);
+        result = 1;
+    }).catch(function (response)
+    {
+        console.log(response);
+        result = -1;
+    });
+
     return result;
 }

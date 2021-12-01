@@ -20,7 +20,7 @@ import CreateComment from '../CreateComment';
 const CommentContainer = () => {
 
     //useState
-    const [comments, setComments] = useState({});
+    const [comments, setComments] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
     const [changeOccured, setChangeOccured] = useState(false);

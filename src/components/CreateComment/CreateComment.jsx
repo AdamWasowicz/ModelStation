@@ -35,20 +35,27 @@ const CreateComment = ({HandleChange}) => {
 
     //Handlers
     const handleCommentTextChange = (event) => setCommentText(event.target.value);
-    const hanldeCommentUpload = (event) => {
-        UploadComment();
-    }
+    const hanldeCommentUpload = (event) => UploadComment();
+    
 
 
     //Functions
     const UploadComment = async () => {
-        const result = await Post_Comment(commentText, postId);
-        console.log("handleChange");
-        ClearInput();
-        HandleChange();
+        if (ValidateForm()) {
+            const result = await Post_Comment(commentText, postId);
+            ClearInput();
+            HandleChange();
+        }
+        else {
+            alert("Komentarz musi mieć przynajmniej jeden znak oraz nie być dłuższy niż 256 znaków")
+        }
     }
-    const ClearInput = () => {
-        setCommentText("");
+    const ClearInput = () => setCommentText("");
+    const ValidateForm = () => {
+        if (commentText > 0 && commentText < 256)
+            return true;
+        
+        return false;
     }
 
 

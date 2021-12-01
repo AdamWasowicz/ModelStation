@@ -4,7 +4,7 @@ import {StoreContext} from '../../store/StoreProvider'
 
 
 //Helpers
-import { LikeCommentHelper_GET, LikedCommentHelper_PATCH } from '../../helpers/CommentHelper';
+import { LikeCommentHelper_GET, LikedCommentHelper_PATCH, Comment_PATCH} from '../../helpers/CommentHelper';
 
 
 //Styles
@@ -82,7 +82,26 @@ const Comment = ({ commentObject }) => {
         }
     }
     const TextAreaChangeHandler = (event) => setEditCommentText(event.target.value);
-    const EditModeChangeHandler = () => setEditMode(!editMode);
+    const EditModeChangeHandler = (event) => {
+        setEditCommentText(commentText);
+        setEditMode(!editMode);
+    }
+    const SendPatchHandler = (event) => {
+        if (ValidateForm())
+        {
+            PatchComment();
+            EditModeChangeHandler();
+        }
+        else {
+            alert("Komentarz musi mieć przynajmniej jeden znak oraz nie być dłuższy niż 256 znaków")
+        }
+    }
+    const ValidateForm = () => {
+        if (commentText > 0 && commentText < 256)
+            return true;
+        
+        return false;
+    }
 
 
     //Functions
@@ -102,6 +121,10 @@ const Comment = ({ commentObject }) => {
             const { error, value} = await LikeCommentHelper_GET(comment.id);
             setCurrentLikeStatus(value);
         }
+    }
+    const PatchComment = async () => {
+        await Comment_PATCH(editCommentText, postId);
+        setCommentText(editCommentText);
     }
 
 
@@ -169,7 +192,7 @@ const Comment = ({ commentObject }) => {
                         ? <button className='DeleteButton'>
                             <FontAwesomeIcon icon={faTrashAlt} />
                         </button>
-                        : <button className='SaveButton'>
+                        : <button className='SaveButton' onClick={SendPatchHandler}>
                             <FontAwesomeIcon icon={faSave}/>
                         </button>
                     }
