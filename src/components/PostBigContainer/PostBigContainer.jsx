@@ -1,10 +1,8 @@
 import React, {useState, useEffect, useContext } from 'react'
-import bemCssModules from 'bem-css-modules'
-
+import { StoreContext } from '../../store/StoreProvider';
 
 //Styles
 import { default as PostBigContainerStyle } from './PostBigContainer.module.scss'
-const style = bemCssModules(PostBigContainerStyle);
 
 
 //Components
@@ -19,6 +17,8 @@ const PostBigContainer = () => {
 
     //useState
 
+    //useContext
+   
     //useEffect
 
     //Functions
@@ -29,7 +29,6 @@ const PostBigContainer = () => {
     return (
         <div className='PostBigContainer'>
             <PostBig/>
-            <CreateComment/>
             <CommentWraper/>
         </div>
     )

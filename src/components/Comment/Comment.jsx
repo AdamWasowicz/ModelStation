@@ -1,6 +1,5 @@
 import React, {useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router';
-import bemCssModules from 'bem-css-modules'
 import {StoreContext} from '../../store/StoreProvider'
 
 
@@ -12,7 +11,6 @@ import { LikeCommentHelper_GET, LikedCommentHelper_PATCH } from '../../helpers/l
 import { faArrowUp, faArrowDown, faEdit, faTrashAlt} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { default as CommentStyle } from './Comment.module.scss'
-const style = bemCssModules(CommentStyle);
 
 
 const Comment = ({ commentObject }) => {

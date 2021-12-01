@@ -17,6 +17,7 @@ export const getUserPosts_APU_route = '/api/v1/post/user/id';
 export const patchPost_API_route = '/api/v1/post/postcategoryname';
 //Comment
 export const getCommentsByPostId_API_route = '/api/v1/comment/post';
+export const postComment_API_route = '/api/v1/comment';
 //LikedComment
 export const getLikedComment_APi_route = '/api/v1/likedcomment/comment/id';
 export const patchLikedComment_API_route = '/api/v1/likedcomment/create_or_edit'

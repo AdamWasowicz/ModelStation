@@ -5,28 +5,51 @@ import { StoreContext } from '../../store/StoreProvider';
 
 //Styles
 import { default as CreateCommentStyle } from './CreateComment.module.scss'
+import {faShareSquare} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 //Helpers
+import { Post_Comment } from '../../helpers/postCommentHelper';
 
 //Components
 
-const CreateComment = () => {
+const CreateComment = ({HandleChange}) => {
 
     //useState
     const [commentText, setCommentText] = useState("");
 
+
     //useParams
     const postId = useParams().postId;
+
 
     //useContext
     const { isLoggedIn } = useContext(StoreContext);
 
+
     //Const
     const user = JSON.parse(window.localStorage.getItem('user'));
 
+
     //Handlers
     const handleCommentTextChange = (event) => setCommentText(event.target.value);
+    const hanldeCommentUpload = (event) => {
+        UploadComment();
+    }
+
+
+    //Functions
+    const UploadComment = async () => {
+        const result = await Post_Comment(commentText, postId);
+        console.log("handleChange");
+        ClearInput();
+        HandleChange();
+    }
+    const ClearInput = () => {
+        setCommentText("");
+    }
+
 
     return (
         <div className='CreateComment'>
@@ -48,7 +71,9 @@ const CreateComment = () => {
             </div>
 
             <div className='ControlPanel'>
-                ControlPanel
+                <button className="UploadButton" onClick={hanldeCommentUpload}>
+                    <FontAwesomeIcon icon={faShareSquare} />
+                </button>
             </div>
         </div>
     )

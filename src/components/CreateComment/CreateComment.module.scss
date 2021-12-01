@@ -1,5 +1,7 @@
 @import '../../StyleConstants.scss';
 
+$upload-button-color: yellowgreen;
+
 .CreateComment {
     //Size
     width: 100%;
@@ -131,10 +133,35 @@
 
     //ControlPanel
     .ControlPanel {
-        flex-basis: 15%;
+        //Flex
+        flex-basis: 10%;
 
+
+        //Padding
+        padding: 10px;    
 
         //Color
         border: 2px solid limegreen;
+
+
+        //Upload
+        .UploadButton {
+            //Size
+            width: 100%;
+            height: 100%;
+
+
+            //Font
+            font-size: 50px;
+            
+            
+            //Color
+            color: white;
+            background-color: transparent;
+        }
+        .UploadButton:hover {
+            border: 2px solid $upload-button-color;
+            color: $upload-button-color;
+        }
     }
 }

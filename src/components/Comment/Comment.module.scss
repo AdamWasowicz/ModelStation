@@ -276,6 +276,7 @@ $like-button-height-percent: 30%;
         }
         .EditButton:hover {
             border: 2px solid $edit-button-hover-color;
+            color: $edit-button-hover-color;
         }
         
 
@@ -296,6 +297,7 @@ $like-button-height-percent: 30%;
         }
         .DeleteButton:hover {
             border: 2px solid $delete-button-hover-color;
+            color: $delete-button-hover-color;
         }
     }
 }
