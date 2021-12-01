@@ -10,9 +10,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 //Helpers
-import { Post_Comment } from '../../helpers/postCommentHelper';
+import { Post_Comment } from '../../helpers/CommentHelper';
 
 //Components
+
 
 const CreateComment = ({HandleChange}) => {
 

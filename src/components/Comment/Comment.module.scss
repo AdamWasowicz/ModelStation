@@ -59,17 +59,18 @@ $like-button-height-percent: 30%;
             //Color
             border: 2px solid rgb(255, 255, 255); 
             
-            
-            //LikeUpButton
-            .LikeUpButton {
-                //Size
+            .LikeButton {
                 width: 80%;
                 height: $like-button-height-percent;
 
 
                 //Font
                 font-size: $like-arrow-font-size;
+            }
 
+            //LikeUpButton
+            .LikeUpButton {
+                @extend .LikeButton;
 
                 //Color
                 color: $like-arrow-base-color;
@@ -88,14 +89,7 @@ $like-button-height-percent: 30%;
 
             //LikeDownButton
             .LikeDownButton {
-                //Size
-                width: 80%;
-                height: $like-button-height-percent;
-
-
-                //Font
-                font-size: $like-arrow-font-size;
-
+                @extend .LikeButton;
 
                 //Color
                 color: $like-arrow-base-color;
@@ -259,17 +253,22 @@ $like-button-height-percent: 30%;
         border: 2px solid rgb(0, 0, 0);
 
 
+        //ManipulationButton
+        .ManipulationButton {
+            //Size
+            width: 100%;
+            height: 40%;
+
+
+            //Font
+            font-size: $like-arrow-font-size;
+        }
+
+
         //EditButton
         .EditButton {
-             //Size
-             width: 100%;
-             height: 40%;
-
-
-             //Font
-             font-size: $like-arrow-font-size;
-
-
+            @extend .ManipulationButton;
+            
              //Color
              color: $like-arrow-base-color;
              background-color: $like-arrow-background-color;
@@ -282,14 +281,7 @@ $like-button-height-percent: 30%;
 
         //DeleteButton
         .DeleteButton {
-             //Size
-             width: 100%;
-             height: 40%;
-
-
-             //Font
-             font-size: $like-arrow-font-size;
-
+             @extend .ManipulationButton;
 
              //Color
              color: $like-arrow-base-color;
@@ -298,6 +290,20 @@ $like-button-height-percent: 30%;
         .DeleteButton:hover {
             border: 2px solid $delete-button-hover-color;
             color: $delete-button-hover-color;
+        }
+
+
+        //SaveButton
+        .SaveButton {
+            @extend .ManipulationButton;
+
+            //Color
+            color: $like-arrow-base-color;
+            background-color: $like-arrow-background-color;
+        }
+        .SaveButton:hover {
+            border: 2px solid $save-button-hover-color;
+            color: $save-button-hover-color;
         }
     }
 }

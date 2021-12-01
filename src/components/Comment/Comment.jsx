@@ -4,11 +4,11 @@ import {StoreContext} from '../../store/StoreProvider'
 
 
 //Helpers
-import { LikeCommentHelper_GET, LikedCommentHelper_PATCH } from '../../helpers/likeCommentHelper';
+import { LikeCommentHelper_GET, LikedCommentHelper_PATCH } from '../../helpers/CommentHelper';
 
 
 //Styles
-import { faArrowUp, faArrowDown, faEdit, faTrashAlt} from "@fortawesome/free-solid-svg-icons";
+import { faArrowUp, faArrowDown, faEdit, faTrashAlt, faSave} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { default as CommentStyle } from './Comment.module.scss'
 
@@ -17,10 +17,13 @@ const Comment = ({ commentObject }) => {
 
     //useState
     const [comment, setCommentObject] = useState(commentObject);
+    const [commentText, setCommentText] = useState(commentObject.text);
+    const [editCommentText, setEditCommentText] = useState(commentObject.text);
     const [currentLikeStatus, setCurrentLikeStatus] = useState(0);
     const [amountOfLikes, setAmountOfLikes] = useState(0);
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(true);
+    const [editMode, setEditMode] = useState(false);
 
 
     //useContext
@@ -36,7 +39,10 @@ const Comment = ({ commentObject }) => {
         if (isLoggedIn)
             CheckIfUserLikedComment();
         else if (isLoggedIn == false)
+        {
             setCurrentLikeStatus(0);
+            setEditMode(false);
+        }
     }, [isLoggedIn])
 
 
@@ -75,6 +81,8 @@ const Comment = ({ commentObject }) => {
             setAmountOfLikes(amountOfLikes - 1);
         }
     }
+    const TextAreaChangeHandler = (event) => setEditCommentText(event.target.value);
+    const EditModeChangeHandler = () => setEditMode(!editMode);
 
 
     //Functions
@@ -106,7 +114,7 @@ const Comment = ({ commentObject }) => {
                             currentLikeStatus == 1
                             ? 'LikeUpButton-Active'
                             : 'LikeUpButton'}
-                        onClick={likeUpButtonHandler}>
+                        onClick={editMode ? likeUpButtonHandler : null}>
                         <FontAwesomeIcon icon={faArrowUp} />
                     </button>
 
@@ -119,7 +127,7 @@ const Comment = ({ commentObject }) => {
                             currentLikeStatus == -1
                                 ? 'LikeDownButton-Active'
                                 : 'LikeDownButton'}
-                        onClick={likeDownButtonHandler}>
+                        onClick={editMode ? likeDownButtonHandler : null}>
                         <FontAwesomeIcon icon={faArrowDown} />
                     </button>
                 </div>
@@ -137,9 +145,14 @@ const Comment = ({ commentObject }) => {
                 </div>
 
                 <div className='CommentContent'>
-                    <div className='Text'>
-                        {comment.text}
-                    </div>
+                    {
+                        editMode && isLoggedIn
+                        ? <textarea className='Text' type='text' value=   {editCommentText} onChange={TextAreaChangeHandler}>
+                        </textarea>
+                        : <div className='Text'>
+                            {commentText}
+                        </div>
+                    }
                 </div>
             </div>
 
@@ -147,13 +160,19 @@ const Comment = ({ commentObject }) => {
                 isLoggedIn == true && parseJwt(JSON.parse(window.localStorage.getItem('jwt'))).UserId == comment.userId
                 ? <div className='ManipulationPanel'>
 
-                    <button className='EditButton'>
+                    <button className='EditButton' onClick={EditModeChangeHandler}>
                         <FontAwesomeIcon icon={faEdit} />
                     </button>
 
-                    <button className='DeleteButton'>
-                        <FontAwesomeIcon icon={faTrashAlt} />
-                    </button>
+                    {
+                        !editMode
+                        ? <button className='DeleteButton'>
+                            <FontAwesomeIcon icon={faTrashAlt} />
+                        </button>
+                        : <button className='SaveButton'>
+                            <FontAwesomeIcon icon={faSave}/>
+                        </button>
+                    }
 
                 </div>
                 : null 

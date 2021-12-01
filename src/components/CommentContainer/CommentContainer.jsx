@@ -8,7 +8,7 @@ import { default as CommentContainerStyle } from './CommentContainer.module.scss
 
 
 //Helpers
-import { GetCommentsByPostId } from '../../helpers/getCommentsByPostIdHelper';
+import { GetCommentsByPostId } from '../../helpers/CommentHelper';
 
 
 //Components
