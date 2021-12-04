@@ -5,7 +5,7 @@ import { API_address, fileStorageName_API_route } from '../../Constants';
 
 
 //Styles
-import { faArrowUp, faArrowDown } from "@fortawesome/free-solid-svg-icons";
+import { faArrowUp, faArrowDown, faEdit, faTrashAlt, faSave } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { default as PostBigStyles } from './PostBig.module.scss'
 
@@ -16,11 +16,23 @@ import { LikePostHelper_GET, LikedPostHelper_POST} from '../../helpers/PostHelpe
 const PostBig = ({editMode, postObject}) => {
 
     //useState
+    //Post
     const [post, setPostObject] = useState(postObject);
+    const [postTitle, setPostTitle] = useState(postObject.title);
+    const [postText, setPostText] = useState(postObject.text);
+    const [postCategory, setPostCategory] = useState({id: postObject.postCategoryId, name: postObject.postCategoryName});
     const [photos, setPhotos] = useState(postObject.files);
     const [currentLikeStatus, setCurrentLikeStatus] = useState(0);
     const [amountOfLikes, setAmountOfLikes] = useState(postObject.likes);
-    const [error, setError] = useState(false);
+
+    //EditModePost
+    const [edit_postTitle, setEdit_postTitle] = useState(postTitle);
+    const [edit_postText, setEdit_postText] = useState(postText);
+    const [edit_postCategory, setEdit_postCategory] = useState(postCategory);
+
+    //Flags
+    const [currEditMode, setCurrEditMode] = useState(editMode);
+    const [currDeleteMode, setCurrentDeleteMode] = useState(false);
 
 
     //useContext
@@ -47,6 +59,16 @@ const PostBig = ({editMode, postObject}) => {
             setCurrentLikeStatus(value);
         }
     }
+    //https://stackoverflow.com/questions/38552003/how-to-decode-jwt-token-in-javascript-without-using-a-library
+    function parseJwt (token) {
+        var base64Url = token.split('.')[1];
+        var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+    
+        return JSON.parse(jsonPayload);
+    };
 
 
     //Handlers
@@ -87,8 +109,6 @@ const PostBig = ({editMode, postObject}) => {
         }
     }
 
-
-    console.log(postObject);
 
     return (
         <div className='PostBig'>
@@ -138,6 +158,26 @@ const PostBig = ({editMode, postObject}) => {
                     </div>) : null}
                 </div>
             </div>
+            {
+                isLoggedIn == true && parseJwt(JSON.parse(window.localStorage.getItem('jwt'))).UserId == post.userId || true
+                ? <div className='ManipulationPanel'>
+                    <button className='EditButton'>
+                        <FontAwesomeIcon icon={faEdit} />
+                    </button>
+
+                    {
+                        !currEditMode
+                        ? <button className='DeleteButton'>
+                            <FontAwesomeIcon icon={faTrashAlt} />
+                        </button>
+
+                        : <button className='SaveButton'>
+                            <FontAwesomeIcon icon={faSave} />
+                        </button>
+                    }
+                </div>
+                : null 
+            }
         </div>
     )
 };

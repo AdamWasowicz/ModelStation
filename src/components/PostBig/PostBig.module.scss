@@ -1,3 +1,5 @@
+@import '../../StyleConstants.scss';
+
 //variables
 $like-arrow-font-size: 50px;
 $like-arrow-base-color: white;
@@ -9,12 +11,9 @@ $like-arrow-down-active-color: red;
 .PostBig {
     //Size
     width: 100%;
-    height: 600px;
+    height: 750px;
+    max-height: 750px;
     min-width: 600px;
-
-
-    //Overflow
-    overflow: hidden;
 
 
     //Position
@@ -29,19 +28,14 @@ $like-arrow-down-active-color: red;
 
 
     //Color
-    background-color: rgb(241, 219, 219);
     border: 2px solid purple;
+    border-radius: 20px;
 
 
     //Like SideBar
     .likeSideBar {
         //Size
-        width: 20%;
-        height: 100%;
-
-
-        //Color
-        background-color: salmon;
+        flex-basis: 8%;
 
 
         .likeContainer {
@@ -57,7 +51,7 @@ $like-arrow-down-active-color: red;
 
 
             //LikeUp Button
-            .likeUpButton, .likeDownButton{
+            .likeUpButton {
                 //Size
                 width: 80%;
                 height: 30%;
@@ -85,6 +79,10 @@ $like-arrow-down-active-color: red;
                     background-color: $like-arrow-background-color;
                     color: $like-arrow-up-active-color;
                 }
+                
+            }
+            .likeUpButton:hover, .likeUpButton-Active:hover {
+                border: 2px solid $like-arrow-up-active-color;
             }
 
 
@@ -118,6 +116,9 @@ $like-arrow-down-active-color: red;
                     color: $like-arrow-down-active-color;
                 }
             }
+            .likeDownButton:hover, .likeDownButton-Active:hover {
+                border: 2px solid $like-arrow-down-active-color;
+            }
 
 
             //LikeCounter
@@ -144,7 +145,6 @@ $like-arrow-down-active-color: red;
     .Main {
         //Size
         width: 100%;
-        height: 400px;
 
 
         //Flex
@@ -153,23 +153,26 @@ $like-arrow-down-active-color: red;
 
 
         //Color
-        background-color: rgb(113, 114, 114);
+        border: 2px solid rgb(230, 17, 250);
 
 
         .Information {
             //Size
             width: 100%;
-
-            flex-grow: 1.5;
+            height: 20%;
 
             //Color
-            background-color: rgb(76, 138, 107);
+            border: 2px solid rgb(76, 138, 107);
 
 
             .UserNameANDpostCategory {
                 //Size
                 width: 100%;
-                height: 40%;
+                height: 50%;
+
+
+                //Padding
+                padding: 10px;
 
                 //Flex
                 display: flex;
@@ -185,7 +188,11 @@ $like-arrow-down-active-color: red;
             .Title {
                 //Size
                 width: 100%;
-                height: 60%;
+                height: 50%;
+
+                //Padding
+                padding: 10px;
+                overflow: hidden;
 
                 //Color
                 background-color: rgb(36, 216, 207);
@@ -195,53 +202,135 @@ $like-arrow-down-active-color: red;
         .PostContent {
             //Size
             width: 100%;
+            height: 80%;
+
+            flex-grow: 1;
+            
 
             display: flex;
             flex-direction: column;
-            flex-grow: 8;
+
 
 
             //Color
-            background-color: rgb(136, 106, 136);
+            border: 2px solid rgb(255, 0, 0);
 
 
             //Text
             .Text {
                 //Size
                 width: 100%;
-
+                height: 25%;
+                
+                padding: 10px;
 
                 //Flex
-                flex-grow: 1.5;
 
 
                 //Color
-                background-color: slateblue;
+                border: 2px solid rgb(4, 224, 114);
             }
 
             //Photos
             .Photos {
                 //Size
                 width: 100%;
+                max-height: 75%;
 
 
-                //Flex
-                flex-grow: 8;
+                overflow: hidden;
 
 
                 //Color
-                background-color: rgb(207, 84, 84);
+                border: 2px solid rgb(0, 140, 255);
 
 
                 .image {
                     width: 100%;
-                    height: 100%;
+                    max-height: 100%;
                     display: block;
                     margin-left: auto;
                     margin-right: auto;
                     object-fit: contain;
                 }
             }
+        }
+    }
+
+    //ManipulationPanel
+    .ManipulationPanel {
+
+        //Size
+        height: 100%;
+
+
+        //Flex
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        flex-basis: 10%;
+
+
+
+        //Padding
+        padding: 10px;
+
+
+        //Color
+        border: 2px solid rgb(0, 0, 0);
+
+
+        //ManipulationButton
+        .ManipulationButton {
+            //Size
+            width: 100%;
+            height: 40%;
+
+
+            //Font
+            font-size: $like-arrow-font-size;
+        }
+
+
+        //EditButton
+        .EditButton {
+            @extend .ManipulationButton;
+            
+             //Color
+             color: $like-arrow-base-color;
+             background-color: $like-arrow-background-color;
+        }
+        .EditButton:hover {
+            border: 2px solid $edit-button-hover-color;
+            color: $edit-button-hover-color;
+        }
+        
+
+        //DeleteButton
+        .DeleteButton {
+             @extend .ManipulationButton;
+
+             //Color
+             color: $like-arrow-base-color;
+             background-color: $like-arrow-background-color;
+        }
+        .DeleteButton:hover {
+            border: 2px solid $delete-button-hover-color;
+            color: $delete-button-hover-color;
+        }
+
+
+        //SaveButton
+        .SaveButton {
+            @extend .ManipulationButton;
+
+            //Color
+            color: $like-arrow-base-color;
+            background-color: $like-arrow-background-color;
+        }
+        .SaveButton:hover {
+            border: 2px solid $save-button-hover-color;
+            color: $save-button-hover-color;
         }
     }
 }
