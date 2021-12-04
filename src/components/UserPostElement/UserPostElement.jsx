@@ -10,11 +10,18 @@ import { default as UserPostElementStyle } from './UserPostElement.module.scss'
 //Components
 
 
-const UserPostElement = () => {
+
+const UserPostElement = ({postObject}) => {
 
     return (
         <div className='UserPostElement'>
-            UserPostElement
+            <div className='Post'>
+                
+            </div>
+
+            <div className='PostCategories'>
+
+            </div>
         </div>
     )
 }

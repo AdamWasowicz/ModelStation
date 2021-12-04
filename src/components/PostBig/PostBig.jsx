@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { useParams } from 'react-router';
-import bemCssModules from 'bem-css-modules'
 import { StoreContext } from '../../store/StoreProvider';
+import { useParams } from 'react-router';
 import { API_address, fileStorageName_API_route } from '../../Constants';
 
 
@@ -9,41 +8,28 @@ import { API_address, fileStorageName_API_route } from '../../Constants';
 import { faArrowUp, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { default as PostBigStyles } from './PostBig.module.scss'
-const style = bemCssModules(PostBigStyles);
 
 //Helpers
-import { LikePostHelper_GET, LikedPostHelper_POST, GetPostByPostId} from '../../helpers/PostHelper';
+import { LikePostHelper_GET, LikedPostHelper_POST} from '../../helpers/PostHelper';
 
 
-//Components
-import Loading from '../Loading';
-
-
-
-
-const PostBig = () => {
+const PostBig = ({editMode, postObject}) => {
 
     //useState
-    const [post, setPostObject] = useState({});
-    const [photos, setPhotos] = useState([]);
+    const [post, setPostObject] = useState(postObject);
+    const [photos, setPhotos] = useState(postObject.files);
     const [currentLikeStatus, setCurrentLikeStatus] = useState(0);
-    const [amountOfLikes, setAmountOfLikes] = useState(0);
+    const [amountOfLikes, setAmountOfLikes] = useState(postObject.likes);
     const [error, setError] = useState(false);
-    const [loading, setLoading] = useState(true);
-
-
-    //useParams
-    const postId = useParams().postId;
 
 
     //useContext
     const { isLoggedIn } = useContext(StoreContext);
 
 
-    //useEffect
-    useEffect(() => {
-        GetPostData();
-    }, []);
+    //useParams
+    const postId = useParams().postId;
+
 
     useEffect(() => {
         CheckIfUserLikedPost();
@@ -60,10 +46,6 @@ const PostBig = () => {
 
             setCurrentLikeStatus(value);
         }
-    }
-    const GetPostData = async () => {
-        const {error, data} = await GetPostByPostId(postId, setPostObject, setLoading);
-        setAmountOfLikes(data.likes);
     }
 
 
@@ -106,61 +88,58 @@ const PostBig = () => {
     }
 
 
+    console.log(postObject);
 
+    return (
+        <div className='PostBig'>
+            <div className='likeSideBar'>
+                <div className='likeContainer'>
+                    <button className={currentLikeStatus == 1
+                        ? 'likeUpButton-Active'
+                        : 'likeUpButton'}
+                        onClick={isLoggedIn && !editMode ? likeUpButtonHandler : null}>
+                        <FontAwesomeIcon icon={faArrowUp} />
+                    </button>
 
-    if (loading == false)
-        return (
-            <div className='PostBig'>
-                <div className='likeSideBar'>
-                    <div className='likeContainer'>
-                        <button className={currentLikeStatus == 1
-                            ? 'likeUpButton-Active'
-                            : 'likeUpButton'}
-                            onClick={isLoggedIn ? likeUpButtonHandler : null}>
-                            <FontAwesomeIcon icon={faArrowUp} />
-                        </button>
+                    <div className='likeCounter'>
+                        {amountOfLikes}
+                    </div>
 
-                        <div className='likeCounter'>
-                            {amountOfLikes}
-                        </div>
+                    <button className={
+                        currentLikeStatus == -1
+                            ? 'likeDownButton-Active'
+                            : 'likeDownButton'}
+                        onClick={isLoggedIn && !editMode ? likeDownButtonHandler : null}>
+                        <FontAwesomeIcon icon={faArrowDown} />
+                    </button>
+                </div>
+            </div>
 
-                        <button className={
-                            currentLikeStatus == -1
-                                ? 'likeDownButton-Active'
-                                : 'likeDownButton'}
-                            onClick={isLoggedIn ? likeDownButtonHandler : null}>
-                            <FontAwesomeIcon icon={faArrowDown} />
-                        </button>
+            <div className='Main'>
+                <div className='Information'>
+                    <div className='UserNameANDpostCategory'>
+                        <h4>{post.userName}</h4>
+                        {post.postCategoryId != null ? <h4>{post.postCategoryName}</h4> : null}
+                    </div>
+
+                    <div className='Title'>
+                        {post.title}
                     </div>
                 </div>
 
-                <div className='Main'>
-                    <div className='Information'>
-                        <div className='UserNameANDpostCategory'>
-                            <h4>{post.userName}</h4>
-                            {post.postCategoryId != null ? <h4>{post.postCategoryName}</h4> : null}
-                        </div>
-
-                        <div className='Title'>
-                            {post.title}
-                        </div>
+                <div className='PostContent'
+                >
+                    <div className='Text'>
+                        {post.text}
                     </div>
 
-                    <div className='PostContent'
-                    >
-                        <div className='Text'>
-                            {post.text}
-                        </div>
-
-                        {post.files.length != 0 ? (<div className='Photos'>
-                            <img src={`${API_address}${fileStorageName_API_route}${post.files[0].storageName}`} className='image' />
-                        </div>) : null}
-                    </div>
+                    {post.files.length != 0 ? (<div className='Photos'>
+                        <img src={`${API_address}${fileStorageName_API_route}${post.files[0].storageName}`} className='image' />
+                    </div>) : null}
                 </div>
-            </div>  
-        )
-    else
-        return(<Loading/>)
+            </div>
+        </div>
+    )
 };
 
 export default PostBig;
