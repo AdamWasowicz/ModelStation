@@ -12,7 +12,7 @@ import { default as PostSmallStyles } from './PostSmall.module.scss'
 const style = bemCssModules(PostSmallStyles);
 
 //Helpers
-import { LikePostHelper_GET, LikedPostHelper_POST } from '../../helpers/likePostHelper';
+import { LikePostHelper_GET, LikedPostHelper_POST } from '../../helpers/PostHelper';
 
 
 

@@ -1,5 +1,6 @@
 import React, { useContext, useRef, useCallback } from 'react';
 import bemCssModules from 'bem-css-modules'
+import StoreProvider, { StoreContext } from '../../store/StoreProvider';
 
 
 //Components
@@ -8,9 +9,8 @@ import QueryNoResult from '../QueryNoResult';
 import Loading from '../Loading';
 
 
-//Other
-import postQueryExecutor from '../../helpers/postQueryExecutor';
-import StoreProvider, { StoreContext } from '../../store/StoreProvider';
+//Helpers
+import postQueryExecutor from '../../helpers/PostHelper';
 
 
 //Styles

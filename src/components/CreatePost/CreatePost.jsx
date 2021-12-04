@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useContext, useRef, useMemo } from 'react';
 import bemCssModules from 'bem-css-modules'
-import { uploadPost } from '../../helpers/uploadPostHelper';
+import { uploadPost } from '../../helpers/PostHelper';
 import StoreProvider, { StoreContext } from '../../store/StoreProvider';
 
 

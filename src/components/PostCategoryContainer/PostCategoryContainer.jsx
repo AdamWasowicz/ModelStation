@@ -11,8 +11,8 @@ const style = bemCssModules(PostCategoryContainerStyle);
 import PostCategory from '../PostCategory/PostCategory';
 
 
-//Functions
-import { postCategory_GET } from '../../helpers/postCategoryHelper';
+//Helpers
+import { postCategory_GET } from '../../helpers/PostHelper';
 
 
 const PostCategoryContainer = ({setCategoryName}) => {

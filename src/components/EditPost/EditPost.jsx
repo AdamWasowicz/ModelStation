@@ -5,8 +5,7 @@ import bemCssModules from 'bem-css-modules'
 
 
 //Helpers
-import { GetUserPosts } from '../../helpers/getUserPostsHelper';
-import { updatePost } from '../../helpers/updatePostHelper';
+import { updatePost, GetUserPosts } from '../../helpers/PostHelper';
 
 //Styles
 import { default as EditPostStyles } from './EditPost.module.scss'

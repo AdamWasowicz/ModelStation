@@ -24,34 +24,36 @@ const Menu = () => {
     }
 
     return (
-        <React.Fragment>
-            <div className={style()}>
-                <div>
-                    { 
-                        isLoggedIn
-                        ? <button><Link to="createpost">createPost</Link></button>
-                        : null
-                    }
-                </div>
+        <div className={style()}>
+            {
+                isLoggedIn
+                    ? <div><button><Link to="createpost">createPost</Link></button></div>
+                    : null
+            }
 
-                <div>
-                    { 
-                        isLoggedIn
-                        ? <button><Link to="editpost">editPost</Link></button>
-                        : null
-                    }
-                </div>
+            {
+                isLoggedIn
+                    ? <div><button><Link to="editpost">editPost</Link></button></div>
+                    : null
+            }
 
-                <div>
-                    {
-                        !isLoggedIn
-                        ? <button className={style('loginButton')}onClick={handleOnClick}>Zaloguj</button>
-                        : <button className={style('loginButton')}onClick=     {handleLogOut}>Wyloguj</button>
-                    }
-                </div>
-            </div>
-            <LoginForm handleOnClose={handleOnClose} isOpen={isModalOpen}/>
-        </React.Fragment>
+            {
+                isLoggedIn
+                    ? <div><button><Link to="userposts">UserPosts</Link></button></div>
+                    : null
+            }
+
+
+
+
+            {
+                !isLoggedIn
+                    ? <div><button className={style('loginButton')} onClick={handleOnClick}>Zaloguj</button></div>
+                    : <div><button className={style('loginButton')} onClick={handleLogOut}>Wyloguj</button></div>
+            }
+            
+            <LoginForm handleOnClose={handleOnClose} isOpen={isModalOpen} />
+        </div>
     )
 }
 

@@ -12,8 +12,7 @@ import { default as PostBigStyles } from './PostBig.module.scss'
 const style = bemCssModules(PostBigStyles);
 
 //Helpers
-import { LikePostHelper_GET, LikedPostHelper_POST} from '../../helpers/likePostHelper';
-import { GetPostByPostId } from '../../helpers/getPostByIdHelper';
+import { LikePostHelper_GET, LikedPostHelper_POST, GetPostByPostId} from '../../helpers/PostHelper';
 
 
 //Components

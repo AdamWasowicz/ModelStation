@@ -8,6 +8,7 @@ import CreatePost from '../CreatePost';
 import PostSmallContainer from '../PostSmallContainer';
 import EditPost from '../EditPost';
 import PostBigContainer from '../PostBigContainer';
+import UserPosts from '../UserPosts';
 
 
 //Styles
@@ -26,6 +27,7 @@ const Content = () => {
                     <Route path='createpost' element={<CreatePost/>}/>
                     <Route path='editpost' element={<EditPost/>}/>
                     <Route path='post/:postId' element={<PostBigContainer/>}/>
+                    <Route path='userposts' element={<UserPosts/>}/>
                 </Routes> 
             </div>
         </React.Fragment>
