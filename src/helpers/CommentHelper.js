@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_address, getCommentsByPostId_API_route, getLikedComment_APi_route, patchLikedComment_API_route, postComment_API_route, patchComment_API_route, deleteComment_API_route } from "../Constants";
+import { API_address, getCommentsByPostId_API_route, getLikedComment_APi_route, patchLikedComment_API_route, postComment_API_route, patchComment_API_route, deleteComment_API_route } from "../API_routes";
 
 export async function GetCommentsByPostId(postId, setComments, setLoading)
 {

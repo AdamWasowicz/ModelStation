@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { StoreContext } from '../../store/StoreProvider';
 import { useParams, useNavigate } from 'react-router';
-import { API_address, fileStorageName_API_route } from '../../Constants';
+import { API_address, fileStorageName_API_route } from '../../API_routes';
 
 
 //Styles
@@ -240,7 +240,7 @@ const PostBig = ({editMode, postObject}) => {
                 </div>
             </div>
             {
-                isLoggedIn == true && parseJwt(JSON.parse(window.localStorage.getItem('jwt'))).UserId == post.userId || true
+                isLoggedIn == true && parseJwt(JSON.parse(window.localStorage.getItem('jwt'))).UserId == post.userId
                 ? <div className='ManipulationPanel'>
                     <button className='EditButton' 
                         onClick={ChangeEditModeHandler}

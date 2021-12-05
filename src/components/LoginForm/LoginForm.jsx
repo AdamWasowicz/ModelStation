@@ -9,7 +9,6 @@ import LoginHelper from '../../helpers/loginHelper';
 
 //Styles
 import { default as LoginFormStyles } from './LoginForm.module.scss';
-const style = bemCssModules(LoginFormStyles);
 
 //Component
 const LoginForm = ({ handleOnClose, isOpen }) => {
@@ -58,33 +57,36 @@ const LoginForm = ({ handleOnClose, isOpen }) => {
     }, [isOpen])
 
 
-    //ValidationMessageComponent
-    const validateMessageComponent = validateMessage.length
-     ? <p className={style('validateMessage')}>{validateMessage}</p> 
-     : null;
-
-
     return (
         <Modal closeOnBackgroundClick={true}  handleOnClose={handleOnClose} isOpen={isOpen}>
-            {validateMessageComponent}
-            <form className={style()} method="post" onSubmit={handleOnSubmit}>
-                <div className={style('row')}>
-                    <label>
-                        Login:
-                        <input type="text" onChange={handleOnChangeLogin} value={login}/>
-                    </label>
-                </div>
-                    
-                <div className={style('row')}>
-                    <label>
-                        Hasło:
-                        <input type="password" onChange={handleOnChangePassword} value={password}/>
-                    </label>
+            <form className='LoginForm' method="post" onSubmit={handleOnSubmit}>
+                <div className='LoginInfo'>
+                    <div className='InfoLabel'>
+                            <div className='InfoText'>
+                                Login:
+                            </div>
+                            <input className='InfoInput' type="text" onChange={handleOnChangeLogin} value={login} />
+                    </div>
+
+                    <div className='InfoLabel'>
+                            <div className='InfoText'>
+                                Hasło
+                            </div>
+                            <input className='InfoInput' type="password" onChange={handleOnChangePassword} value={password} />
+                    </div>
                 </div>
 
-                <div className={style('row')}>
-                    <button type="submit">Zaloguj</button>
-                    <button type="button" onClick={handleOnCloseModal}>Anuluj</button>
+                {
+                    validateMessage.length > 0
+                    ? <div className='ValidateMessage'>
+                        {validateMessage}
+                    </div>
+                    : null
+                }
+
+                <div className='ManipulationPanel'>
+                    <button className='LoginButton' type="submit">Zaloguj</button>
+                    
                 </div>
             </form>
         </Modal>

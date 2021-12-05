@@ -1,25 +1,164 @@
-.loginForm
+.LoginForm
 {
+    //Size
+    width: 800px;
+    height: 700px;
+
     //Flex
     display: flex;
     flex-direction: column;
 
 
-    //Validation Message
-    &__validateMessage
-    {
-        color: red;
-    }
+    //LoginInfo
+    .LoginInfo {
+        
+        //Size
+        width: 100%;
+        height: 70%;
 
 
-    //FormRow
-    &__row
-    {
-        //Position
-        margin-top: 10px;
+        //Padding
+        padding: 10px;
+        
 
         //Flex
         display: flex;
+        flex-direction: column;
+        align-items: center;
+
+
+        border: 2px solid red;
+       
+
+
+        .InfoLabel {
+
+            //Size
+            width: 100%;
+            height: 50%;
+
+            //Flex
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+
+
+            //Padding
+            padding: 10px;
+
+            border: 2px solid rgb(255, 0, 212);
+
+            .InfoText {
+
+                //Size
+                width: 100%;
+                height: 50%;
+
+                //Padding
+                padding: 10px;
+
+                //Font
+                font-size: 50px;
+
+                background-color: darkkhaki;
+            }
+
+
+            .InfoInput {
+                //Size
+                width: 100%;
+                height: 50%;
+                
+                
+                //Padding
+                padding: 10px;
+
+
+                font-size: 30px;
+
+                &:focus {
+                    border: 5px solid rgb(20, 224, 207);
+                }
+            }
+        }
+    }
+    
+    .ValidateMessage {
+
+        //Flex
+        flex-basis: 10%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+
+        //Font
+        font-size: 40px;
+        color: red;
+
+
+        
+        border: 2px solid green;
+    }
+
+    //ManipulationPanel
+    .ManipulationPanel {
+        
+        //Flex
+        display: flex;
         justify-content: space-around;
+        flex-grow: 1;
+        
+
+
+        //Padding
+        padding: 10px;
+        
+        border: 2px solid blue;
+
+        
+        //Button
+        .Button {
+
+            //Size
+            width: 90%;
+            height: 100%;
+
+
+            //Font
+            font-size: 50px;
+
+            border-radius: 20px
+        }
+
+
+        //LoginButton
+        .LoginButton {
+            @extend .Button;
+
+            &:hover {
+                border: 4px solid limegreen;
+            }
+
+            &:active {
+                color: limegreen;
+            }
+        }
+
+
+        //CancelButton
+        .CancelButton {
+            @extend .Button;
+
+            &:hover {
+                border: 4px solid red;
+            }
+
+            &:active {
+                color: red;
+            }
+        }
+
     }
 }

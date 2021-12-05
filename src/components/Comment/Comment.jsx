@@ -8,7 +8,7 @@ import { LikeCommentHelper_GET, LikedCommentHelper_PATCH, Comment_PATCH } from '
 
 
 //Components
-import DeleteComment from '../DeleteComment';
+import DeleteCommentModal from './DeleteCommentModal';
 
 
 //Styles
@@ -148,7 +148,7 @@ const Comment = ({ commentObject, HandleCommentDeletion }) => {
         <div className='Comment'>
             {
                 deleteMode
-                ? <DeleteComment commentObject={commentObject} handleOnCancel={CloseDeleteModeHandler} HandleCommentDeletion={HandleDelete}/>
+                ? <DeleteCommentModal commentObject={commentObject} handleOnCancel={CloseDeleteModeHandler} HandleCommentDeletion={HandleDelete}/>
                 : null
             }
             <div className='LikeSideBar'>

@@ -42,7 +42,7 @@ const PostSmallContainer = () => {
 
     
 
-
+    console.log(posts);
 
     if (loading == false && posts.length > 0 || loading == true && posts.length > 0) {
         return (

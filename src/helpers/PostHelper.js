@@ -1,6 +1,6 @@
 import axios from "axios";
 import { API_address, getPostByUserId, getUserPosts_APU_route, likePost_API_route, likedPost_create_or_edit_API_route, postCategory_GET_API_route, patchPost_API_route, uploadPost_API_route, deletePost_API_route
-} from "../Constants";
+} from "../API_routes";
 import { StoreContext } from "../store/StoreProvider";
 import react, {useState, useEffect} from 'react';
 
@@ -176,19 +176,29 @@ export default function postQueryExecutor(PostCategory, Title, UserName, Current
           cancelToken: new axios.CancelToken(c => cancel = c)
           
         }).then(res => {
+            if (res.status == 204) {
+                setError(false);
+                setLoading(false);
+                setHasMore(false);
+            }
+            
+            else {
+                setPosts(prevPosts => {
+                    return [...new Set([...prevPosts, ...res.data.posts])]
+                });
 
-          setPosts(prevPosts => {
-            return [...new Set([...prevPosts, ...res.data.posts])]
-          });
-
-          setHasMore(res.data.posts.length == NumberOfPosts);
-          setLoading(false);
+                setError(false);
+                setHasMore(res.data.posts.length == NumberOfPosts);
+                setLoading(false);
+            }
 
         }).catch(e => {
 
-          if (axios.isCancel(e)) return
-          setError(true);
-          setLoading(false);
+            console.log(res);
+            if (axios.isCancel(e)) return
+            setError(true);
+            setLoading(false);
+            setHasMore(false);
         })
         return () => cancel()
       }, [Title, CurrentPage])

@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useContext } from 'react'
 import { useNavigate } from 'react-router';
 import bemCssModules from 'bem-css-modules'
-import { API_address, fileStorageName_API_route } from '../../Constants';
+import { API_address, fileStorageName_API_route } from '../../API_routes';
 import { StoreContext } from '../../store/StoreProvider';
 
 
