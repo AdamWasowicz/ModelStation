@@ -1,9 +1,10 @@
-@import '../../StyleConstants.scss';
+@import '../../../StyleConstants.scss';
 
-.DeleteComment {
+.DeletePostModal {
+
     //Size
     width: 500px;
-    height: 500px;
+    height: 300px;
 
 
     //Padding
@@ -19,30 +20,14 @@
     border: 2px solid greenyellow;
     background-color: grey;
 
+
     //Information
     .Information {
-        //Size
-        height: 20%;
-
-
-        //Flex
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        
-
-        //Color
-        border: 2px solid red;
-    }
-
-
-    //CommentText
-    .CommentText {
         //Size
         height: 40%;
 
 
-        //Paddig
+        //Padding
         padding: 10px;
 
 
@@ -51,16 +36,16 @@
         align-items: center;
         justify-content: center;
 
-        
+
         //Color
-        border: 2px solid greenyellow;
+        border: 2px solid red;
     }
 
-    
-    //ActionButtons
-    .ActionButtons {
+
+     //ActionButtons
+     .ActionButtons {
         //Size
-        height: 20%;
+        height: 40%;
 
         //Padding
         padding: 10px;

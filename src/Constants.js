@@ -15,6 +15,7 @@ export const getPostByUserId = '/api/v1/post'
 export const uploadPost_API_route = "/api/v1/post/withpostcategoryname";
 export const getUserPosts_APU_route = '/api/v1/post/user/id';
 export const patchPost_API_route = '/api/v1/post/postcategoryname';
+export const deletePost_API_route = '/api/v1/post'
 //Comment
 export const getCommentsByPostId_API_route = '/api/v1/comment/post';
 export const postComment_API_route = '/api/v1/comment';

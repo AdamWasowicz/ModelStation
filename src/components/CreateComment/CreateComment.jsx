@@ -52,7 +52,7 @@ const CreateComment = ({HandleChange}) => {
     }
     const ClearInput = () => setCommentText("");
     const ValidateForm = () => {
-        if (commentText > 0 && commentText < 256)
+        if (commentText.length > 0 && commentText.length < 256)
             return true;
         
         return false;

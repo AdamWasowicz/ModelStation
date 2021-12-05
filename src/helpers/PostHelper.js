@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_address, getPostByUserId, getUserPosts_APU_route, likePost_API_route, likedPost_create_or_edit_API_route, postCategory_GET_API_route, patchPost_API_route, uploadPost_API_route
+import { API_address, getPostByUserId, getUserPosts_APU_route, likePost_API_route, likedPost_create_or_edit_API_route, postCategory_GET_API_route, patchPost_API_route, uploadPost_API_route, deletePost_API_route
 } from "../Constants";
 import { StoreContext } from "../store/StoreProvider";
 import react, {useState, useEffect} from 'react';
@@ -265,6 +265,29 @@ export async function uploadPost(jwt, title, text, categoryName, images) {
         console.log(response);
         result = -1;
     });
+
+    return result;
+}
+
+export async function deletePost(postId) {
+    const jwt = JSON.parse(window.localStorage.getItem('jwt'));
+    var result = 0;
+
+    axios({
+        method: "DELETE",
+        url: `${API_address}${deletePost_API_route}/${postId}`,
+        headers: { 
+            Authorization: "Bearer " + jwt
+        },
+    }).then(function (response) {
+        console.log(response);
+        result = 1;
+    }).catch(function (response)
+    {
+        console.log(response);
+        result = -1;
+    });
+
 
     return result;
 }

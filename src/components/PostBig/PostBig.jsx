@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { StoreContext } from '../../store/StoreProvider';
-import { useParams } from 'react-router';
+import { useParams, useNavigate } from 'react-router';
 import { API_address, fileStorageName_API_route } from '../../Constants';
 
 
@@ -11,6 +11,10 @@ import { default as PostBigStyles } from './PostBig.module.scss'
 
 //Helpers
 import { LikePostHelper_GET, LikedPostHelper_POST, updatePost} from '../../helpers/PostHelper';
+
+
+//Components
+import DeletePostModal from './DeletePostModal';
 
 
 const PostBig = ({editMode, postObject}) => {
@@ -37,11 +41,15 @@ const PostBig = ({editMode, postObject}) => {
 
 
     //useContext
-    const { isLoggedIn } = useContext(StoreContext);
+    const { isLoggedIn, posts } = useContext(StoreContext);
 
 
     //useParams
     const postId = useParams().postId;
+
+
+    //useNavigate
+    const navigate = useNavigate();
 
 
     useEffect(() => {
@@ -125,6 +133,13 @@ const PostBig = ({editMode, postObject}) => {
         }
     }
     const ChangeEditModeHandler = () => setCurrEditMode(!currEditMode);
+    const EnterDeleteModeHandler = () => setCurrentDeleteMode(true);
+    const ExitDeleteModeHandler = () => setCurrentDeleteMode(false);
+    const AfterDeletionHandler = () => {
+        alert("Pomyślnie usunięto post");
+        navigate('../');
+    }
+    
     
     //EditModeHandlers
     const ChangeEdit_postTitleHandler = (event) => setEdit_postTitle(event.target.value);
@@ -235,7 +250,9 @@ const PostBig = ({editMode, postObject}) => {
 
                     {
                         !currEditMode
-                        ? <button className='DeleteButton'>
+                        ? <button className='DeleteButton'
+                            onClick={EnterDeleteModeHandler}
+                        >
                             <FontAwesomeIcon icon={faTrashAlt} />
                         </button>
 
@@ -247,6 +264,16 @@ const PostBig = ({editMode, postObject}) => {
                     }
                 </div>
                 : null 
+            }
+
+            {
+                currDeleteMode
+                ? <DeletePostModal 
+                    postObject={post}
+                    handleOnCancel={ExitDeleteModeHandler }
+                    handleOnDeletion={AfterDeletionHandler}
+                />
+                : null
             }
         </div>
     )
