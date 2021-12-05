@@ -23,6 +23,7 @@ const CommentContainer = () => {
     const [comments, setComments] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
+    const [newComment, setNewComment] = useState(false);
     const [changeOccured, setChangeOccured] = useState(false);
 
 
@@ -41,19 +42,35 @@ const CommentContainer = () => {
         setLoading(false);
     }, [])
 
+    useEffect( () => {
+        setLoading(true);
+        GetComments();
+        setNewComment(false);
+    }, [newComment])
+
 
 
     //Functions
     const GetComments = async () => {
         const { error, data } = await GetCommentsByPostId(postId, setComments, setLoading);
     } 
+    const sortCommentsByLastEditDate = (c1, c2) => {
+
+        const d1 = new Date(c1.lastEditDate);
+        const d2 = new Date(c2.lastEditDate);
+
+        if (d1 > d2)
+            return -1;
+        
+        if (d1 < d2)
+            return 1;
+
+        return 0;
+    }
 
     //Handlers
     const HandleNewComment = () => {
-        setLoading(true);
-        setComments([]);
-        GetComments();
-        setLoading(false);
+        setNewComment(true);
     }
     const HandleCommentDeletion = (commentId) => {
         const objectToRemove = comments.find(c => c.id == commentId);
