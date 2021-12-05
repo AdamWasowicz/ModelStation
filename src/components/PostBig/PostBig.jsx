@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { default as PostBigStyles } from './PostBig.module.scss'
 
 //Helpers
-import { LikePostHelper_GET, LikedPostHelper_POST} from '../../helpers/PostHelper';
+import { LikePostHelper_GET, LikedPostHelper_POST, updatePost} from '../../helpers/PostHelper';
 
 
 const PostBig = ({editMode, postObject}) => {
@@ -20,7 +20,7 @@ const PostBig = ({editMode, postObject}) => {
     const [post, setPostObject] = useState(postObject);
     const [postTitle, setPostTitle] = useState(postObject.title);
     const [postText, setPostText] = useState(postObject.text);
-    const [postCategory, setPostCategory] = useState({id: postObject.postCategoryId, name: postObject.postCategoryName});
+    const [postCategory, setPostCategory] = useState({id: postObject.postCategoryId, name: postObject.postCategoryName != '' ? postObject.postCategoryName : ''});
     const [photos, setPhotos] = useState(postObject.files);
     const [currentLikeStatus, setCurrentLikeStatus] = useState(0);
     const [amountOfLikes, setAmountOfLikes] = useState(postObject.likes);
@@ -33,6 +33,7 @@ const PostBig = ({editMode, postObject}) => {
     //Flags
     const [currEditMode, setCurrEditMode] = useState(editMode);
     const [currDeleteMode, setCurrentDeleteMode] = useState(false);
+    const [error, setError] = useState(false);
 
 
     //useContext
@@ -59,6 +60,7 @@ const PostBig = ({editMode, postObject}) => {
             setCurrentLikeStatus(value);
         }
     }
+
     //https://stackoverflow.com/questions/38552003/how-to-decode-jwt-token-in-javascript-without-using-a-library
     function parseJwt (token) {
         var base64Url = token.split('.')[1];
@@ -69,6 +71,20 @@ const PostBig = ({editMode, postObject}) => {
     
         return JSON.parse(jsonPayload);
     };
+
+    const ValidateForm = () => {
+        if (!(edit_postTitle.length > 0 && edit_postTitle.length <= 32 ))
+            return null;
+        
+        if (!(edit_postText.length > 0 && edit_postTitle.length <= 256))
+            return null;
+
+        return true;
+    }
+
+    const PatchPost = async () => await updatePost(postId, edit_postTitle, edit_postText, edit_postCategory.name, setError);
+    
+
 
 
     //Handlers
@@ -108,6 +124,35 @@ const PostBig = ({editMode, postObject}) => {
             setAmountOfLikes(amountOfLikes - 1)
         }
     }
+    const ChangeEditModeHandler = () => setCurrEditMode(!currEditMode);
+    
+    //EditModeHandlers
+    const ChangeEdit_postTitleHandler = (event) => setEdit_postTitle(event.target.value);
+    const ChangeEdit_postTextHandler = (event) => setEdit_postText(event.target.value);
+    const ChangeEdit_postCategoryHandler = (event) => {
+        let currentPostCategoryObject = edit_postCategory;
+        currentPostCategoryObject.name = event.target.value;
+        setEdit_postCategory({id: currentPostCategoryObject.id, name: event.target.value});
+    }
+    const SendPatchHandler = () => {
+        if (ValidateForm()) {
+
+            PatchPost();
+
+            if (!error)
+            {
+                setPostTitle(edit_postTitle);
+                setPostText(edit_postText);
+                setPostCategory(edit_postCategory);
+                ChangeEditModeHandler();
+            }
+            else
+                alert('Wystłąpił błąd podczas zmiany danych posta');
+        }
+        else 
+            alert("Nowa treść postu zawiera błędy");
+    }
+
 
 
     return (
@@ -139,19 +184,40 @@ const PostBig = ({editMode, postObject}) => {
                 <div className='Information'>
                     <div className='UserNameANDpostCategory'>
                         <h4>{post.userName}</h4>
-                        {post.postCategoryId != null ? <h4>{post.postCategoryName}</h4> : null}
+                        {
+                            currEditMode
+                            ? <input 
+                            value={edit_postCategory.name}
+                            onChange={ChangeEdit_postCategoryHandler}
+                            >
+                            </input>
+                            : (postCategory.name != '' ? <h4>{postCategory.name}</h4>: null)
+                        }
+                        
                     </div>
 
                     <div className='Title'>
-                        {post.title}
+                        {
+                            currEditMode
+                            ? <input
+                            value={edit_postTitle}
+                            onChange={ChangeEdit_postTitleHandler}
+                            ></input>
+                            : <React.Fragment>{postTitle}</React.Fragment>
+                        }
                     </div>
                 </div>
 
                 <div className='PostContent'
                 >
-                    <div className='Text'>
-                        {post.text}
-                    </div>
+                    {
+                        currEditMode
+                            ? <textarea className='EditText' type='text'
+                                value={edit_postText}
+                                onChange={ChangeEdit_postTextHandler}>
+                            </textarea>
+                            : <div className='Text'>{postText}</div>
+                    }
 
                     {post.files.length != 0 ? (<div className='Photos'>
                         <img src={`${API_address}${fileStorageName_API_route}${post.files[0].storageName}`} className='image' />
@@ -161,7 +227,9 @@ const PostBig = ({editMode, postObject}) => {
             {
                 isLoggedIn == true && parseJwt(JSON.parse(window.localStorage.getItem('jwt'))).UserId == post.userId || true
                 ? <div className='ManipulationPanel'>
-                    <button className='EditButton'>
+                    <button className='EditButton' 
+                        onClick={ChangeEditModeHandler}
+                    >
                         <FontAwesomeIcon icon={faEdit} />
                     </button>
 
@@ -171,7 +239,9 @@ const PostBig = ({editMode, postObject}) => {
                             <FontAwesomeIcon icon={faTrashAlt} />
                         </button>
 
-                        : <button className='SaveButton'>
+                        : <button className='SaveButton'
+                        onClick={SendPatchHandler}
+                        >
                             <FontAwesomeIcon icon={faSave} />
                         </button>
                     }

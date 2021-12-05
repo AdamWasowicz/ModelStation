@@ -196,18 +196,21 @@ export default function postQueryExecutor(PostCategory, Title, UserName, Current
       return { loading, error, hasMore }
 }
 
-export async function updatePost(postId, postTitle, postText, postCategoryName) {
+export async function updatePost(postId, postTitle, postText, postCategoryName, setError) {
     const jwt = JSON.parse(window.localStorage.getItem('jwt'));
     var result = 0;
+
+    if (postCategoryName == null)
+        postCategoryName = '';
 
     axios({
         method: "PATCH",
         url: `${API_address}${patchPost_API_route}`,
         data: {
-            id: postId,
-            title: postTitle,
-            text: postText,
-            postCategoryName: postCategoryName
+            Id: postId,
+            Title: postTitle,
+            Text: postText,
+            PostCategoryName: postCategoryName
         },
         headers: { 
             Authorization: "Bearer " + jwt
@@ -219,7 +222,9 @@ export async function updatePost(postId, postTitle, postText, postCategoryName) 
     {
         console.log(response);
         result = -1;
+        setError(true);
     });
+
 
     return result;
 }
@@ -235,9 +240,12 @@ export async function uploadPost(jwt, title, text, categoryName, images) {
         bodyFormData.append("PostCategoryName", categoryName);
     if (images != null)
     {
-        images.foreach( (img) => {
+        console.log(images);
+        images = [...images];
+        console.log(images);
+        images.forEach( (img) => {
             bodyFormData.append("Files", img);
-        })
+        });
     }
 
 
