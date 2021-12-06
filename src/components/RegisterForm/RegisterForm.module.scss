@@ -1,0 +1,189 @@
+.RegisterForm {
+
+    //Size
+    width: 900px;
+    height: 800px;
+    
+
+    //Flex
+    display: flex;
+    flex-direction: row;
+
+
+
+    .PictureBanner {
+
+        //Size
+        width: 30%;
+        height: 100%;
+
+        object-fit: cover;
+    }
+
+    .RightPanel {
+
+        width: 70%;
+        height: 100%;
+
+        border: 2px solid rgb(28, 248, 146);
+
+        //LoginInfo
+        .RegisterInfo {
+
+            //Size
+            width: 100%;
+            height: 70%;
+
+
+            //Padding
+            padding: 10px;
+
+
+
+            //Flex
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+
+            border: 2px solid red;
+
+
+
+            .InfoLabel {
+
+                //Size
+                width: 100%;
+                height: 30%;
+
+                //Flex
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+
+                //Margin
+                margin-bottom: 25px;
+
+
+                //Padding
+                padding: 10px;
+
+                border: 2px solid rgb(255, 0, 212);
+
+                .InfoText {
+
+                    //Size
+                    width: 100%;
+                    height: 50%;
+
+                    //Padding
+                    padding: 10px;
+
+                    //Font
+                    font-size: 50px;
+
+                    background-color: darkkhaki;
+                }
+
+
+                .InfoInput {
+                    //Size
+                    width: 100%;
+                    height: 50%;
+
+
+                    //Padding
+                    padding: 10px;
+
+
+                    font-size: 30px;
+
+                    &:focus {
+                        border: 5px solid rgb(20, 224, 207);
+                    }
+                }
+            }
+        }
+
+        .ValidateMessage {
+
+            //Flex
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 10%;
+
+
+            //Font
+            font-size: 40px;
+            color: red;
+
+
+
+            border: 2px solid green;
+        }
+
+        //ManipulationPanel
+        .ManipulationPanel {
+
+            width: 100%;
+            height: 20%;
+            //Flex
+            display: flex;
+            justify-content: space-around;
+            flex-grow: 1;
+
+
+
+            //Padding
+            padding: 10px;
+
+            border: 2px solid blue;
+
+
+            //Button
+            .Button {
+
+                //Size
+                width: 90%;
+                height: 100%;
+
+
+                //Font
+                font-size: 50px;
+
+                border-radius: 20px
+            }
+
+
+            //LoginButton
+            .RegisterButton {
+                @extend .Button;
+
+                &:hover {
+                    border: 4px solid limegreen;
+                }
+
+                &:active {
+                    color: limegreen;
+                }
+            }
+
+
+            //CancelButton
+            .CancelButton {
+                @extend .Button;
+
+                &:hover {
+                    border: 4px solid red;
+                }
+
+                &:active {
+                    color: red;
+                }
+            }
+        }
+
+    }
+}

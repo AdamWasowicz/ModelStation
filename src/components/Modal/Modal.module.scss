@@ -6,12 +6,16 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 100;
-
+    box-shadow: 19px 22px 34px -4px rgb(81, 82, 92);
+    background-color: transparent;
 
     //Backdrop
     &::backdrop
     {
         //Background blur
         backdrop-filter: blur(3px);
+        filter: brightness(40%);
+        
+
     }
 }

@@ -26,6 +26,14 @@ module.exports = {
 					}
 				]
 			},
+
+			{
+				test: /\.(jpg|png|svg)$/,
+				loader: 'file-loader',
+				options: {
+				  limit: 25000,
+				},
+			},
             
 			{
 				test: /\.(s(a|c)ss|css)$/,
