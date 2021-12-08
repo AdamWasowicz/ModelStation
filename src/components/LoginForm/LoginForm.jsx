@@ -4,7 +4,7 @@ import bemCssModules from 'bem-css-modules';
 //ImportedComponents
 import Modal from '../Modal/Modal';
 import { StoreContext } from '../../store/StoreProvider';
-import LoginHelper from '../../helpers/loginHelper';
+import { LoginHelper } from '../../helpers/AccountHelper';
 
 
 //Styles

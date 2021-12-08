@@ -135,7 +135,7 @@ const Comment = ({ commentObject, HandleCommentDeletion }) => {
         setCommentText(editCommentText);
     }
     const ValidateForm = () => {
-        if (commentText > 0 && commentText < 256)
+        if (commentText.length > 0 && commentText.length < 256)
             return true;
         
         return false;
@@ -158,7 +158,7 @@ const Comment = ({ commentObject, HandleCommentDeletion }) => {
                             currentLikeStatus == 1
                             ? 'LikeUpButton-Active'
                             : 'LikeUpButton'}
-                        onClick={editMode ? likeUpButtonHandler : null}>
+                        onClick={!editMode ? likeUpButtonHandler : null}>
                         <FontAwesomeIcon icon={faArrowUp} />
                     </button>
 
@@ -171,7 +171,7 @@ const Comment = ({ commentObject, HandleCommentDeletion }) => {
                             currentLikeStatus == -1
                                 ? 'LikeDownButton-Active'
                                 : 'LikeDownButton'}
-                        onClick={editMode ? likeDownButtonHandler : null}>
+                        onClick={!editMode ? likeDownButtonHandler : null}>
                         <FontAwesomeIcon icon={faArrowDown} />
                     </button>
                 </div>

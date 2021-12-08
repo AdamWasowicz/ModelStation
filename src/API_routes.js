@@ -3,8 +3,9 @@ export const API_address = "https://localhost:44363";
 //Routes
 //FileStorage
 export const fileStorageName_API_route = "/api/v1/fileStorage/file/name/";
-//Login
+//Account
 export const login_API_route = "/api/v1/account/login";
+export const register_API_route = "/api/v1/user";
 //LikedPost
 export const likePost_API_route = "/api/v1/likedpost/post/id/";
 export const likedPost_create_or_edit_API_route = "/api/v1/likedpost/create_or_edit";
