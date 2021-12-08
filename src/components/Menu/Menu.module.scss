@@ -1,3 +1,5 @@
+@import '../../StyleConstants.scss';
+
 .Menu
 {
     //Size
@@ -11,9 +13,9 @@
 
 
     //Colors
-    background-color: orange;
+    background-color: $main-color-1;
 
 
     //Border
-    border: 2px solid red;
+    border: 2px solid $main-color-6;
 }

@@ -145,9 +145,8 @@ const PostBig = ({editMode, postObject}) => {
     const ChangeEdit_postTitleHandler = (event) => setEdit_postTitle(event.target.value);
     const ChangeEdit_postTextHandler = (event) => setEdit_postText(event.target.value);
     const ChangeEdit_postCategoryHandler = (event) => {
-        let currentPostCategoryObject = edit_postCategory;
-        currentPostCategoryObject.name = event.target.value;
-        setEdit_postCategory({id: currentPostCategoryObject.id, name: event.target.value});
+        let newpcObject = {id: 0, name: event.target.value };
+        setEdit_postCategory(newpcObject);
     }
     const SendPatchHandler = () => {
         if (ValidateForm()) {
@@ -198,15 +197,26 @@ const PostBig = ({editMode, postObject}) => {
             <div className='Main'>
                 <div className='Information'>
                     <div className='UserNameANDpostCategory'>
-                        <h4>{post.userName}</h4>
+                        <h4 className='UserNameLabel'>U/
+                            <div className='UserName'>
+                                {post.userName}
+                            </div>
+                        </h4>
                         {
                             currEditMode
-                            ? <input 
+                            ? <input className='EditPostCategory'
                             value={edit_postCategory.name}
                             onChange={ChangeEdit_postCategoryHandler}
                             >
                             </input>
-                            : (postCategory.name != '' ? <h4>{postCategory.name}</h4>: null)
+                            : (postCategory.name != '' && postCategory.name != null
+                                ? <h4 className='PostCategoryLabel'>
+                                    C/
+                                    <div className='PostCategoryField'>
+                                        {postCategory.name}
+                                        </div>
+                                    </h4>
+                                : null)
                         }
                         
                     </div>
@@ -214,7 +224,7 @@ const PostBig = ({editMode, postObject}) => {
                     <div className='Title'>
                         {
                             currEditMode
-                            ? <input
+                            ? <input className='EditTitle'
                             value={edit_postTitle}
                             onChange={ChangeEdit_postTitleHandler}
                             ></input>
@@ -242,7 +252,11 @@ const PostBig = ({editMode, postObject}) => {
             {
                 isLoggedIn == true && parseJwt(JSON.parse(window.localStorage.getItem('jwt'))).UserId == post.userId
                 ? <div className='ManipulationPanel'>
-                    <button className='EditButton' 
+                    <button className={
+                        currEditMode
+                        ? 'EditButton-Active' 
+                        : 'EditButton'
+                        } 
                         onClick={ChangeEditModeHandler}
                     >
                         <FontAwesomeIcon icon={faEdit} />

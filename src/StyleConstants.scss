@@ -1,3 +1,12 @@
+//Fonts
+//Imports
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
+
+$roboto: 'Roboto', sans-serif;
+$noto: 'Noto Sans', sans-serif;
+
+
 //Color
     //MainColors
     $main-color-1: #161616;
@@ -5,7 +14,25 @@
     $main-color-3: #8C8C8C;
     $main-color-4: #BFBFBF;
     $main-color-5: #F2F2F2;
-    $main-color-6: #5297E6;
+    $main-color-8: #5297E6;
+    $main-color-7: #3b3737;
+    $main-color-6: #F2A824;
+    $main-color-9: #2b2a31;
+    $main-color-10: #F57300;
+    $main-color-11: #1f1f1e;
+    $main-color-12: #292524;
+
+
+    //SubColors
+    $like-up-color-1: #51E070;
+    $like-up-color-2: #A8FF59;
+    $like-down-color-1: #B8002B;
+    $like-down-color-2: #F72351;
+    $edit-color-1: #F57300;
+    $edit-color-2: #bd5f0d;
+    $delete-color-1: #B8002B;
+    $delete-color-2: #F72351;
+
 
     //Other
     $content-background-color: rgb(70, 67, 67);
