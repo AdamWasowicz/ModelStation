@@ -19,13 +19,20 @@ $like-button-height-percent: 30%;
     margin-bottom: 20px;
 
 
+    //Overflow
+    overflow: hidden;
+
+
     //Flex
     display: flex;
     flex-direction: row;
 
 
-    //Color
-    border: 2px solid chartreuse;
+   //Color
+   background-color: $main-color-9;
+   border: 2px solid $main-color-8;
+   border-radius: 20px;
+   box-shadow: 12px 13px 24px 0px $main-color-9;
 
 
     //LikeSideBar
@@ -37,10 +44,6 @@ $like-button-height-percent: 30%;
         //Flex
         flex-basis: 10%;
         //flex-grow: 1;
-
-
-        //Color
-        border: 2px solid cornflowerblue;
 
 
         //LikeContainer
@@ -56,56 +59,98 @@ $like-button-height-percent: 30%;
             align-items: center;
 
 
-            //Color
-            border: 2px solid rgb(255, 255, 255); 
-            
-            .LikeButton {
+            //LikeUp Button
+            .LikeUpButton {
+                //Size
                 width: 80%;
-                height: $like-button-height-percent;
+                height: 25%;
 
 
                 //Font
                 font-size: $like-arrow-font-size;
-            }
 
-            //LikeUpButton
-            .LikeUpButton {
-                @extend .LikeButton;
 
                 //Color
                 color: $like-arrow-base-color;
-                background-color: $like-arrow-background-color;
-            }
-            .LikeUpButton:hover {
-                border: 2px solid $likeUp-button-hover-color;
-            }
-            .LikeUpButton-Active {
-                @extend .LikeUpButton;
+                background-color: $main-color-11;
+                border: 2px solid $main-color-5;
+                border-radius: 10px;
 
-                //Color
-                color: $like-arrow-up-active-color;
-            }
+                &:hover {
+                    border: 2px solid $like-up-color-1;
+                    color: $like-up-color-1;
+                }
 
+                &-Active {
+                    @extend .LikeUpButton;
+
+                    //Size
+                    width: 80%;
+                    height: 25%;
+
+
+                    //Font
+                    font-size: $like-arrow-font-size;
+
+
+                    //Color
+                    border: 2px solid $like-up-color-1;
+                    color: $like-up-color-1;
+
+                    &:hover {
+                        border: 2px solid $like-up-color-2;
+                        color: $like-up-color-2;
+                    }
+                }
+                
+            }
 
             //LikeDownButton
             .LikeDownButton {
-                @extend .LikeButton;
+                //Size
+                width: 80%;
+                height: 25%;
+
+
+                //Font
+                font-size: $like-arrow-font-size;
+
 
                 //Color
                 color: $like-arrow-base-color;
-                background-color: $like-arrow-background-color;
-            }
-            .LikeDownButton:hover {
-                border: 2px solid $likeDown-button-hover-color;
-            }
-            .LikeDownButton-Active {
-                @extend .LikeDownButton;
+                background-color: $main-color-11;
+                border: 2px solid $main-color-5;
+                border-radius: 10px;
+
+                &:hover {
+                    border: 2px solid $like-down-color-1;
+                    color: $like-down-color-1;
+                }
+
+                &-Active {
+                    @extend .LikeDownButton;
+
+                    //Size
+                    width: 80%;
+                    height: 25%;
 
 
-                //Color
-                color: $like-arrow-down-active-color;
-            }
+                    //Font
+                    font-size: $like-arrow-font-size;
 
+
+                    //Color
+                    border: 2px solid $like-down-color-1;
+                    color: $like-down-color-1;
+
+                    &:hover {
+                        border: 2px solid $like-down-color-2;
+                        color: $like-down-color-2;
+                    }
+                }
+
+                
+            }
 
             //LikeCounter
             .LikeCounter {
@@ -122,7 +167,9 @@ $like-button-height-percent: 30%;
 
 
                 //Color
-                border: 2px solid pink;
+                background-color: $main-color-11;
+                border: 2px solid $main-color-5;
+                color: $main-color-5;
             }
         }
     }
@@ -136,8 +183,8 @@ $like-button-height-percent: 30%;
         flex-grow: 7;
 
 
-        //Color
-        border: 2px solid rgb(238, 16, 0);
+        border-left: 2px solid $main-color-8;
+        
 
 
         //UserInformation
@@ -146,42 +193,47 @@ $like-button-height-percent: 30%;
             display: flex;
             flex-direction: column;
             justify-content: space-around;
-            flex-basis: 20%;
+            flex-basis: 25%;
 
 
             //Padding
             padding: 10px;
 
 
-            //Color
-            border: 2px solid black;
+            //Border
+            border-right: 2px solid $main-color-2;
 
 
-            //UserName
-            .UserName {
+            //UserNameLabel
+            .UserNameLabel {
 
-                //Size
-                width: 100%;
-
+                //Font
+                font-family: $roboto;
+                font-weight: 400;
+                font-size: 20px;
+                
 
                 //Padding
                 padding: 10px;
 
 
-                //Position
-                margin-left: auto;
-                margin-right: auto;
+                //Display
+                box-sizing: border-box;
+                display: block;
+
+
+                //color
+                color: $main-color-8;
 
 
                 //Text
                 text-align: center;
 
 
-                //Font
-
-
-                //Color
-                border: 2px solid seagreen;
+                .UserName {
+                    display: inline;
+                    color: $main-color-5;
+                }
             }
 
 
@@ -196,8 +248,14 @@ $like-button-height-percent: 30%;
                margin-left: auto;
                margin-right: auto;
 
+               
+               //Image
+               object-fit: contain;
+
+
                //Color
-               border: 2px solid rgb(45, 24, 235); 
+               border: 4px solid $main-color-2;
+               background-color: $main-color-5;
             }
         }
 
@@ -208,12 +266,9 @@ $like-button-height-percent: 30%;
             flex-grow: 2;
 
 
-            //Padding
-            padding: 10px;
+            //Overflow
+            overflow: hidden;
 
-
-            //Color
-            border: 2px solid white;
 
 
             //Text
@@ -223,8 +278,50 @@ $like-button-height-percent: 30%;
                 width: 100%;
                 height: 100%;
 
+
+                //Padding
+                padding: 30px;
+
+
+                //Font
+                font-family: $noto;
+                font-weight: 400;
+                font-size: 20px;
+
+
                 //Color
-                border: 2px solid blue;
+                background-color: $main-color-9;
+                color: white;
+
+
+                &-Edit {
+                    @extend .Text;
+
+
+                    //Font
+                    font-family: $noto;
+                    font-weight: 400;
+                    font-size: 15px;
+
+
+                    //Resize
+                    resize: none;
+
+
+                    //Border
+                    border: 3px solid $main-color-2;
+                    outline: none;
+                
+
+                    //Color
+                    color: black;
+                    background-color: $main-color-5;
+
+
+                    &:focus {
+                        border: 3px solid $main-color-10;
+                    }
+                }
             }
         }
     }
@@ -249,8 +346,8 @@ $like-button-height-percent: 30%;
         padding: 10px;
 
 
-        //Color
-        border: 2px solid rgb(0, 0, 0);
+        //Border
+        border-left: 2px solid $main-color-8;
 
 
         //ManipulationButton
@@ -271,26 +368,51 @@ $like-button-height-percent: 30%;
             
              //Color
              color: $like-arrow-base-color;
-             background-color: $like-arrow-background-color;
-        }
-        .EditButton:hover {
-            border: 2px solid $edit-button-hover-color;
-            color: $edit-button-hover-color;
+             background-color: $main-color-11;
+             border: 3px solid $main-color-4;
+
+
+             &:hover {
+                border: 3px solid $edit-color-1;
+                color: $edit-color-1;
+                background-color: $main-color-11;
+             }
+
+
+             //Active
+             &-Active {
+                @extend .ManipulationButton;
+
+                //Color
+                color: $edit-color-1;
+                background-color: $main-color-11;
+                border: 3px solid $edit-color-1;
+
+                &:hover {
+
+                    color: $edit-color-2;
+                    background-color: $main-color-1;
+                    border: 3px solid $edit-color-2;
+                }
+            }
         }
         
 
         //DeleteButton
         .DeleteButton {
-             @extend .ManipulationButton;
+            @extend .ManipulationButton;
 
-             //Color
-             color: $like-arrow-base-color;
-             background-color: $like-arrow-background-color;
-        }
-        .DeleteButton:hover {
-            border: 2px solid $delete-button-hover-color;
-            color: $delete-button-hover-color;
-        }
+            //Color
+            color: $like-arrow-base-color;
+            background-color: $main-color-11;
+            border: 3px solid $main-color-4;
+
+           
+            &:hover {
+               border: 3px solid $delete-color-1;
+               color: $delete-color-1;
+            }
+       }
 
 
         //SaveButton
@@ -299,11 +421,14 @@ $like-button-height-percent: 30%;
 
             //Color
             color: $like-arrow-base-color;
-            background-color: $like-arrow-background-color;
-        }
-        .SaveButton:hover {
-            border: 2px solid $save-button-hover-color;
-            color: $save-button-hover-color;
+            background-color: $main-color-11;
+            border: 3px solid $main-color-4;
+
+
+            &:hover {
+                border: 3px solid $save-color-1;
+                color: $save-color-1;
+            }
         }
     }
 }

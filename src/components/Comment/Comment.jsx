@@ -7,6 +7,10 @@ import {StoreContext} from '../../store/StoreProvider'
 import { LikeCommentHelper_GET, LikedCommentHelper_PATCH, Comment_PATCH } from '../../helpers/CommentHelper';
 
 
+//Resources
+import userDefaultImage from './resources/userDefaultImage.png';
+
+
 //Components
 import DeleteCommentModal from './DeleteCommentModal';
 
@@ -179,19 +183,22 @@ const Comment = ({ commentObject, HandleCommentDeletion }) => {
 
             <div className='Main'>
                 <div className='UserInformation'>
-                    <div className='UserName'>
-                        {comment.userName}
+                    <div className='UserNameLabel'>
+                        U/
+                        <div className='UserName'>
+                            {comment.userName}
+                        </div>
                     </div>
 
-                    <div className='UserImage'>
-                        UserImage
-                    </div>
+                    <img className='UserImage' src={userDefaultImage}>
+                        
+                    </img>
                 </div>
 
                 <div className='CommentContent'>
                     {
                         editMode && isLoggedIn
-                        ? <textarea className='Text' type='text' value=   {editCommentText} onChange={TextAreaChangeHandler}>
+                        ? <textarea className='Text-Edit' type='text' value=   {editCommentText} onChange={TextAreaChangeHandler}>
                         </textarea>
                         : <div className='Text'>
                             {commentText}
@@ -204,7 +211,7 @@ const Comment = ({ commentObject, HandleCommentDeletion }) => {
                 isLoggedIn == true && parseJwt(JSON.parse(window.localStorage.getItem('jwt'))).UserId == comment.userId
                 ? <div className='ManipulationPanel'>
 
-                    <button className='EditButton' onClick={EditModeChangeHandler}>
+                    <button className={editMode ? 'EditButton-Active' : 'EditButton'} onClick={EditModeChangeHandler}>
                         <FontAwesomeIcon icon={faEdit} />
                     </button>
 

@@ -57,6 +57,10 @@ const PostBig = ({editMode, postObject}) => {
 
         if (isLoggedIn == false)
             setCurrentLikeStatus(0);
+
+        setCurrEditMode(false);
+        setCurrentDeleteMode(false);
+        
     }, [isLoggedIn]);
 
 

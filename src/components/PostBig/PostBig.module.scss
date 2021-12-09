@@ -568,11 +568,14 @@ $like-arrow-down-active-color: red;
 
             //Color
             color: $like-arrow-base-color;
-            background-color: $like-arrow-background-color;
-        }
-        .SaveButton:hover {
-            border: 2px solid $save-button-hover-color;
-            color: $save-button-hover-color;
+             background-color: $main-color-11;
+             border: 3px solid $main-color-4;
+
+
+            &:hover {
+                border: 3px solid $save-color-1;
+                color: $save-color-1;
+            }
         }
     }
 }
