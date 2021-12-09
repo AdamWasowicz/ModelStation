@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router';
 import {StoreContext} from '../../store/StoreProvider'
+import { API_address, fileStorageGetUserImage } from '../../API_routes';
 
 
 //Helpers
@@ -190,7 +191,7 @@ const Comment = ({ commentObject, HandleCommentDeletion }) => {
                         </div>
                     </div>
 
-                    <img className='UserImage' src={userDefaultImage}>
+                    <img className='UserImage' src={comment.userImageId != null ? `${API_address}${fileStorageGetUserImage}/${comment.userImageId}` : userDefaultImage}>
                         
                     </img>
                 </div>
