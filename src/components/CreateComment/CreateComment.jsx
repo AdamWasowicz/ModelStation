@@ -42,9 +42,8 @@ const CreateComment = ({HandleChange}) => {
     //Functions
     const UploadComment = async () => {
         if (ValidateForm()) {
-            const result = await Post_Comment(commentText, postId);
+            const result = await Post_Comment(commentText, postId, HandleChange);
             ClearInput();
-            HandleChange();
         }
         else {
             alert("Komentarz musi mieć przynajmniej jeden znak oraz nie być dłuższy niż 256 znaków")

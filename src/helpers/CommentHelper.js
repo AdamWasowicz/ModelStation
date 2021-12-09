@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_address, getCommentsByPostId_API_route, getLikedComment_APi_route, patchLikedComment_API_route, postComment_API_route, patchComment_API_route, deleteComment_API_route } from "../API_routes";
+import { API_address, getCommentsByPostId_API_route, getLikedComment_APi_route, patchLikedComment_API_route, postComment_API_route, patchComment_API_route, deleteComment_API_route, getCommentById_API_route } from "../API_routes";
 
 export async function GetCommentsByPostId(postId, setComments, setLoading)
 {
@@ -84,11 +84,10 @@ export async function LikedCommentHelper_PATCH(newValue, commentId)
     return error;
 }
 
-export async function Post_Comment(text, postId) {
+export async function Post_Comment(text, postId, HandleNewCommentAdd) {
     var result = 0;
     const jwt = JSON.parse(window.localStorage.getItem('jwt'));
 
-    console.log('Post_Comment->Start')
     axios({
         method: "POST",
         url: `${API_address}${postComment_API_route}`,
@@ -99,8 +98,12 @@ export async function Post_Comment(text, postId) {
         headers: {
             Authorization: "Bearer " + jwt
         },
-    }).then(function (response) {
-        console.log(response);
+    }).then(response => {
+
+        let newId = response.data;
+        if (response.status == 200)
+            HandleNewCommentAdd(newId);
+
         result = 1;
     }).catch(function (response)
     {
@@ -108,7 +111,6 @@ export async function Post_Comment(text, postId) {
         result = -1;
     });
 
-    console.log('Post_Comment->End')
     return result;
 }
 
@@ -161,4 +163,30 @@ export async function Comment_DELETE(commentId)
     });
 
     return error;
+}
+
+export async function GetCommentById(commentId, setComments, comments, setLoading) {
+
+    setLoading(true);
+    let error = false;
+    const url = `${API_address}${getCommentById_API_route}/` + commentId
+
+    await axios({
+        method: 'GET',
+        url: url
+    }).then(result => {
+        if (result.status == 200)
+        {
+            let newcomments = [...new Set([...comments,result.data])]
+            setComments(newcomments);
+            error = false;
+        }
+    }).catch(e => {
+        console.log(e);
+        error = true;
+    });
+    
+
+    setLoading(false);
+    return error ;
 }

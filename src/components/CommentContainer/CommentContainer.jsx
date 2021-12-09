@@ -8,7 +8,7 @@ import { default as CommentContainerStyle } from './CommentContainer.module.scss
 
 
 //Helpers
-import { GetCommentsByPostId } from '../../helpers/CommentHelper';
+import { GetCommentsByPostId, GetCommentById } from '../../helpers/CommentHelper';
 
 
 //Components
@@ -42,18 +42,14 @@ const CommentContainer = () => {
         setLoading(false);
     }, [])
 
-    useEffect( () => {
-        setLoading(true);
-        GetComments();
-        setNewComment(false);
-    }, [newComment])
-
-
 
     //Functions
     const GetComments = async () => {
         const { error, data } = await GetCommentsByPostId(postId, setComments, setLoading);
     } 
+    const GetNewComment = async (commentId) => {
+        await GetCommentById(commentId, setComments, comments, setLoading);
+    }
     const sortCommentsByLastEditDate = (c1, c2) => {
 
         const d1 = new Date(c1.lastEditDate);
@@ -69,9 +65,6 @@ const CommentContainer = () => {
     }
 
     //Handlers
-    const HandleNewComment = () => {
-        setNewComment(true);
-    }
     const HandleCommentDeletion = (commentId) => {
         const objectToRemove = comments.find(c => c.id == commentId);
         const objectToRemoveId = comments.indexOf(objectToRemove)
@@ -84,6 +77,9 @@ const CommentContainer = () => {
             setComments(arrayOfComments);
         }
     }
+    const HandleNewCommentAdd = (commentId) => {
+        GetNewComment(commentId);
+    }
 
     
     
@@ -92,7 +88,7 @@ const CommentContainer = () => {
         <React.Fragment>
             {
                 isLoggedIn
-                ? <CreateComment HandleChange={HandleNewComment}/>
+                ? <CreateComment HandleChange={HandleNewCommentAdd}/>
                 : null
             }
             <div className='CommentContainer'>
