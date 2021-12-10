@@ -3,6 +3,11 @@ import { useParams } from 'react-router';
 import { StoreContext } from '../../store/StoreProvider';
 
 
+//Resources
+import userDefaultImage from './resources/userDefaultImage.png';
+import { API_address, fileStorageGetUserImage } from '../../API_routes';
+
+
 //Styles
 import { default as CreateCommentStyle } from './CreateComment.module.scss'
 import {faShareSquare} from "@fortawesome/free-solid-svg-icons";
@@ -62,13 +67,18 @@ const CreateComment = ({HandleChange}) => {
         <div className='CreateComment'>
             <div className='Main'>
                 <div className='UserInformation'>
-                    <div className='UserName'>
-                        {isLoggedIn ? user.userName : 'Niezalogowany użytkownik'}
+                <div className='UserNameLabel'>
+                        U/
+                        <div className='UserName'>
+                            {user.userName}
+                        </div>
                     </div>
 
-                    <div className='UserImage'>
-                        UserImage
-                    </div>
+                    <img className='UserImage' 
+                    src={JSON.parse(window.localStorage.getItem('user')).file.id != null 
+                    ? `${API_address}${fileStorageGetUserImage}/${JSON.parse(window.localStorage.getItem('user')).file.id}` 
+                    : userDefaultImage}>
+                    </img>
                 </div>
 
                 <div className='CommentContent'>

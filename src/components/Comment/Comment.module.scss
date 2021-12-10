@@ -28,11 +28,11 @@ $like-button-height-percent: 30%;
     flex-direction: row;
 
 
-   //Color
-   background-color: $main-color-9;
-   border: 2px solid $main-color-8;
-   border-radius: 20px;
-   box-shadow: 12px 13px 24px 0px $main-color-9;
+    //Color
+    background-color: $main-color-9;
+    border: 2px solid $main-color-8;
+    border-radius: 20px;
+    box-shadow: 12px 13px 24px 0px $main-color-9;
 
 
     //LikeSideBar
@@ -102,7 +102,7 @@ $like-button-height-percent: 30%;
                         color: $like-up-color-2;
                     }
                 }
-                
+
             }
 
             //LikeDownButton
@@ -149,7 +149,7 @@ $like-button-height-percent: 30%;
                     }
                 }
 
-                
+
             }
 
             //LikeCounter
@@ -184,7 +184,7 @@ $like-button-height-percent: 30%;
 
 
         border-left: 2px solid $main-color-8;
-        
+
 
 
         //UserInformation
@@ -211,7 +211,7 @@ $like-button-height-percent: 30%;
                 font-family: $roboto;
                 font-weight: 400;
                 font-size: 20px;
-                
+
 
                 //Padding
                 padding: 10px;
@@ -239,23 +239,23 @@ $like-button-height-percent: 30%;
 
             //UserImage
             .UserImage {
-               //Size
-               width: 150px;
-               height: 150px;
+                //Size
+                width: 150px;
+                height: 150px;
 
 
-               //Position
-               margin-left: auto;
-               margin-right: auto;
-
-               
-               //Image
-               object-fit: cover;
+                //Position
+                margin-left: auto;
+                margin-right: auto;
 
 
-               //Color
-               border: 4px solid $main-color-2;
-               background-color: $main-color-5;
+                //Image
+                object-fit: cover;
+
+
+                //Color
+                border: 4px solid $main-color-2;
+                background-color: $main-color-5;
             }
         }
 
@@ -311,7 +311,7 @@ $like-button-height-percent: 30%;
                     //Border
                     border: 3px solid $main-color-2;
                     outline: none;
-                
+
 
                     //Color
                     color: black;
@@ -365,22 +365,22 @@ $like-button-height-percent: 30%;
         //EditButton
         .EditButton {
             @extend .ManipulationButton;
-            
-             //Color
-             color: $like-arrow-base-color;
-             background-color: $main-color-11;
-             border: 3px solid $main-color-4;
+
+            //Color
+            color: $like-arrow-base-color;
+            background-color: $main-color-11;
+            border: 3px solid $main-color-4;
 
 
-             &:hover {
+            &:hover {
                 border: 3px solid $edit-color-1;
                 color: $edit-color-1;
                 background-color: $main-color-11;
-             }
+            }
 
 
-             //Active
-             &-Active {
+            //Active
+            &-Active {
                 @extend .ManipulationButton;
 
                 //Color
@@ -396,7 +396,7 @@ $like-button-height-percent: 30%;
                 }
             }
         }
-        
+
 
         //DeleteButton
         .DeleteButton {
@@ -407,12 +407,12 @@ $like-button-height-percent: 30%;
             background-color: $main-color-11;
             border: 3px solid $main-color-4;
 
-           
+
             &:hover {
-               border: 3px solid $delete-color-1;
-               color: $delete-color-1;
+                border: 3px solid $delete-color-1;
+                color: $delete-color-1;
             }
-       }
+        }
 
 
         //SaveButton
