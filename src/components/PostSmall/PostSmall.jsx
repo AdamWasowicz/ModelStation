@@ -116,50 +116,64 @@ const PostSmall = React.forwardRef((postObject, ref) => {
 
     return (
         <React.Fragment>
-            <div className={style()} ref={ref} >
-                <div className={style('likeSideBar')}>
-                    <div className={style('likeSideBar__likeContainer')}>
+            <div className='PostSmall' ref={ref} >
+                <div className="likeSideBar">
+                    <div className='likeContainer'>
                         <button className={currentLikeStatus == 1 
-                        ? style('likeSideBar__likeContainer__likeUpButton-Active')
-                        : style('likeSideBar__likeContainer__likeUpButton')} onClick={isLoggedIn ? likeUpButtonHandler: null}>
+                        ? 'likeUpButton-Active'
+                        : 'likeUpButton'} onClick={isLoggedIn ? likeUpButtonHandler: null}>
                             <FontAwesomeIcon icon={faArrowUp} />
                         </button>
 
-                        <div className={style('likeSideBar__likeContainer__likeCounter')}>
+                        <div className='likeCounter'>
                             {amountOfLikes}
                         </div>
 
                         <button className={currentLikeStatus == -1 
-                            ? style('likeSideBar__likeContainer__likeDownButton-Active')
-                            : style('likeSideBar__likeContainer__likeDownButton')} onClick={isLoggedIn ? likeDownButtonHandler : null}>
+                            ? 'likeDownButton-Active'
+                            : 'likeDownButton'} onClick={isLoggedIn ? likeDownButtonHandler : null}>
                             <FontAwesomeIcon icon={faArrowDown} />
                         </button>
                     </div>
                 </div>
 
-                <div className={style('Main')} onClick={handleReditect}>
-                    <div className={style('Main__Information')}>
-                        <div className={style('Main__Information__UserNameANDpostCategory')}>
-                            <h4>{post.userName}</h4>
-                            {post.postCategoryId != null ? <h4>{post.postCategoryName}</h4> : null}
+                <div className='Main' onClick={handleReditect}>
+                    <div className='Information'>
+                        <div className='UserNameANDpostCategory'>
+                            <h4 className='UserNameLabel'>U/
+                                <div className='UserName'>
+                                    {post.userName}
+                                </div>
+                            </h4>
+                            
+                            {
+                                post.postCategoryName != '' && post.postCategoryName != null
+                                ? <h4 className='PostCategoryLabel'>
+                                    C/
+                                    <div className='PostCategoryField'>
+                                        {post.postCategoryName}
+                                        </div>
+                                    </h4>
+                                : null
+                            }
                         </div>
 
-                        <div className={style('Main__Information__Title')} >
+                        <div className='Title'>
                             {post.title}
                         </div>
                     </div>
 
-                    <div className={style('Main__PostContent')}
-                        >
-                        <div className={style('Main__PostContent__Text')}
-                        >
+                    <div className='PostContent'>
+                        <div className='Text'>
                             {post.text}
                         </div>
 
-                        {photos.length != 0 ?  (<div className={style('Main__PostContent__Photos')}
-                        >
-                            <img src={photos[0]} className={style('Main__PostContent__Photos__image')}/>
-                        </div>) : null}
+                        {
+                            photos.length != 0 
+                            ? (<div className='Photos'>
+                                <img src={photos[0]} className='image'/>
+                            </div>) 
+                            : null}
                     </div>
                 </div>
             </div>

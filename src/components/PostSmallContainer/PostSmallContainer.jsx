@@ -15,7 +15,6 @@ import postQueryExecutor from '../../helpers/PostHelper';
 
 //Styles
 import { default as PostSmallContainerStyles } from './PostSmallContainer.module.scss'
-const style = bemCssModules(PostSmallContainerStyles);
 
 
 

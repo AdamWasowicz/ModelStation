@@ -100,7 +100,7 @@ $like-arrow-down-active-color: red;
                         color: $like-up-color-2;
                     }
                 }
-                
+
             }
 
 
@@ -223,7 +223,7 @@ $like-arrow-down-active-color: red;
                     font-weight: 400;
                     font-size: 30px;
 
-                    
+
 
                     //Padding
                     padding: 10px;
@@ -244,14 +244,13 @@ $like-arrow-down-active-color: red;
 
 
                 //PostCategoryLabel
-                .PostCategoryLabel
-                {
+                .PostCategoryLabel {
                     //Font
                     font-family: $roboto;
                     font-weight: 400;
                     font-size: 30px;
 
-                    
+
 
                     //Padding
                     padding: 10px;
@@ -264,7 +263,7 @@ $like-arrow-down-active-color: red;
                     color: $main-color-8;
 
 
-                    > .PostCategoryField {
+                    >.PostCategoryField {
                         display: inline;
                         color: $main-color-5;
                     }
@@ -273,37 +272,37 @@ $like-arrow-down-active-color: red;
 
                 //EditPostCategory
                 .EditPostCategory {
-                     //Size
-                     width: 40%;
-                     height: 80%;
-     
-     
-                     //Padding
-                     padding: 10px;
-                     overflow: hidden;
-     
-                     
-                     //Font
-                     font-family: $roboto;
-                     font-weight: 200;
-                     font-size: 25px;
-     
-     
-                     //Border
-                     border: 3px solid $main-color-2;
-                     border-radius: 10px;
-                     outline: none;
-                     
-     
-                     //Color
-                     color: black;
-                     background-color: $main-color-5;
-     
- 
-                     &:focus {
-                         border: 3px solid $main-color-10;
-                         border-radius: 10px;
-                     }
+                    //Size
+                    width: 40%;
+                    height: 80%;
+
+
+                    //Padding
+                    padding: 10px;
+                    overflow: hidden;
+
+
+                    //Font
+                    font-family: $roboto;
+                    font-weight: 200;
+                    font-size: 25px;
+
+
+                    //Border
+                    border: 3px solid $main-color-2;
+                    border-radius: 10px;
+                    outline: none;
+
+
+                    //Color
+                    color: black;
+                    background-color: $main-color-5;
+
+
+                    &:focus {
+                        border: 3px solid $main-color-10;
+                        border-radius: 10px;
+                    }
                 }
             }
 
@@ -317,7 +316,7 @@ $like-arrow-down-active-color: red;
                 padding: 10px;
                 overflow: hidden;
 
-                
+
                 //Font
                 font-family: $roboto;
                 font-weight: 200;
@@ -330,33 +329,33 @@ $like-arrow-down-active-color: red;
 
 
                 //EditTitle
-                > .EditTitle {
+                >.EditTitle {
                     //Size
                     width: 100%;
                     height: 80%;
-    
-    
+
+
                     //Padding
                     padding: 10px;
                     overflow: hidden;
-    
-                    
+
+
                     //Font
                     font-family: $roboto;
                     font-weight: 200;
                     font-size: 25px;
-    
-    
+
+
                     //Border
                     border: 3px solid $main-color-2;
                     border-radius: 10px;
                     outline: none;
-                    
-    
+
+
                     //Color
                     color: black;
                     background-color: $main-color-5;
-    
+
 
                     &:focus {
                         border: 3px solid $main-color-10;
@@ -374,7 +373,7 @@ $like-arrow-down-active-color: red;
 
             flex-grow: 1;
 
-            
+
 
             display: flex;
             flex-direction: column;
@@ -412,7 +411,7 @@ $like-arrow-down-active-color: red;
                 width: 100%;
                 resize: none;
 
-                
+
                 //Flex
                 flex-basis: 25%;
                 flex-grow: 1;
@@ -431,7 +430,7 @@ $like-arrow-down-active-color: red;
                 //Border
                 border: 3px solid $main-color-2;
                 outline: none;
-                
+
 
                 //Color
                 color: black;
@@ -511,21 +510,21 @@ $like-arrow-down-active-color: red;
         //EditButton
         .EditButton {
             @extend .ManipulationButton;
-            
-             //Color
-             color: $like-arrow-base-color;
-             background-color: $main-color-11;
-             border: 3px solid $main-color-4;
+
+            //Color
+            color: $like-arrow-base-color;
+            background-color: $main-color-11;
+            border: 3px solid $main-color-4;
 
 
-             &:hover {
+            &:hover {
                 border: 3px solid $edit-color-1;
                 color: $edit-color-1;
                 background-color: $main-color-11;
-             }
+            }
 
 
-             &-Active {
+            &-Active {
                 @extend .ManipulationButton;
 
                 //Color
@@ -539,26 +538,26 @@ $like-arrow-down-active-color: red;
                     background-color: $main-color-1;
                     border: 3px solid $edit-color-2;
                 }
-             }
+            }
         }
 
-        
-        
+
+
 
         //DeleteButton
         .DeleteButton {
-             @extend .ManipulationButton;
+            @extend .ManipulationButton;
 
-             //Color
-             color: $like-arrow-base-color;
-             background-color: $main-color-11;
-             border: 3px solid $main-color-4;
+            //Color
+            color: $like-arrow-base-color;
+            background-color: $main-color-11;
+            border: 3px solid $main-color-4;
 
-            
-             &:hover {
+
+            &:hover {
                 border: 3px solid $delete-color-1;
                 color: $delete-color-1;
-             }
+            }
         }
 
 
@@ -568,8 +567,8 @@ $like-arrow-down-active-color: red;
 
             //Color
             color: $like-arrow-base-color;
-             background-color: $main-color-11;
-             border: 3px solid $main-color-4;
+            background-color: $main-color-11;
+            border: 3px solid $main-color-4;
 
 
             &:hover {
