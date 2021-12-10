@@ -26,6 +26,10 @@ const RegisterForm = ({ OnCloseHandler }) => {
     const [password, setPassword] = useState('');
     const [registerResult, setRegisterResult] = useState(0);
 
+    const [emailValid, setEmailValid] = useState(0);
+    const [loginValid, setLoginValid]  = useState(0);
+    const [passwordValid, setPasswordValid] = useState(0);
+
 
     //Context
     const { setIsLoggedIn } = useContext(StoreContext);
@@ -40,30 +44,57 @@ const RegisterForm = ({ OnCloseHandler }) => {
     const LoginChangeHandler = (event) => setLogin(event.target.value);
     const PasswordChangeHandler = (event) => setPassword(event.target.value);
     const SendFormHandler = () => CreateNewAccount();
+    
+
+    //Functions
+    const ValidateForm = () => {
+
+        if (!(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)))
+        {
+            setEmailValid(-1);
+        }
+        else
+            setEmailValid(1);
 
 
+        if (login.length == 0)
+        {
+            setLoginValid(-1)
+        }
+        else
+            setLoginValid(1);
 
-    //Functions 
+        if (password.length == 0)
+        {
+            setPasswordValid(-1)
+        }
+        else
+            setPasswordValid(1);
+
+        if (emailValid == 1 && loginValid == 1 && passwordValid == 1)
+            return true
+        else
+            return false;
+    }
+
     const CreateNewAccount = async () => {
-        if (ValidateForm())
+        if (ValidateForm() == true)
         {
             await Register(email, login, password, setRegisterResult);
+            ClearInputs();
             OnCloseHandler();
             navigate('./accountcreated');
 
         }
         else
             alert("Niepoprawnie wypełniony formularz");
-        
     }
-    const ValidateForm = () => {
-        if (!(login.length > 0))
-            return false;
 
-        if (!(password.length > 0))
-            return false;
-
-        return true;
+    const ClearInputs = () => {
+        setEmail('');
+        setLogin('');
+        setPassword('');
+        setValidationMessage('');
     }
 
 
@@ -93,7 +124,7 @@ const RegisterForm = ({ OnCloseHandler }) => {
 
                         <div className='InfoLabel'>
                             <div className='InfoText'>
-                                Nazwa użytkownika
+                                Nazwa użytkownika:
                             </div>
 
                             <input className='InfoInput'
@@ -104,7 +135,7 @@ const RegisterForm = ({ OnCloseHandler }) => {
 
                         <div className='InfoLabel'>
                             <div className='InfoText'>
-                                Hasło
+                                Hasło:
                             </div>
 
                             <input className='InfoInput'
@@ -116,21 +147,15 @@ const RegisterForm = ({ OnCloseHandler }) => {
                     </div>
 
                     <div className='ValidateMessage'>
-                        {
-                            registerResult != 0
-                            ?   registerResult == 1
-                                ? 'Wszystko ok'
-                                : 'Wystąpił błąd'
-                    
-                            : null
-                        }
+                        <h4 className={emailValid == -1 ? 'Requirement-Invalid' : 'Requirement'}>Email: musi być poprawny</h4>
+                        <h4 className={loginValid == -1 ? 'Requirement-Invalid' : 'Requirement'}>Login: przynajmniej 8 znaków</h4>
+                        <h4 className={passwordValid == -1 ? 'Requirement-Invalid' : 'Requirement'}>Hasło: przynajmniej 8 znaków</h4>
                     </div>
 
                     <div className='ManipulationPanel'>
                         <button className='RegisterButton'
-                        onClick={SendFormHandler}
-                        >
-                            RegisterButton
+                        onClick={SendFormHandler}>
+                            Zarejestruj się
                         </button>
                     </div>
                 </div>

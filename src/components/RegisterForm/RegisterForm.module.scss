@@ -1,13 +1,26 @@
+@import '../../StyleConstants.scss';
+
 .RegisterForm {
 
     //Size
-    width: 900px;
-    height: 800px;
-    
+    width: 1200px;
+    height: 900px;
+
 
     //Flex
     display: flex;
     flex-direction: row;
+
+
+    //Overflow
+    overflow: hidden;
+
+
+    //Color
+    background-color: $main-color-9;
+    border: 2px solid $main-color-8;
+    border-radius: 30px;
+    box-shadow: 4px 4px 8px 0px $main-color-9;
 
 
 
@@ -18,6 +31,9 @@
         height: 100%;
 
         object-fit: cover;
+
+
+        border-right: 2px solid $main-color-8;
     }
 
     .RightPanel {
@@ -25,14 +41,15 @@
         width: 70%;
         height: 100%;
 
-        border: 2px solid rgb(28, 248, 146);
+        padding: 10px;
+
 
         //LoginInfo
         .RegisterInfo {
 
             //Size
             width: 100%;
-            height: 70%;
+            height: 65%;
 
 
             //Padding
@@ -44,10 +61,6 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-
-
-            border: 2px solid red;
-
 
 
             .InfoLabel {
@@ -66,10 +79,9 @@
                 margin-bottom: 25px;
 
 
-                //Padding
-                padding: 10px;
+                //Border
+                border: 2px solid $main-color-2;
 
-                border: 2px solid rgb(255, 0, 212);
 
                 .InfoText {
 
@@ -77,13 +89,23 @@
                     width: 100%;
                     height: 50%;
 
+
                     //Padding
                     padding: 10px;
+
+
+                    //Font
+                    font-family: $roboto;
+
 
                     //Font
                     font-size: 50px;
 
-                    background-color: darkkhaki;
+
+                    //Color
+                    color: $main-color-8;
+                    text-shadow: 2px 2px #000000;
+                    background-color: $main-color-11;
                 }
 
 
@@ -97,10 +119,16 @@
                     padding: 10px;
 
 
+                    //Font
                     font-size: 30px;
 
+
+                    //Outline
+                    outline: none;
+
+
                     &:focus {
-                        border: 5px solid rgb(20, 224, 207);
+                        border: 2px solid $edit-color-1;
                     }
                 }
             }
@@ -110,50 +138,91 @@
 
             //Flex
             display: flex;
-            justify-content: center;
+            justify-content: space-around;
             align-items: center;
-            height: 10%;
+            height: 15%;
 
 
-            //Font
-            font-size: 40px;
-            color: red;
+            //Text
+            text-align: center;
+
+            .Requirement {
+                //Font
+                font-size: 20px;
+                font-family: $noto;
 
 
+                //Size
+                height: 80%;
+                width: 30%;
 
-            border: 2px solid green;
+
+                //Text
+
+
+                //Flex
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+
+
+                //Color
+                color: $main-color-8;
+
+
+                //Border
+                border: 2px solid $main-color-8;
+                background-color: $main-color-11;
+
+
+                &-Invalid {
+                    @extend .Requirement;
+
+                    color: red;
+                    border: 2px solid red;
+                }
+            }
         }
 
         //ManipulationPanel
         .ManipulationPanel {
 
+            //Size
             width: 100%;
             height: 20%;
+
+
             //Flex
             display: flex;
             justify-content: space-around;
             flex-grow: 1;
 
 
-
             //Padding
             padding: 10px;
-
-            border: 2px solid blue;
 
 
             //Button
             .Button {
 
                 //Size
-                width: 90%;
+                width: 100%;
                 height: 100%;
 
 
                 //Font
-                font-size: 50px;
+                font-family: $roboto;
+                font-size: 60px;
+                font-weight: 700;
 
-                border-radius: 20px
+
+                //Border
+                border-radius: 20px;
+                border: 4px solid $main-color-8;
+
+
+                //Transition
+                transition: 0.09s;
             }
 
 
@@ -161,29 +230,17 @@
             .RegisterButton {
                 @extend .Button;
 
-                &:hover {
-                    border: 4px solid limegreen;
-                }
-
-                &:active {
-                    color: limegreen;
-                }
-            }
-
-
-            //CancelButton
-            .CancelButton {
-                @extend .Button;
+                background-color: white;
 
                 &:hover {
-                    border: 4px solid red;
-                }
+                    background-color: black;
+                    color: $main-color-8;
+                    border: 4px solid $main-color-8;
 
-                &:active {
-                    color: red;
+                    //Transition
+                    transition: 0.09s;
                 }
             }
         }
-
     }
 }
