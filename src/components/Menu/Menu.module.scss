@@ -1,7 +1,6 @@
 @import '../../StyleConstants.scss';
 
-.Menu
-{
+.Menu {
     //Size
     width: 100%;
     height: 100px;
@@ -14,7 +13,8 @@
 
     //Flex
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
 
 
@@ -23,106 +23,105 @@
 
 
     //Border
-    border: 2px solid $main-color-6;
+    border: 2px solid $main-color-8;
 
 
-    //DropDown
-    .DropDown {
+    //LogoButton
+    .LogoButton {
 
         //Size
         width: 400px;
-        height: 80%;
+        height: 100%;
 
 
-        //Margin
-        margin-right: 20px;
+        //Flex
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
 
 
-        position: relative;
-        display: block;
+        //Padding
+        padding: 10px;
 
 
-        //Border:
+        //Font
+        font-family: $roboto;
+        font-size: 60px;
+        font-weight: 800;
 
+
+        //Border
+        border-right: 2px solid $main-color-8;
 
 
         //Hover
-        &:hover .DropDownContent{
-            display: block;
+        &:hover {
+            cursor: pointer;
         }
 
 
-        //DropDownButton
-        .DropDownButton {
+        .firstPart {
+            
+            display: inline-block;
+            color: $main-color-8;
+        }
 
-            //Size
-            width: 100%;
-            height: 100%;
-
-
-            //Font:
-            font-family: $roboto;
-            font-size: 30px;
-            font-weight: 400;
-
-
-            //Overflow
-            overflow: hidden;
-
-
-            //Border
-            border: 3px solid $main-color-2;
-
-
-            //Color:
-            background-color: $main-color-12;
+        .secondPart {
+            display: inline-block;
             color: white;
-
-
-            //Transition
-            transition: 0.3s;
-
-
-            //Hover
-            &:hover {
-
-                //Color
-                background-color: black;
-                
-                
-                //Border
-                border-color: #33ccff;
-
-
-                //Transition
-                transition: 0.3s;
-            }
-
         }
+    }
 
 
-        //DropDownContent
-        .DropDownContent {
+    //RightPanel
+    .RightPanel {
 
-            //Size
-            width: 100%;
+        //Size
+        height: 90%;
+
+
+        //Flex
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+
+        //AccountActions
+        .AccountActions {
+            width: 400px;
             height: 100%;
 
+            background-color: cadetblue;
+        }
 
-            display: none;
-            position: absolute;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 3;
+        //DropDown
+        .DropDown {
+
+            //Size
+            width: 400px;
+            height: 80%;
+
+
+            //Margin
+            margin-right: 20px;
+
+
+            position: relative;
+            display: block;
+
+
+            //Border:
+
 
 
             //Hover
-            &:hover {
+            &:hover .DropDownContent {
                 display: block;
             }
 
 
-            //DropDownContentItem
-            .DropDownContentItem {
+            //DropDownButton
+            .DropDownButton {
 
                 //Size
                 width: 100%;
@@ -135,25 +134,21 @@
                 font-weight: 400;
 
 
-                //Color
+                //Overflow
+                overflow: hidden;
+
+
+                //Border
+                border: 3px solid $main-color-8;
+
+
+                //Color:
                 background-color: $main-color-12;
                 color: white;
 
 
-                //Padding
-                padding: 10px;
-
-                
-                //Display
-                display: block;
-
-
-                //Text
-                text-decoration: none;
-
-
-                //Border
-                border: 3px solid $main-color-2;
+                //Transition
+                transition: 0.3s;
 
 
                 //Hover
@@ -161,39 +156,128 @@
 
                     //Color
                     background-color: black;
-                
-                
+
+
                     //Border
                     border-color: #33ccff;
 
 
                     //Transition
                     transition: 0.3s;
-                }   
 
 
-                //DropDownContentItemLink
-                .DropDownContentItemLink {
+                    //Color
+                    color: $main-color-8-2;
+                }
+
+            }
+
+
+            //DropDownContent
+            .DropDownContent {
+
+                //Size
+                width: 100%;
+                height: 100%;
+
+
+                display: none;
+                position: absolute;
+                box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+                z-index: 3;
+
+
+                //Hover
+                &:hover {
+                    display: block;
+                }
+
+
+                //DropDownContentItem
+                .DropDownContentItem {
+
+                    //Size
+                    width: 100%;
+                    height: 100%;
+
+
+                    //Font:
+                    font-family: $roboto;
+                    font-size: 30px;
+                    font-weight: 400;
+
+
+                    //Color
+                    background-color: $main-color-12;
+                    color: white;
+
+
+                    //Padding
+                    padding: 10px;
+
 
                     //Display
-                    display: inline;
+                    display: block;
 
 
                     //Text
                     text-decoration: none;
 
-                    
-                    //Color
-                    color: white;
+
+                    //Border
+                    border: 3px solid $main-color-2;
 
 
-                    &:visited {
+                    //Hover
+                    &:hover {
+
+                        //Color
+                        background-color: black;
+
+
+                        //Border
+                        border-color: #33ccff;
+
+
+                        //Transition
+                        transition: 0.3s;
+
+
+                        //Color
+                        color: $main-color-8-2;
+                    }
+
+
+                    //DropDownContentItemLink
+                    .DropDownContentItemLink {
+
+                        //Display
+                        display: inline;
+
+
+                        //Text
                         text-decoration: none;
+
+
+                        //Color
+                        color: white;
+
+
+                        //Hover
+                        &:hover {
+
+                            //Color
+                            color: $main-color-8-2;
+                        }
+
+
+                        //Visited
+                        &:visited {
+                            text-decoration: none;
+                        }
                     }
                 }
-
             }
         }
-
     }
 }
