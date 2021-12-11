@@ -77,21 +77,84 @@
     .RightPanel {
 
         //Size
-        height: 90%;
+        height: 80%;
 
 
         //Flex
         display: flex;
         flex-direction: row;
+        flex-wrap: nowrap;
         align-items: center;
+
+
+        //Margin
+        margin-right: 20px;
 
 
         //AccountActions
         .AccountActions {
-            width: 400px;
+
+            //Size
+            width: 500px;
             height: 100%;
 
-            background-color: cadetblue;
+
+            //Flex
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            align-items: center;
+
+            
+            //Button
+            .MenuButton {
+
+                //Size
+                width: 45%;
+                height: 100%;
+
+
+                //Border
+                border-radius: 20px;
+                border: 2px solid white;
+
+
+                //Font
+                font-family: $roboto;
+                font-size: 40px;
+                font-weight: 400;
+
+
+                //Flex
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+
+                //Color
+                color: white;
+                background-color: $main-color-11;
+
+
+                //Overflow
+                overflow: hidden;
+
+
+                //Hover
+                &:hover {
+
+                    //Color
+                    color: $main-color-8;
+                    border-color: $main-color-8;
+
+
+                    //Cursor
+                    cursor: pointer;
+                }
+
+            }
+
         }
 
         //DropDown
@@ -108,10 +171,6 @@
 
             position: relative;
             display: block;
-
-
-            //Border:
-
 
 
             //Hover

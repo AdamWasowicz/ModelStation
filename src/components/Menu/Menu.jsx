@@ -57,18 +57,14 @@ const Menu = () => {
                 {
                     !isLoggedIn
                         ? <div className='AccountActions'>
-                            <div className='MenuButton'>
-                                <button className='LoginButton'
+                            <div className='MenuButton'
                                     onClick={handleOnClick}>
                                     Zaloguj
-                                </button>
                             </div>
 
-                            <div>
-                                <button className='MenuButton'
+                            <div className='MenuButton'
                                     onClick={ChangeRegisterFormOpenHandler}>
                                     Rejestracja
-                                </button>
                             </div>
                         </div>
                         : null

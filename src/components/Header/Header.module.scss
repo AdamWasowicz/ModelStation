@@ -1,28 +1,31 @@
 @import '../../StyleConstants.scss';
 
-.header
-{
+.header {
     //Size
     width: 100%;
     height: 200px;
+
+
+    //Colors
+    background-color: $content-background-color;
     
 
     //bannerImage
-    &__bannerImage
-    {
+    &__bannerImage {
+
         //Size
         width: 100%;
-        height: 60%;
+        height: 96px;
 
-        background-color: $main-color-2;;
 
+        //Colors
+        background-color: $content-background-color;
     }
 
-    &__title
-    {
+    &__title {
         //Size
         width: 100%;
-        height: 40%;
+        height: 100px;
 
 
         //Colors
