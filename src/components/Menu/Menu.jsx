@@ -9,6 +9,10 @@ import { default as MenuStyles } from './Menu.module.scss'
 const style = bemCssModules(MenuStyles);
 
 
+//Functions
+import { ReadLocalStorage } from '../../Fuctions';
+
+
 //Components
 import LoginForm from '../LoginForm/LoginForm';
 import RegisterForm from '../RegisterForm';
@@ -34,42 +38,51 @@ const Menu = () => {
     const ChangeRegisterFormOpenHandler = () => setRegisterFormOpen(!registerFormOpen);
 
     return (
-        <div className={style()}>
-            {
-                isLoggedIn
-                    ? <div><button><Link to="createpost">createPost</Link></button></div>
-                    : null
-            }
-
-            {
-                isLoggedIn
-                    ? <div><button><Link to="editpost">editPost</Link></button></div>
-                    : null
-            }
-
-            {
-                isLoggedIn
-                    ? <div><button><Link to="userposts">UserPosts</Link></button></div>
-                    : null
-            }
-
-
-
-
+        <div className={'Menu'}>
             {
                 !isLoggedIn
-                    ? <div><button className={style('loginButton')} onClick={handleOnClick}>Zaloguj</button></div>
-                    : <div><button className={style('loginButton')} onClick={handleLogOut}>Wyloguj</button></div>
+                ? <div className='MenuButton'>
+                    <button className='LoginButton' 
+                        onClick={handleOnClick}>
+                            Zaloguj
+                    </button>
+                </div>
+                : null
             }
 
             {
                 !isLoggedIn
                 ? <div>
-                    <button
-                        onClick={ChangeRegisterFormOpenHandler}
-                    >
-                        Rejestracja
+                    <button className='MenuButton'
+                        onClick={ChangeRegisterFormOpenHandler}>
+                            Rejestracja
                     </button>
+                </div>
+                : null
+            }
+
+            {
+                isLoggedIn
+                ? <div className='DropDown'>
+
+                    <button className='DropDownButton'>
+                        { ReadLocalStorage('user').userName }
+                    </button>
+
+                    <div className='DropDownContent'>
+                        <button className='DropDownContentItem'>
+                            <Link 
+                                className='DropDownContentItemLink' to="createpost">
+                                    Nowy post
+                            </Link>
+                        </button>
+
+                        <button className='DropDownContentItem' 
+                            onClick={handleLogOut}>
+                                Wyloguj
+                        </button>
+                    </div>
+
                 </div>
                 : null
             }
@@ -78,7 +91,8 @@ const Menu = () => {
             <LoginForm handleOnClose={handleOnClose} isOpen={isModalOpen} />
             {
                 registerFormOpen
-                ? <RegisterForm OnCloseHandler={ChangeRegisterFormOpenHandler}/>
+                ? <RegisterForm 
+                    OnCloseHandler={ChangeRegisterFormOpenHandler}/>
                 : null
             }
         </div>

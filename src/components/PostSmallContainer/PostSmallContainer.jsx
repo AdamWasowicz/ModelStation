@@ -1,5 +1,4 @@
 import React, { useContext, useRef, useCallback } from 'react';
-import bemCssModules from 'bem-css-modules'
 import StoreProvider, { StoreContext } from '../../store/StoreProvider';
 
 
@@ -39,9 +38,6 @@ const PostSmallContainer = () => {
     }, [loading, hasMore]);
 
 
-    
-
-    console.log(posts);
 
     if (loading == false && posts.length > 0 || loading == true && posts.length > 0) {
         return (
@@ -57,7 +53,7 @@ const PostSmallContainer = () => {
             </div>
         )
     }
-    else if (loading == true && posts.length < 1)
+    else if (loading == true && posts.length == 0)
     {
         return <Loading/>
     }

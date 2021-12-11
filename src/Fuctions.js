@@ -1,0 +1,1 @@
+export const ReadLocalStorage = (itemName) => JSON.parse(window.localStorage.getItem(itemName));
