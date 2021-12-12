@@ -25,6 +25,30 @@ const PostSmallContainer = () => {
         "", query, "", currentPage, 3, "ASC", "NONE", posts, setPosts
     );
 
+
+    //Functions
+    const GetSortOrder = (sortOrder) => {
+
+        if (sortOrder == 1)
+            return 'ASC';
+
+        if (sortOrder == -1)
+            return 'DSC';
+    }
+    const GetSortArgument = (sortArgument) => {
+
+        if (sortArgument == 0)
+            return 'NONE';
+
+        if (sortArgument == 1)
+            return 'LIKES'
+
+        if (sortArgument == 2)
+            return 'DATE';
+    }
+
+
+    //Ref
     const observer = useRef();
     const lastPostElementRef = useCallback(node => {
         if (loading) return
