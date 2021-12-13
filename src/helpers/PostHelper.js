@@ -153,26 +153,57 @@ export default function postQueryExecutor(PostCategory, Title, UserName, Current
     const [hasMore, setHasMore] = useState(false);
 
 
+    //Functions
+    const GetSortOrder = (sortOrder) => {
+        if (sortOrder == -1)
+            return 'ASC';
+
+        if (sortOrder == 1)
+            return 'DSC';
+    }
+    const GetSortArgument = (sortArgument) => {
+
+        console.log(sortArgument);
+
+        if (sortArgument == 0)
+            return 'NONE';
+
+        if (sortArgument == 1)
+            return 'LIKES'
+
+        if (sortArgument == 2)
+            return 'DATE';
+    }
+
+    const GetParams = (PostCategory, Title, UserName, CurrentPage, NumberOfPosts, SortOrder, SortAtr, posts, setPosts) => { 
+        let params = {
+        PostCategory: PostCategory, 
+        Title: Title,
+        UserName: '',
+        CurrentPage: CurrentPage,
+        NumberOfPosts: NumberOfPosts,
+        OrderByDirection: GetSortOrder(SortOrder),
+        OrderByAtribute: GetSortArgument(SortAtr)
+        }
+
+        console.log(params);
+
+        return params;
+    }
+
+
     useEffect( () => {
         setPosts([])
-    }, [Title])
+    }, [Title, PostCategory, SortOrder, SortAtr])
 
     useEffect(() => {
         setLoading(true)
         setError(false)
-        let cancel
+        let cancel;
         axios({
             method: 'GET',
             url: `${API_address}/api/v1/post/query`,
-            params: {
-                PostCategory: PostCategory, 
-                Title: Title,
-                UserName: UserName,
-                CurrentPage: CurrentPage,
-                NumberOfPosts: NumberOfPosts,
-                OrderByDirection: SortOrder,
-                SortAtribute: SortAtr
-            },
+            params: GetParams(PostCategory, Title, UserName, CurrentPage, NumberOfPosts, SortOrder, SortAtr, posts, setPosts),
           cancelToken: new axios.CancelToken(c => cancel = c)
           
         }).then(res => {
@@ -201,7 +232,7 @@ export default function postQueryExecutor(PostCategory, Title, UserName, Current
             setHasMore(false);
         })
         return () => cancel()
-      }, [Title, CurrentPage])
+      }, [Title, PostCategory, SortOrder, SortAtr, CurrentPage])
     
       return { loading, error, hasMore }
 }

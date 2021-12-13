@@ -19,34 +19,12 @@ import { default as PostSmallContainerStyles } from './PostSmallContainer.module
 
 const PostSmallContainer = () => {
     //useContext
-    const { posts, setPosts, currentPage, setCurrentPage, query } = useContext(StoreContext);
+    let { posts, setPosts, currentPage, setCurrentPage, query, 
+    q_title, q_categoryName, q_sortOrder, q_sortArgument} = useContext(StoreContext);
 
     const { loading, error, hasMore } = postQueryExecutor(
-        "", query, "", currentPage, 3, "ASC", "NONE", posts, setPosts
+        q_categoryName, q_title, "", currentPage, 3, q_sortOrder, q_sortArgument, posts, setPosts
     );
-
-
-    //Functions
-    const GetSortOrder = (sortOrder) => {
-
-        if (sortOrder == 1)
-            return 'ASC';
-
-        if (sortOrder == -1)
-            return 'DSC';
-    }
-    const GetSortArgument = (sortArgument) => {
-
-        if (sortArgument == 0)
-            return 'NONE';
-
-        if (sortArgument == 1)
-            return 'LIKES'
-
-        if (sortArgument == 2)
-            return 'DATE';
-    }
-
 
     //Ref
     const observer = useRef();

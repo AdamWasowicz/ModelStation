@@ -22,10 +22,9 @@ const Header = () => {
 
     return (
         <header className={block()}>
-            <div className={block('bannerImage')}alt='bannerImage'>Image</div>
+            <div className={block('bannerImage')} alt='bannerImage'>Image</div>
             <div className={block('title')}>
                 <SearchBar/>
-                <input value={query} onChange={handleQueryChange}></input>
             </div>
         </header>
     )

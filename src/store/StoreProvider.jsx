@@ -10,7 +10,6 @@ const StoreProvider = ( { children} ) => {
     //Posts
     const [posts, setPosts] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [query, setQuery] = useState(""); //To be deleted
 
     //SerchBar
     const [q_title, set_q_Title] = useState('');
@@ -27,7 +26,6 @@ const StoreProvider = ( { children} ) => {
         <StoreContext.Provider value={{
             posts, setPosts,
             currentPage, setCurrentPage,
-            query, setQuery,
             q_title, set_q_Title,
             q_categoryName, set_q_CategoryName,
             q_sortOrder, set_q_SortOrder,
