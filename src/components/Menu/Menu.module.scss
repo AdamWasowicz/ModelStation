@@ -23,7 +23,9 @@
 
 
     //Border
-    border: 2px solid $main-color-8;
+    border: 1px solid $main-color-8;
+    border-right: none;
+    border-left: none;
 
 
     //LogoButton
@@ -51,7 +53,7 @@
 
 
         //Border
-        border-right: 2px solid $main-color-8;
+        //border-right: 2px solid $main-color-8;
 
 
         //Hover

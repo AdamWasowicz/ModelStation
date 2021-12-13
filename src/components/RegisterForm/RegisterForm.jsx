@@ -4,7 +4,7 @@ import { StoreContext } from '../../store/StoreProvider';
 
 
 //Images
-import bannerImage from './resources/RegisterBannerImage_BW.jpg';
+import bannerImage from '../../staticResources/RegisterBannerImage.jpg';
 
 
 //Component

@@ -155,10 +155,10 @@ export default function postQueryExecutor(PostCategory, Title, UserName, Current
 
     //Functions
     const GetSortOrder = (sortOrder) => {
-        if (sortOrder == -1)
+        if (sortOrder == 1)
             return 'ASC';
 
-        if (sortOrder == 1)
+        if (sortOrder == -1)
             return 'DSC';
     }
     const GetSortArgument = (sortArgument) => {

@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Route, Router, Routes } from 'react-router';
 import bemCssModules from 'bem-css-modules';
 import { StoreContext } from '../../store/StoreProvider';
 
@@ -12,20 +13,21 @@ const block = bemCssModules(HeaderStyles);
 import SearchBar from '../SearchBar';
 
 const Header = () => {
-    //Context
-    const { query, setQuery, setCurrentPage} = useContext(StoreContext);
 
-    const handleQueryChange = (event) =>{
-        setQuery(event.target.value);
-        setCurrentPage(1);
+    const SearchBarContainer = () => {
+        return (
+            <div className={block('title')}>
+                <SearchBar/>
+            </div>
+        )
     }
 
     return (
         <header className={block()}>
             <div className={block('bannerImage')} alt='bannerImage'>Image</div>
-            <div className={block('title')}>
-                <SearchBar/>
-            </div>
+            <Routes>
+                <Route path='/' element={<SearchBarContainer/>}/> 
+            </Routes>
         </header>
     )
 }

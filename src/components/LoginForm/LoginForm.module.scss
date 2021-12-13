@@ -1,41 +1,61 @@
-.LoginForm
-{
+@import '../../StyleConstants.scss';
+
+.LoginForm {
     //Size
-    width: 800px;
+    width: 900px;
     height: 700px;
+
 
     //Flex
     display: flex;
-    flex-direction: column;
-    
+    flex-direction: row;
 
-    //LoginInfo
-    .LoginInfo {
-        
+
+    //Overflow
+    overflow: hidden;
+
+
+    //Color
+    background-color: $main-color-9;
+    border: 2px solid $main-color-8;
+    box-shadow: 4px 4px 8px 0px $main-color-9;
+
+    //LeftPart
+    .LeftPart {
+
         //Size
-        width: 100%;
-        height: 70%;
+        width: 30%;
+        height: 100%;
 
 
-        //Padding
-        padding: 10px;
-        
-
-        //Flex
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        //IMG
+        object-fit: cover;
 
 
-        border: 2px solid red;
-       
+        //Border
+        border-right: 1px solid $main-color-8;
+    }
 
 
-        .InfoLabel {
+    //RightPart
+    .RightPart {
+
+        //Size
+        width: 70%;
+        height: 100%;
+
+
+        //LoginInfo
+        .LoginInfo {
 
             //Size
             width: 100%;
-            height: 50%;
+            height: 70%;
+
+
+            //Padding
+            padding: 10px;
+
 
             //Flex
             display: flex;
@@ -43,122 +63,171 @@
             align-items: center;
 
 
+            
+
+
+            .InfoLabel {
+
+                //Size
+                width: 100%;
+                height: 50%;
+
+                //Flex
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+
+                //Padding
+                padding: 10px;
+
+
+                //InfoText
+                .InfoText {
+
+                    //Size
+                    width: 100%;
+                    height: 50%;
+
+
+                    //Padding
+                    padding: 10px;
+
+
+                    //Flex
+                    display: flex;
+                    align-items: center;
+
+
+                    //Font
+                    font-family: $roboto;
+                    font-size: 50px;
+
+
+                    //Color
+                    color: $main-color-8;
+                    text-shadow: 2px 2px #000000;
+                    background-color: $main-color-11;
+                    border: 2px solid $main-color-2;
+                }
+
+
+                .InfoInput {
+                    //Size
+                    width: 100%;
+                    height: 50%;
+
+
+                    //Padding
+                    padding: 10px;
+
+
+                    //Font
+                    font-size: 30px;
+
+
+                    //Input
+                    outline: none;
+
+
+                    //Focus
+                    &:focus {
+                        border: 4px solid $main-color-10;
+                    }
+                }
+            }
+        }
+
+        .ValidateMessage {
+
+            //Size
+            height: 10%;
+
+
+            //Flex
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+
+            //Font
+            font-family: $noto;
+            font-size: 40px;
+
+
+            //Color
+            color: red;
+        }
+
+        //ManipulationPanel
+        .ManipulationPanel {
+
+            //Size
+            height: 20%;
+            width: 100%;
+
 
             //Padding
             padding: 10px;
 
-            border: 2px solid rgb(255, 0, 212);
 
-            .InfoText {
+            //Flex
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+
+            //Button
+            .Button {
 
                 //Size
-                width: 100%;
-                height: 50%;
+                width: 70%;
+                height: 90%;
 
-                //Padding
-                padding: 10px;
 
                 //Font
-                font-size: 50px;
+                font-family: $roboto;
+                font-size: 60px;
+                font-weight: 700;
 
-                background-color: darkkhaki;
+
+                //Border
+                border-radius: 20px;
+                border: 4px solid white;
+
+
+                //Color
+                background-color: $main-color-11;
+                color: white;
+
+
+                //Transition
+                transition: 0.09s;
             }
 
 
-            .InfoInput {
-                //Size
-                width: 100%;
-                height: 50%;
-                
-                
-                //Padding
-                padding: 10px;
+            //LoginButton
+            .LoginButton {
+                @extend .Button;
 
+                &:hover {
+                    background-color: black;
+                    color: $main-color-8;
+                    border: 4px solid $main-color-8;
 
-                font-size: 30px;
+                    //Transition
+                    transition: 0.09s;
+                }
 
-                &:focus {
-                    border: 5px solid rgb(20, 224, 207);
+                &:active {
+                    background-color: black;
+                    color: $main-color-10;
+                    border: 4px solid $main-color-10;
+
+                    //Transition
+                    transition: 0.09s;
                 }
             }
         }
-    }
-    
-    .ValidateMessage {
-
-        //Flex
-        flex-basis: 10%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-
-        //Font
-        font-size: 40px;
-        color: red;
-
-
-        
-        border: 2px solid green;
-    }
-
-    //ManipulationPanel
-    .ManipulationPanel {
-        
-        //Flex
-        display: flex;
-        justify-content: space-around;
-        flex-grow: 1;
-        
-
-
-        //Padding
-        padding: 10px;
-        
-        border: 2px solid blue;
-
-        
-        //Button
-        .Button {
-
-            //Size
-            width: 90%;
-            height: 100%;
-
-
-            //Font
-            font-size: 50px;
-
-            border-radius: 20px
-        }
-
-
-        //LoginButton
-        .LoginButton {
-            @extend .Button;
-
-            &:hover {
-                border: 4px solid limegreen;
-            }
-
-            &:active {
-                color: limegreen;
-            }
-        }
-
-
-        //CancelButton
-        .CancelButton {
-            @extend .Button;
-
-            &:hover {
-                border: 4px solid red;
-            }
-
-            &:active {
-                color: red;
-            }
-        }
-
     }
 }

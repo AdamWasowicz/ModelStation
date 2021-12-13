@@ -1,16 +1,20 @@
 import React, { useState, useContext, useEffect } from 'react';
-import bemCssModules from 'bem-css-modules';
 
-//ImportedComponents
+
+//Components
 import Modal from '../Modal/Modal';
 import { StoreContext } from '../../store/StoreProvider';
 import { LoginHelper } from '../../helpers/AccountHelper';
 
 
+//Images
+import bannerImage from '../../staticResources/loginFormImage.jpg';
+
+
 //Styles
 import { default as LoginFormStyles } from './LoginForm.module.scss';
 
-//Component
+
 const LoginForm = ({ handleOnClose, isOpen }) => {
     //State
     const [login, setLogin] = useState('');
@@ -28,17 +32,14 @@ const LoginForm = ({ handleOnClose, isOpen }) => {
         event.preventDefault();
         handleOnClose();
     };
-    const handleOnSubmit = async event =>
-    {
+    const handleOnSubmit = async event => {
         //Strzał do API
         event.preventDefault();
         const error = await LoginHelper(login, password, setIsLoggedIn);
-        if (error)
-        {
-           setValidateMessage('Błąd logowania');
+        if (error) {
+            setValidateMessage('Błąd logowania');
         }
-        else
-        {
+        else {
             resetStateOfInputs();
             handleOnClose();
         }
@@ -58,35 +59,37 @@ const LoginForm = ({ handleOnClose, isOpen }) => {
 
 
     return (
-        <Modal closeOnBackgroundClick={true}  handleOnClose={handleOnClose} isOpen={isOpen}>
+        <Modal closeOnBackgroundClick={true} handleOnClose={handleOnClose} isOpen={isOpen}>
             <form className='LoginForm' method="post" onSubmit={handleOnSubmit}>
-                <div className='LoginInfo'>
-                    <div className='InfoLabel'>
+                <img className='LeftPart' src={bannerImage}>
+
+                </img>
+
+                <div className='RightPart'>
+                    <div className='LoginInfo'>
+                        <div className='InfoLabel'>
                             <div className='InfoText'>
                                 Login:
                             </div>
                             <input className='InfoInput' type="text" onChange={handleOnChangeLogin} value={login} />
-                    </div>
+                        </div>
 
-                    <div className='InfoLabel'>
+                        <div className='InfoLabel'>
                             <div className='InfoText'>
-                                Hasło
+                                Hasło:
                             </div>
                             <input className='InfoInput' type="password" onChange={handleOnChangePassword} value={password} />
+                        </div>
                     </div>
-                </div>
 
-                {
-                    validateMessage.length > 0
-                    ? <div className='ValidateMessage'>
+                    <div className='ValidateMessage'>
                         {validateMessage}
                     </div>
-                    : null
-                }
 
-                <div className='ManipulationPanel'>
-                    <button className='LoginButton' type="submit">Zaloguj</button>
-                    
+                    <div className='ManipulationPanel'>
+                        <button className='LoginButton' type="submit">Zaloguj</button>
+
+                    </div>
                 </div>
             </form>
         </Modal>
