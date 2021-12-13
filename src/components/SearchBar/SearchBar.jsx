@@ -151,16 +151,18 @@ const SearchBar = () => {
 
             <div className='SearchBars'>
                 <div className='SearchBarObject'>
+                    Tytuł:
                     <input 
-                        className='SearchBar'
+                        className='SearchBarInput'
                         value={tittle}
                         onChange={TitleChangeHandler}
                         ></input>
                 </div>
 
                 <div className='SearchBarObject'>
+                    Kategoria:
                     <input 
-                        className='SearchBar'
+                        className='SearchBarInput'
                         value={categoryName}
                         onChange={CategoryNameChangeHandler}
                     ></input>
