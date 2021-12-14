@@ -193,7 +193,7 @@ $like-button-height-percent: 30%;
             display: flex;
             flex-direction: column;
             justify-content: space-around;
-            flex-basis: 25%;
+            min-width: 250px;
 
 
             //Padding

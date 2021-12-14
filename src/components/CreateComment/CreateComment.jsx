@@ -4,7 +4,7 @@ import { StoreContext } from '../../store/StoreProvider';
 
 
 //Resources
-import userDefaultImage from './resources/userDefaultImage.png';
+import { UserBaseImage } from '../../StaticResources_routes.js';
 import { API_address, fileStorageGetUserImage } from '../../API_routes';
 
 
@@ -75,9 +75,7 @@ const CreateComment = ({HandleChange}) => {
                     </div>
 
                     <img className='UserImage' 
-                    src={JSON.parse(window.localStorage.getItem('user')).file.id != null 
-                    ? `${API_address}${fileStorageGetUserImage}/${JSON.parse(window.localStorage.getItem('user')).file.id}` 
-                    : userDefaultImage}>
+                    src={JSON.parse(window.localStorage.getItem('user')).file != null && JSON.parse(window.localStorage.getItem('user')).file.id != null ? `${API_address}${fileStorageGetUserImage}/${JSON.parse(window.localStorage.getItem('user')).file.id}` : UserBaseImage}>
                     </img>
                 </div>
 

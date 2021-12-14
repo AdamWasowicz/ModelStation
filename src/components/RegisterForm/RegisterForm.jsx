@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router';
 import { StoreContext } from '../../store/StoreProvider';
 
 
-//Images
-import bannerImage from '../../staticResources/RegisterBannerImage.jpg';
+//Resources
+import { RegisterImage } from '../../StaticResources_routes';
 
 
 //Component
@@ -106,7 +106,7 @@ const RegisterForm = ({ OnCloseHandler }) => {
         >
             <div className='RegisterForm'>
 
-                <img className='PictureBanner' src={bannerImage} alt='registerBannerImage' />
+                <img className='PictureBanner' src={RegisterImage} alt='registerBannerImage' />
 
 
                 <div className='RightPanel'>

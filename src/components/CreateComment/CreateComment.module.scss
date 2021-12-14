@@ -44,7 +44,7 @@ $upload-button-color: yellowgreen;
             display: flex;
             flex-direction: column;
             justify-content: space-around;
-            flex-basis: 20%;
+            min-width: 250px;
 
 
             //Padding

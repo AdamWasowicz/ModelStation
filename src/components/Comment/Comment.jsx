@@ -9,7 +9,7 @@ import { LikeCommentHelper_GET, LikedCommentHelper_PATCH, Comment_PATCH } from '
 
 
 //Resources
-import userDefaultImage from './resources/userDefaultImage.png';
+import { UserBaseImage } from '../../StaticResources_routes.js';
 
 
 //Components
@@ -191,8 +191,13 @@ const Comment = ({ commentObject, HandleCommentDeletion }) => {
                         </div>
                     </div>
 
-                    <img className='UserImage' src={comment.userImageId != null ? `${API_address}${fileStorageGetUserImage}/${comment.userImageId}` : userDefaultImage}>
-                        
+                    <img 
+                        className='UserImage' 
+                        src={
+                            comment.userImageId != null 
+                            ? `${API_address}${fileStorageGetUserImage}/${comment.userImageId}` 
+                            : UserBaseImage
+                            }>      
                     </img>
                 </div>
 

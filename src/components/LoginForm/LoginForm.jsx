@@ -7,8 +7,8 @@ import { StoreContext } from '../../store/StoreProvider';
 import { LoginHelper } from '../../helpers/AccountHelper';
 
 
-//Images
-import bannerImage from '../../staticResources/loginFormImage.jpg';
+//Resources
+import { LoginImage } from '../../StaticResources_routes';
 
 
 //Styles
@@ -61,7 +61,7 @@ const LoginForm = ({ handleOnClose, isOpen }) => {
     return (
         <Modal closeOnBackgroundClick={true} handleOnClose={handleOnClose} isOpen={isOpen}>
             <form className='LoginForm' method="post" onSubmit={handleOnSubmit}>
-                <img className='LeftPart' src={bannerImage}>
+                <img className='LeftPart' src={LoginImage}>
 
                 </img>
 
