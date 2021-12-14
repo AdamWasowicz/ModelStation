@@ -155,6 +155,18 @@
                     cursor: pointer;
                 }
 
+
+                //Active
+                &:active {
+                    //Color
+                    color: $main-color-10;
+                    border-color: $main-color-10;
+
+
+                    //Cursor
+                    cursor: pointer;
+                }
+
             }
 
         }
