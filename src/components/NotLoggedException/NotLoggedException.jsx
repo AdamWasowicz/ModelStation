@@ -1,19 +1,34 @@
-import React, {useState, useEffect, useContext } from 'react'
-import { Link } from 'react-router-dom';
-import bemCssModules from 'bem-css-modules'
+import React from 'react'
+import { useNavigate } from 'react-router-dom';
 
 
 //Styles
 import { default as NotLoggedExceptionStyle } from './NotLoggedException.module.scss'
-const style = bemCssModules(NotLoggedExceptionStyle);
 
 
 const NotLoggedException = () => {
+
+    //useNavigate
+    const navigate = useNavigate();
+
+
+    //Handlers
+    const GoBackClickHandler = () => navigate('/');
+
     return (
-        <React.Fragment>
-            <h1>Nie zalogowano się</h1>
-            <button><Link to="/">Powrót do menu głównego</Link></button>
-        </React.Fragment>
+        <div className='NotLoggedException'>
+            <div className='Information'>Brak dostępu</div>
+
+            <div className='Description'>
+                Aby uzyskać dostęp do tej części serwisu musisz zalogować się na swoje konto
+            </div>
+
+            <button 
+                className='GoBackButton'
+                onClick={GoBackClickHandler }>
+                    Powrót do strony głównej
+            </button>
+        </div>
     )
 };
 

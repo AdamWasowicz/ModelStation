@@ -39,7 +39,7 @@ const AccountCreated = () => {
             </button>
 
             <button 
-                class='GoBackButton'
+                className='GoBackButton'
                 onClick={GoBackClickHandler}>
                     Powrót do strony głównej
             </button>
