@@ -1,11 +1,16 @@
-$CreatePost-background-color: grey;
-$CreatedPost-border-color: rgb(194, 194, 194);
+@import '../../StyleConstants.scss';
 
-.CreatePost
-{
+
+.CreatePost {
+
     //Size
-    width: 1000px;
-    height: 500px;
+    width: 1200px;
+    height: 800px;
+
+
+    //Flex
+    display: flex;
+    flex-direction: row;
 
 
     //Position
@@ -14,10 +19,363 @@ $CreatedPost-border-color: rgb(194, 194, 194);
 
 
     //Color
-    background-color: $CreatePost-background-color;
-    border: 2px solid $CreatedPost-border-color;
+    background-color: $main-color-12;
+    border: 2px solid $main-color-8;
 
 
-    //DropZone
-    
+    //LeftPart
+    .LeftPart {
+
+        //Size
+        width: 20%;
+        height: 100%;
+
+
+        background-color: rgb(92, 85, 85);
+    }
+
+
+    //RightPart
+    .RightPart {
+
+        //Size
+        width: 80%;
+        height: 100%;
+
+
+        //Title
+        .Title {
+
+            //Size
+            width: 100%;
+            height: 15%;
+
+
+            //Padding
+            padding: 10px;
+
+
+            //Flex
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+
+            //Font
+            font-family: $roboto;
+            font-size: 70px;
+
+
+            //Letter
+            letter-spacing: 7px;
+
+
+            //Color
+            background-color: $main-color-1;
+            color: white;
+
+
+            //Border
+            border-bottom: 1px solid $main-color-8;
+        }
+
+
+        //Content
+        .PostData {
+
+            //Size
+            width: 100%;
+            height: 85%;
+
+
+            //Padding
+            padding: 10px;
+
+
+            //InputField
+            .InputField {
+
+                //Size
+                width: 100%;
+                height: 13%;
+
+
+                //Flex
+                display: flex;
+                flex-direction: row;
+
+
+                //Margin
+                margin-bottom: 20px;
+
+                border: 2px solid $main-color-8;
+
+
+                //InputFieldLabel
+                .InputFieldLabel {
+
+                    //Size
+                    width: 30%;
+                    height: 100%;
+
+
+                    //Padding
+                    padding: 10px;
+
+
+                    //Flex
+                    display: flex;
+                    align-items: center;
+
+
+                    //Font
+                    font-family: $roboto;
+                    font-size: 50px;
+
+
+                    //Color
+                    color: white;
+                    background-color: $main-color-1;
+
+
+                    border-right: 2px solid $main-color-8;
+                }
+
+
+                //Input
+                input {
+
+                    //Size
+                    width: 70%;
+                    height: 100%;
+
+
+                    //Padding
+                    padding: 10px;
+
+
+                    //Font
+                    font-family: $noto;
+                    font-size: 30px;
+
+
+                    //InputSpecific
+                    outline: none;
+
+
+                    //Border
+                    border: 2px solid $main-color-2;
+
+
+                    //Focus
+                    &:focus {
+
+                        //Color
+                        border-color: $main-color-10;
+                    }
+                }
+
+                .FileInput {
+                    
+                    //Color
+                    color: black;
+                    background-color: white;
+                }
+            }
+
+
+            //InputFieldBig
+            .InputFieldBig {
+
+                //Size
+                width: 100%;
+                height: 30%;
+
+                
+                //Margin
+                margin-bottom: 20px;
+
+
+                //Flex
+                display: flex;
+                flex-direction: column;
+
+
+                //Border
+                border: 2px solid $main-color-8;
+
+
+                //InputFieldLabel
+                .InputFieldLabelBig {
+                    //Size
+                    width: 100%;
+                    height: 30%;
+
+
+                    //Padding
+                    padding: 10px;
+
+
+                    //Flex
+                    display: flex;
+                    align-items: center;
+
+
+                    //Font
+                    font-family: $roboto;
+                    font-size: 50px;
+
+
+                    //Color
+                    color: white;
+                    background-color: $main-color-1;
+                }
+
+                //Input
+                .TextAreaInput {
+
+                    //Size
+                    width: 100%;
+                    height: 70%;
+
+
+                    //TextAreaSpecfic
+                    resize: none;
+                    outline: none;
+
+
+                    //Font
+                    font-family: $noto;
+                    font-size: 20px;
+
+
+                    //Padding
+                    padding: 10px;
+
+
+                    //Border
+                    border: 2px solid $main-color-2;
+
+
+                    //Focus
+                    &:focus {
+
+                        //Color
+                        border-color: $main-color-10;
+                    }
+
+
+                    .input {
+                        //Size
+                        width: 70%;
+                        height: 100%;
+
+
+                        //Padding
+                        padding: 10px;
+
+
+                        //Font
+                        font-family: $noto;
+                        font-size: 30px;
+
+
+                        //InputSpecific
+                        outline: none;
+
+
+                        //Border
+                        border: 2px solid $main-color-2;
+
+
+                        //Focus
+                        &:focus {
+
+                            //Color
+                            border-color: $main-color-10;
+                        }
+                    }
+                }
+            }
+
+
+            //Button
+            .Button {
+
+                //Size
+                width: 80%;
+                height: 17%;
+
+
+                //Border
+                border-radius: 20px;
+                border: 2px solid white;
+
+
+                //Margin
+                margin-left: auto;
+                margin-right: auto;
+
+
+                //Font
+                font-family: $roboto;
+                font-size: 60px;
+                font-weight: 400;
+
+
+                //Flex
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+
+                //Color
+                color: white;
+                background-color: $main-color-11;
+
+
+                //Overflow
+                overflow: hidden;
+
+
+                //Transistion
+                transition: 0.1s;
+
+
+                //Hover
+                &:hover {
+
+                    //Color
+                    color: $main-color-8;
+                    border-color: $main-color-8;
+
+
+                    //Transistion
+                    transition: 0.1s;
+
+
+                    //Cursor
+                    cursor: pointer;
+                }
+
+
+                //Active
+                &:active {
+
+                    //Color
+                    color: $main-color-10;
+                    border-color: $main-color-10;
+
+
+                    //Transistion
+                    transition: 0.1s;
+
+
+                    //Cursor
+                    cursor: pointer;
+                }
+            
+            }
+        }
+    }
 }
