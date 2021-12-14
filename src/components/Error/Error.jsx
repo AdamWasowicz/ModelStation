@@ -1,16 +1,45 @@
-import React, {useState, useEffect, useContext } from 'react'
-import bemCssModules from 'bem-css-modules'
+import React from 'react';
+import { useNavigate } from 'react-router';
 
 
 //Styles
 import { default as ErrorStyles } from './Error.module.scss'
-const style = bemCssModules(ErrorStyles);
 
 
 const Error = () => {
+
+    //useNavigate
+    const navigate = useNavigate();
+
+
+    //Handler
+    const GoToMainClickHandler = () => navigate('/');
+    const GoToPrevious = () => navigate(-1);
+
+
     return (
         <div className='Error'>
-            Error
+            <div className='Information'>
+                Wystąpił nieznany błąd
+            </div>
+
+            <div className='Description'>
+                Bład został automatycznie zgłoszony, postaramy się jak najszybciej go naprawić. Przeprawszamy za niedogodność.
+            </div>
+
+            <div className='Buttons'>
+                <button
+                    className='GoBackButton'
+                    onClick={GoToPrevious}>
+                    Powrót do poprzedniej strony
+                </button>
+
+                <button
+                    className='GoBackButton'
+                    onClick={GoToMainClickHandler}>
+                    Powrót do strony głównej
+                </button>
+            </div>
         </div>
     )
 };
