@@ -1,5 +1,7 @@
 @import "../../StyleConstants";
 
+
+//Animations
 @keyframes spin {
     from {
         transform: rotate(0deg);
@@ -13,37 +15,71 @@
 
 .Loading
 {
-    //Position
-    margin-left: auto;
-    margin-right: auto;
-
-
     //Size
     width: $component-base-width;
     height: $component-base-height;
 
+
     //Padding
-    padding: 10px;
+    padding: 20px;
 
 
+    //Margin
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+
+
+    //Flex
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    
     //Color
-    background-color: chartreuse;
+    background-color: $main-color-1;
 
 
-    h1 {
+    //Border
+    border: 2px solid $main-color-10;
+
+
+    .Information {
+
+        //Size
+        width: 100%;
+
+
+        //Font
+        font-family: $roboto;
+        font-size: 70px;
+        font-weight: 900;
+
+
+        //Padding
+        padding: 10px;
+
+
+        //Margin
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 0px;
+
+
         //Text
         text-align: center;
 
-        
-        //Font
-        font-size: 50px;
+
+        //Color
+        color: $main-color-10;
     }
 
 
     //LoadingIcon
     .LoadingIcon {
         //Size
-        width: 300px;
+        width: 500px;
 
 
         //Position
@@ -57,9 +93,10 @@
 
 
         //Font
-        font-size: 300px;
+        font-size: 500px;
 
 
         //Color
+        color: $main-color-10;
     }
 }

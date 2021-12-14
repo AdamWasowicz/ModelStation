@@ -18,13 +18,15 @@ import { default as PostSmallContainerStyles } from './PostSmallContainer.module
 
 
 const PostSmallContainer = () => {
+
     //useContext
-    let { posts, setPosts, currentPage, setCurrentPage, query, 
-    q_title, q_categoryName, q_sortOrder, q_sortArgument} = useContext(StoreContext);
+    let { posts, setPosts, currentPage, setCurrentPage, query,
+        q_title, q_categoryName, q_sortOrder, q_sortArgument } = useContext(StoreContext);
 
     const { loading, error, hasMore } = postQueryExecutor(
         q_categoryName, q_title, "", currentPage, 3, q_sortOrder, q_sortArgument, posts, setPosts
     );
+
 
     //Ref
     const observer = useRef();
@@ -40,8 +42,7 @@ const PostSmallContainer = () => {
     }, [loading, hasMore]);
 
 
-
-    if (loading == false && posts.length > 0 || loading == true && posts.length > 0) {
+    if (loading == false && posts.length > 0) {
         return (
             <div className='PostSmallContainer'>
                 {
@@ -55,13 +56,29 @@ const PostSmallContainer = () => {
             </div>
         )
     }
-    else if (loading == true && posts.length == 0)
-    {
-        return <Loading/>
+    else if (loading == true && posts.length > 0) {
+        return (
+            <React.Fragment>
+                <div className='PostSmallContainer'>
+                    {
+                        posts.map((post, index) => {
+                            if (posts.length == index + 1)
+                                return <PostSmall key={index} ref={lastPostElementRef} postObject={post} />
+                            else
+                                return <PostSmall key={index} postObject={post} />
+                        })
+                    }
+                </div>
+                
+                <Loading />
+            </React.Fragment>
+        )
     }
-    else
-    {
-        return <QueryNoResult/>
+    else if (loading == true && posts.length == 0) {
+        return <Loading />
+    }
+    else {
+        return <QueryNoResult />
     }
 }
 

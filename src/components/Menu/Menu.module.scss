@@ -63,7 +63,7 @@
 
 
         .firstPart {
-            
+
             display: inline-block;
             color: $main-color-8;
         }
@@ -108,7 +108,7 @@
             justify-content: space-between;
             align-items: center;
 
-            
+
             //Button
             .MenuButton {
 
@@ -143,12 +143,20 @@
                 overflow: hidden;
 
 
+                //Transistion
+                transition: 0.1s;
+
+
                 //Hover
                 &:hover {
 
                     //Color
                     color: $main-color-8;
                     border-color: $main-color-8;
+
+
+                    //Transistion
+                    transition: 0.1s;
 
 
                     //Cursor
@@ -158,17 +166,20 @@
 
                 //Active
                 &:active {
+
                     //Color
                     color: $main-color-10;
                     border-color: $main-color-10;
 
 
+                    //Transistion
+                    transition: 0.1s;
+
+
                     //Cursor
                     cursor: pointer;
                 }
-
             }
-
         }
 
         //DropDown
@@ -176,7 +187,7 @@
 
             //Size
             width: 400px;
-            height: 80%;
+            height: 90%;
 
 
             //Margin
@@ -243,6 +254,24 @@
                     color: $main-color-8-2;
                 }
 
+
+                //Active
+                &:Active {
+                    //Color
+                    background-color: black;
+
+
+                    //Border
+                    border-color: $main-color-10;
+
+
+                    //Transition
+                    transition: 0.3s;
+
+
+                    //Color
+                    color: $main-color-10;
+                }
             }
 
 
@@ -321,6 +350,25 @@
                     }
 
 
+                    //Active
+                    &:Active {
+                        //Color
+                        background-color: black;
+
+
+                        //Border
+                        border-color: $main-color-10;
+
+
+                        //Transition
+                        transition: 0.3s;
+
+
+                        //Color
+                        color: $main-color-10;
+                    }
+
+
                     //DropDownContentItemLink
                     .DropDownContentItemLink {
 
@@ -341,6 +389,25 @@
 
                             //Color
                             color: $main-color-8-2;
+                        }
+
+
+                        //Active
+                        &:Active {
+                            //Color
+                            background-color: black;
+
+
+                            //Border
+                            border-color: $main-color-10;
+
+
+                            //Transition
+                            transition: 0.3s;
+
+
+                            //Color
+                            color: $main-color-10;
                         }
 
 

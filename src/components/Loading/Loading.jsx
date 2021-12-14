@@ -1,39 +1,20 @@
-import React, {useState, useEffect, useContext } from 'react'
-import bemCssModules from 'bem-css-modules'
+import React from 'react'
 
 
 //Styles
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { default as LoadingStyle } from './Loading.module.scss'
-const style = bemCssModules(LoadingStyle);
-
-
-//Components
-
-//Functions
 
 
 const Loading = () => {
-
-    //useState);
-
-    //useEffect
-
-    //Functions
-
-    //Handlers
-    
-
     return (
-        <React.Fragment>
-            <div className="Loading"> 
-                <h1>Ładowanie zawartości</h1>
-                <div className="LoadingIcon">
-                    <FontAwesomeIcon icon={faSpinner} />
-                </div>
+        <div className="Loading">
+            <div className='Information'>Ładowanie zawartości</div>
+            <div className="LoadingIcon">
+                <FontAwesomeIcon icon={faSpinner} />
             </div>
-        </React.Fragment>
+        </div>
     )
 };
 
