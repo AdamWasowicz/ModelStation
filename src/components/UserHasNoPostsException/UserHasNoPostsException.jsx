@@ -1,18 +1,42 @@
-import React, {useState, useEffect, useContext } from 'react'
-import { Link } from 'react-router-dom';
-import bemCssModules from 'bem-css-modules'
+import React from 'react'
+import { useNavigate } from 'react-router-dom';
 
 
 //Styles
 import { default as UserHasNoPostsExceptionStyles } from './UserHasNoPostsException.module.scss'
-const style = bemCssModules(UserHasNoPostsExceptionStyles);
 
 
 const UserHasNoPostsException = () => {
+
+    //useNavigate
+    const navigate = useNavigate();
+
+
+    //Handler
+    const GoToMainClickHandler = () => navigate('/');
+    const GoToPrevious = () => navigate(-1);
+
+
     return (
         <div className='UserHasNoPostsException'>
-            <h1>Nie posiadasz żadnych postów</h1>
-            <button><Link to="../createpost">Stwórz nowy post</Link></button>
+            <div className='Information'>
+                Ten użytkownik nie posiada żadnych postów
+            </div>
+
+
+            <div className='Buttons'>
+                <button
+                    className='GoBackButton'
+                    onClick={GoToPrevious}>
+                    Powrót do poprzedniej strony
+                </button>
+
+                <button
+                    className='GoBackButton'
+                    onClick={GoToMainClickHandler}>
+                    Powrót do strony głównej
+                </button>
+            </div>
         </div>
     )
 };

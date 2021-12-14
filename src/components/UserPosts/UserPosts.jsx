@@ -22,7 +22,7 @@ const UserPosts = () => {
 
     if (isLoggedIn) {
         return (
-            <p>UserPosts</p>
+            <div className='UserPosts'>a</div>
         )
     }
     else {
