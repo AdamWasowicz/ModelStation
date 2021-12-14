@@ -10,7 +10,9 @@ const style = bemCssModules(FooterStyles);
 const Footer = () => {
     return (
         <div className='Footer'>
-            Footer
+            <div className='LeftPart'>
+                &copy; 2021 ModelStation
+            </div>
         </div>
     )
 }

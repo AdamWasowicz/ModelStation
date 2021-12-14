@@ -10,7 +10,7 @@ const style = bemCssModules(ErrorStyles);
 const Error = () => {
     return (
         <div className='Error'>
-            <h1>Wystąpił błąd</h1>
+            Error
         </div>
     )
 };

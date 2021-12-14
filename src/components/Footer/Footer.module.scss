@@ -1,9 +1,43 @@
-.Footer
-{
+@import '../../StyleConstants.scss';
+
+.Footer {
     //Size
     width: 100%;
-    height: 100px;
+    height: 50px;
 
     //Color
     background-color: chocolate;
+
+    
+    //Padding
+    padding: 10px;
+
+
+    //Display
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+
+    //Border
+    border-top: 2px solid $main-color-8;
+
+
+    //Color
+    background-color: $main-color-1;
+
+
+    //LeftPart
+    > .LeftPart {
+
+        //Font
+        font-family: $noto;
+        font-size: 30px;
+        font-weight: 400;
+
+
+        //Color
+        color: white;
+    }
 }
