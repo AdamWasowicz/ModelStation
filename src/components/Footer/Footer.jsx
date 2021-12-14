@@ -1,10 +1,8 @@
-import React, { useContext, useRef, useCallback } from 'react';
-import bemCssModules from 'bem-css-modules'
+import React from 'react';
 
 
 //Styles
 import { default as FooterStyles } from './Footer.module.scss'
-const style = bemCssModules(FooterStyles);
 
 
 const Footer = () => {
