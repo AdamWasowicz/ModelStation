@@ -43,6 +43,7 @@ const Menu = () => {
         navigate('/');
     }
     const ChangeRegisterFormOpenHandler = () => setRegisterFormOpen(!registerFormOpen);
+    const handleGoToUserProfileOnClick = () => navigate(`user/` + ReadLocalStorage('user').id)
 
     return (
         <div className='Menu'>
@@ -74,8 +75,10 @@ const Menu = () => {
                     isLoggedIn
                         ? <div className='DropDown'>
 
-                            <button className='DropDownButton'>
-                                {ReadLocalStorage('user').userName}
+                            <button 
+                                className='DropDownButton'
+                                onClick={handleGoToUserProfileOnClick}>
+                                    {ReadLocalStorage('user').userName}
                             </button>
 
                             <div className='DropDownContent'>

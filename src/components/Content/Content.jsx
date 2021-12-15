@@ -9,8 +9,8 @@ import CreatePost from '../CreatePost';
 import PostSmallContainer from '../PostSmallContainer';
 import EditPost from '../EditPost';
 import PostBigContainer from '../PostBigContainer';
-import UserPosts from '../UserPosts';
 import AccountCreated from '../AccountCreated';
+import User from '../User';
 
 
 //Styles
@@ -40,8 +40,8 @@ const Content = () => {
                     <Route path='createpost' element={<CreatePost/>}/>
                     <Route path='editpost' element={<EditPost/>}/>
                     <Route path='post/:postId' element={<PostBigContainer/>}/>
-                    <Route path='userposts' element={<UserPosts/>}/>
                     <Route path='accountcreated' element={<AccountCreated/>}/>
+                    <Route path='user/:userId' element={<User/>}/>
                 </Routes> 
             </div>
         </React.Fragment>

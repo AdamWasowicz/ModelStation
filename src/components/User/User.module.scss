@@ -1,0 +1,218 @@
+@import '../../StyleConstants.scss';
+
+
+.User {
+
+    //Size
+    width: 1400px;
+    height: 800px;
+
+
+    //Margin
+    margin-left: auto;
+    margin-right: auto;
+
+
+    //Flex
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+
+    //Color
+    background-color: $main-color-1;
+
+
+    //Border
+    border: 2px solid $main-color-8;
+
+
+    //Info
+    .Info {
+
+        //Size
+        width: 400px;
+        height: 100%;
+
+
+        //Border
+        border-right: 2px solid $main-color-8;
+
+
+        //UserInformation
+        .UserInformation {
+            //Flex
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+
+            height: 40%;
+            min-width: 250px;
+
+
+            //Padding
+            padding: 10px;
+
+
+            //Border
+            border-bottom: 2px solid $main-color-8;
+
+
+            //UserNameLabel
+            .UserNameLabel {
+
+                //Font
+                font-family: $roboto;
+                font-weight: 400;
+                font-size: 30px;
+
+
+                //Padding
+                padding: 10px;
+
+
+                //Display
+                box-sizing: border-box;
+                display: block;
+
+
+                //color
+                color: $main-color-8;
+
+
+                //Text
+                text-align: center;
+
+
+                .UserName {
+                    display: inline;
+                    color: $main-color-5;
+                }
+            }
+
+
+            //UserImage
+            .UserImage {
+                //Size
+                width: 250px;
+                height: 250px;
+
+
+                //Position
+                margin-left: auto;
+                margin-right: auto;
+                margin-bottom: 20px;
+
+
+                //Image
+                object-fit: cover;
+
+
+                //Color
+                border: 4px solid $main-color-2;
+                background-color: $main-color-5;
+            }
+        }
+
+
+        //UserStats
+        .UserStats {
+            
+            //Size
+            width: 100%;
+            height: 60%;
+
+
+            //Padding
+            padding: 20px;
+
+
+            //Flex
+            display: flex;
+            flex-direction: column;
+
+
+            //StatContainer
+            .StatContainer {
+
+                //Size
+                width: 100%;
+                height: 20%;
+
+
+                //Margin
+                margin-bottom: 20px;
+
+                
+                //Flex
+                display: flex;
+                flex-direction: row;
+                
+
+                //StatLabel
+                .StatLabel {
+
+                    //Size
+                    width: 60%;
+                    height: 100%;
+
+
+                    //Padding
+                    padding: 10px;
+
+
+                    //Font
+                    font-family: $roboto;
+                    font-size: 35px;
+
+
+                    //Flex
+                    display: flex;
+                    align-items: center;
+
+
+                    //Color
+                    color: $main-color-8;
+                    background-color: $main-color-11;
+                    border: 2px solid $main-color-2;
+                }
+
+
+                //StatValue
+                .StatValue {
+
+                    //Size
+                    width: 40%;
+                    height: 100%;
+
+
+                    //Padding
+                    padding: 10px;
+
+
+                    //Font
+                    font-family: $roboto;
+                    font-size: 45px;
+                    font-weight: 900;
+
+
+                    //Flex
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+
+                    //Border
+                    border: 2px solid $main-color-2;
+                    border-left: none;
+
+
+                    //Color
+                    background-color: white;
+
+
+                }
+            }
+        }
+    }
+}

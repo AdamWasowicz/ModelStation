@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_address, getPostByUserId, getUserPosts_APU_route, likePost_API_route, likedPost_create_or_edit_API_route, postCategory_GET_API_route, patchPost_API_route, uploadPost_API_route, deletePost_API_route
+import { API_address, getPostByUserId, getUserPosts_APU_route, likePost_API_route, likedPost_create_or_edit_API_route, postCategory_GET_API_route, patchPost_API_route, uploadPost_API_route, deletePost_API_route, getUserProfileById_API_route
 } from "../API_routes";
 import { StoreContext } from "../store/StoreProvider";
 import react, {useState, useEffect} from 'react';
@@ -331,4 +331,19 @@ export async function deletePost(postId) {
 
 
     return result;
+}
+
+export async function GetUserProfileById(id, setUserObject, setLoading) {
+
+    await axios({
+        method: 'GET',
+        url: `${API_address}${getUserProfileById_API_route}/${id}`
+    }).then(result => {
+        setUserObject(result.data);
+        setLoading(false);
+    }).catch(e => {
+        setUserObject(null);
+        setLoading(false);
+        console.log(e);
+    });
 }
