@@ -40,6 +40,9 @@ const User = () => {
     const [view, setView] = useState(0);
     const [loading, setLoading] = useState(true);
 
+    //Edit
+    const [editMode, setEditMode] = useState(false);
+
 
     //useEffect
     useEffect(() => {
@@ -49,14 +52,46 @@ const User = () => {
 
     //Functions
     const GetUserProfile = async () => GetUserProfileById(userId, setUserObject,setLoading);
+    const RenderSubView = (view) => {
+        if (view == 0)
+            return UserDataView();
+    }
 
 
 
     //SubViews
+    //UserDataView
+    const UserDataView = () => {
+        return (
+            <div className='UserDataView'>
+                <div className='Information'>
+                    Dane użytkownika
+                </div>
+
+                <div className='DataContainer'>
+                    {
+                        editMode == false
+                        ? UserDataViewDisplay()
+                        : null
+                    }
+                </div>
+            </div>
+        )
+    }
+    const UserDataViewDisplay = () => {
+        return(
+            <div className='UserDatViewDisplay'>
+                UserDataViewDisplay
+            </div>
+        )
+
+    }
+        
+    
+
+
 
     console.log(userObject);
-
-
 
     if (loading == false)
         return (
@@ -94,7 +129,7 @@ const User = () => {
                 </div>
 
                 <div className='Display'>
-                    Subview
+                    {RenderSubView(view)}
                 </div>
 
                 {
