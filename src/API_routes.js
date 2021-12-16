@@ -3,6 +3,7 @@ export const API_address = "https://localhost:44363";
 //Routes
 //User
 export const getUserProfileById_API_route = '/api/v1/user/userprofile/id';
+export const patchUserProfileData_API_route = '/api/v1/user';
 //FileStorage
 export const fileStorageName_API_route = "/api/v1/fileStorage/file/name/";
 export const fileStorageGetUserImage = '/api/v1/filestorage/file/id';

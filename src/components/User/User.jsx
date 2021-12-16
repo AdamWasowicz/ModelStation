@@ -14,7 +14,7 @@ import Loading from '../Loading';
 
 
 //Helpers
-import { GetUserProfileById } from '../../helpers/PostHelper';
+import { GetUserProfileById, PatchUserProfile } from '../../helpers/PostHelper';
 
 
 //Styles
@@ -40,17 +40,13 @@ const User = () => {
     const [view, setView] = useState(0);
     const [loading, setLoading] = useState(true);
     //displayFields
-    const [name, setName] = useState(null);
-    const [surname, setSurname] = useState(null);
-    const [description, setDescription] = useState(null);
+    const [name, setName] = useState('');
+    const [surname, setSurname] = useState('');
+    const [description, setDescription] = useState('');
     //editFields
     const [e_name, setE_Name] = useState('');
     const [e_surname, setE_Surname] = useState('');
     const [e_description, setE_Description] = useState('');
-
-
-
-
     //Edit
     const [editMode, setEditMode] = useState(false);
 
@@ -62,24 +58,79 @@ const User = () => {
 
     useEffect(() => {
         if (userObject != null) {
-            setName(userObject.name);
-            setSurname(userObject.surname);
-            setDescription(userObject.description);
+            userObject.name != null 
+                ? setName(userObject.name)
+                : setName('');
 
-            name != null ? setE_Name(name) : null;
-            surname != null ? setE_Surname(surname) : null;
-            description != null ? setE_Description(description) : null;
+            userObject.surname != null
+            ? setSurname(userObject.surname)
+            : setName('');
+
+            userObject.description != null
+            ? setDescription(userObject.description)
+            : setName('')
+
+            userObject.name != null 
+                ? setE_Name(userObject.name) 
+                : null;
+
+            userObject.surname != null 
+                ? setE_Surname(userObject.surname) 
+                : null;
+                
+            userObject.description != null 
+            ? setE_Description(userObject.description) 
+            : null;
         }
     }, [userObject])
 
 
     //Functions
+    const ReplaceDisplayValuesForEditValues = () => {
+        setName(e_name);
+        setSurname(e_surname);
+        setDescription(e_description);
+    }
     const GetUserProfile = async () => GetUserProfileById(userId, setUserObject,setLoading);
+    const PatchUserProfileOnClick = async () => {
+        if (ValidateEditUserDataForm())
+        {
+            setLoading(true);
+            await PatchUserProfile(e_name, e_surname, e_description, setLoading);
+            ReplaceDisplayValuesForEditValues();
+            setEditMode(false);
+        }
+        else
+            alert('Niepoprawnie uzupełniony profil');
+
+    }
     const RenderSubView = (view) => {
         if (view == 0)
             return UserDataView();
     }
+    const ValidateEditUserDataForm = () => {
+        if (!(e_name?.length < 64))
+            return false;
 
+        if (!(e_surname?.length < 64))
+            return false;
+
+        if (e_description > 256)
+            return false;
+
+        return true;
+    }
+
+
+    //Handlers
+    const e_NameChangeHandler = (event) => setE_Name(event.target.value);
+    const e_SurnameChangeHandler = (event) => setE_Surname(event.target.value);
+    const e_DescriptionChangeHandler = (event) => {
+        event.target.value.length <= 256 
+        ? setE_Description(event.target.value)
+        : null;
+    }
+    const SwitchEditModeHandler = () => setEditMode(!editMode);
 
 
     //SubViews
@@ -98,32 +149,54 @@ const User = () => {
         )
     }
     const UserDataViewDisplay = () => {
-        if (!(name == null && surname == null && description == null))
+        if ((!(name == '' && surname == '' && description == '')) || editMode)
         return(
             <div className='UserDataViewDisplay'>
                 {
-                    name != null
+                    name != '' || editMode
                     ? <div className='UserInformation'>
                         <div className='UserInformationLabel'>Imię:</div>
-                        <div className='UserInformationValue'>{name}</div>
+                        {
+                            editMode == false
+                            ? <div className='UserInformationValue'>{name}</div>
+                            : <input 
+                                className='UserInformationValue-Input'
+                                value={e_name}
+                                onChange={e_NameChangeHandler}></input>
+                        }
+                        
                     </div>
                     : null
                 }
 
                 {
-                    surname != null
+                    surname != '' || editMode
                     ? <div className='UserInformation'>
                         <div className='UserInformationLabel'>Nazwisko:</div>
-                        <div className='UserInformationValue'>{surname}</div>
+                        {
+                            editMode == false
+                            ? <div className='UserInformationValue'>{surname}</div>
+                            : <input 
+                            className='UserInformationValue-Input'
+                            value={e_surname}
+                            onChange={e_SurnameChangeHandler}></input>
+                        }
                     </div>
                     : null
                 }
 
                 {
-                    description != null
+                    description != '' || editMode
                     ? <div className='UserDescription'>
                         <div className='UserDescriptionLabel'>O mnie:</div>
-                        <div className='UserDescriptionValue'>{description}</div>
+                        {
+                            editMode == false
+                            ? <div className='UserDescriptionValue'>{description}</div>
+                            : <textarea 
+                                className='UserDescriptionValue-Input'
+                                value={e_description}
+                                onChange={e_DescriptionChangeHandler}></textarea>
+                        }
                     </div>
                     : null
                 }
@@ -146,7 +219,7 @@ const User = () => {
 
 
     console.log(userObject);
-
+    
     if (loading == false)
         return (
             <div className='User'>
@@ -180,6 +253,18 @@ const User = () => {
                             <div className='StatValue'>{userObject.amountOfComments}</div>
                         </div>
                     </div>
+
+                    {
+                        editMode
+                        ? <div className='SaveButtonContainer'>
+                            <button
+                                className='SaveButton'
+                                onClick={PatchUserProfileOnClick}>
+                                    Zapisz
+                            </button>
+                        </div>
+                        : null
+                    }
                 </div>
 
                 <div className='Display'>
@@ -187,9 +272,16 @@ const User = () => {
                 </div>
 
                 {
-                    isLoggedIn && parseJwt(ReadLocalStorage('jwt')).userId == userId
+                    isLoggedIn && parseJwt(ReadLocalStorage('jwt')).UserId == userId
                         ? <div className='ManipulationPanel'>
-                            ManipulationPanel
+                            <button
+                                className={
+                                    editMode
+                                    ? 'SwitchButton-Active'
+                                    :'SwitchButton'
+                                }
+                                onClick={SwitchEditModeHandler}>
+                                    Edycja</button>
                         </div>
                         : null
                 }

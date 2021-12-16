@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_address, getPostByUserId, getUserPosts_APU_route, likePost_API_route, likedPost_create_or_edit_API_route, postCategory_GET_API_route, patchPost_API_route, uploadPost_API_route, deletePost_API_route, getUserProfileById_API_route
+import { API_address, getPostByUserId, getUserPosts_APU_route, likePost_API_route, likedPost_create_or_edit_API_route, postCategory_GET_API_route, patchPost_API_route, uploadPost_API_route, deletePost_API_route, getUserProfileById_API_route, patchUserProfileData_API_route
 } from "../API_routes";
 import { StoreContext } from "../store/StoreProvider";
 import react, {useState, useEffect} from 'react';
@@ -346,4 +346,34 @@ export async function GetUserProfileById(id, setUserObject, setLoading) {
         setLoading(false);
         console.log(e);
     });
+}
+
+export async function PatchUserProfile(name, surname, description, setLoading)
+{
+    const jwt = JSON.parse(window.localStorage.getItem('jwt'));
+
+    axios({
+        method: "PATCH",
+        url: `${API_address}${patchUserProfileData_API_route}`,
+        data: {
+            name: name,
+            surname: surname,
+            gender: null,
+            description: description
+        },
+        headers: { 
+            Authorization: "Bearer " + jwt
+        },
+    }).then(function (response) {
+        setLoading(false);
+        return;
+    }).catch(function (response)
+    {
+        console.log(response);
+        setLoading(false);
+        return;
+    });
+    
+    setLoading(false);
+    return;
 }

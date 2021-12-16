@@ -120,7 +120,7 @@
             
             //Size
             width: 100%;
-            height: 60%;
+            height: 35%;
 
 
             //Padding
@@ -137,7 +137,7 @@
 
                 //Size
                 width: 100%;
-                height: 20%;
+                height: 50%;
 
 
                 //Margin
@@ -215,6 +215,77 @@
                 }
             }
         }
+
+        //SaveButtonContainer
+        .SaveButtonContainer {
+
+            //Size
+            height: 25%;
+            width: 100%;
+            
+
+            //Flex
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+
+            //SaveButton
+            .SaveButton {
+                
+                //Size 
+                width: 90%;
+                height: 50%;
+
+
+                //Margin
+                margin-left: auto;
+                margin-right: auto;
+
+
+                //Font
+                font-family: $roboto;
+                font-size: 50px;
+
+
+                //Color
+                background-color: $main-color-11;
+                color: white;
+
+
+                //Border
+                border: 2px solid white;
+                border-radius: 20px;
+
+
+                //Hover
+                &:hover {
+
+                    //Color
+                    color: $main-color-8;
+                    border-color: $main-color-8;
+                    background-color: $main-color-1;
+
+
+                    //Cursor
+                    cursor: pointer;
+                }
+
+
+                //Active
+                &:active {
+
+                    //Color
+                    color: $main-color-10;
+                    border-color: $main-color-10;
+                    background-color: $main-color-1;
+
+
+                    //Cursor
+                    cursor: pointer;
+                }
+            }
+        }
     }
 
 
@@ -222,16 +293,11 @@
     .Display {
 
         //Size
-        width: 600px;
         height: 100%;
 
 
-        //Padding
-        //padding: 10px;
-
-
-        //Border
-        border-right: 2px solid $main-color-8;
+        //Flex
+        flex-grow: 1;
 
 
         //UserDataView
@@ -244,10 +310,6 @@
 
             //Padding
             padding: 10px;
-
-
-            //Color
-            color: white;
 
 
             //Information
@@ -293,7 +355,7 @@
 
                     //Size
                     width: 100%;
-                    height: 100px;
+                    height: 90px;
 
 
                     //Margin
@@ -318,7 +380,7 @@
                     .UserInformationLabel {
 
                         //Size
-                        width: 40%;
+                        width: 30%;
                         height: 100%;
 
 
@@ -338,6 +400,9 @@
 
                         //Border
                         border-right: 2px solid $main-color-2;
+
+                        //Color
+                        color: white;
                     }
 
 
@@ -345,7 +410,7 @@
                     .UserInformationValue {
 
                         //Size
-                        width: 60%;
+                        width: 70%;
                         height: 100%;
 
 
@@ -356,7 +421,7 @@
 
                         //Font
                         font-family: $noto;
-                        font-size: 40px;
+                        font-size: 30px;
 
 
                         //Padding
@@ -365,6 +430,27 @@
 
                         //Color
                         background-color: $main-color-12;
+                        color: white;
+
+
+                        &-Input {
+                            @extend .UserInformationValue;
+
+
+                            //Input
+                            outline: none;
+
+
+                            //Border
+                            border : 2px solid transparent;
+
+
+                            &:focus {
+
+                                //Border
+                                border : 2px solid $main-color-10;
+                            }
+                        }
                     }
                 }
 
@@ -376,7 +462,7 @@
                     
                     //Size
                     width: 100%;
-                    height: 300px;
+                    height: 430px;
 
                     
                     //Flex
@@ -409,9 +495,122 @@
 
                         //Font
                         font-size: 25px;
+
+
+                        //Input
+                        &-Input {
+                            @extend .UserDescriptionValue;
+
+
+                            //TextArea
+                            resize: none;
+                            outline: none;
+
+
+                            //Overflow
+                            overflow-x: hidden;
+
+                            
+                            //Fcous
+                            &:focus {
+
+                                //Border
+                                border: 2px solid $main-color-10;
+                            }
+                        }
                     }
                 }
             }
+        }
+    }
+
+    
+    //ManipulationPanel
+    .ManipulationPanel {
+
+        //Size
+        width: 250px;
+        height: 100%;
+
+        
+        //Text
+        text-align: center;
+
+        
+        //Padding
+        padding: 10px;
+
+
+        //Border
+        border-left: 2px solid $main-color-8;
+
+
+        //SwitchButton
+        .SwitchButton {
+
+            //Size
+            width: 90%;
+            height: 100px;
+
+
+            //Padding
+            padding: 10px;
+
+
+            //Font
+            font-family: $roboto;
+            font-size: 50px;
+
+
+            //Color
+            background-color: $main-color-12;
+            color: white;
+
+
+            //Border
+            border: 2px solid white;
+            
+
+            //Hover
+            &:hover {
+
+                //Color
+                color: $main-color-8;
+                background-color: $main-color-1;
+                border-color: $main-color-8;
+            }
+
+            
+            //Active
+            &:active {
+
+                //Color
+                color: $edit-color-1;
+                background-color: $main-color-1;
+                border-color: $edit-color-1;
+            }    
+
+
+            //EditMode
+            &-Active {
+                @extend .SwitchButton;
+
+                //Color
+                color: $edit-color-1;
+                background-color: $main-color-1;
+                border-color: $edit-color-1;
+
+
+                //Hover
+                &:hover {
+
+                    //Color
+                    color: white;
+                    background-color: $main-color-12;
+                    border-color: white;
+                }
+            }
+
         }
     }
 }
