@@ -39,6 +39,17 @@ const User = () => {
     const [userObject, setUserObject] = useState(null);
     const [view, setView] = useState(0);
     const [loading, setLoading] = useState(true);
+    //displayFields
+    const [name, setName] = useState(null);
+    const [surname, setSurname] = useState(null);
+    const [description, setDescription] = useState(null);
+    //editFields
+    const [e_name, setE_Name] = useState('');
+    const [e_surname, setE_Surname] = useState('');
+    const [e_description, setE_Description] = useState('');
+
+
+
 
     //Edit
     const [editMode, setEditMode] = useState(false);
@@ -48,6 +59,18 @@ const User = () => {
     useEffect(() => {
         GetUserProfile();
     }, [])
+
+    useEffect(() => {
+        if (userObject != null) {
+            setName(userObject.name);
+            setSurname(userObject.surname);
+            setDescription(userObject.description);
+
+            name != null ? setE_Name(name) : null;
+            surname != null ? setE_Surname(surname) : null;
+            description != null ? setE_Description(description) : null;
+        }
+    }, [userObject])
 
 
     //Functions
@@ -65,25 +88,56 @@ const User = () => {
         return (
             <div className='UserDataView'>
                 <div className='Information'>
-                    Dane użytkownika
+                    Dane użytkownika:
                 </div>
 
                 <div className='DataContainer'>
-                    {
-                        editMode == false
-                        ? UserDataViewDisplay()
-                        : null
-                    }
+                         {UserDataViewDisplay()}
                 </div>
             </div>
         )
     }
     const UserDataViewDisplay = () => {
+        if (!(name == null && surname == null && description == null))
         return(
-            <div className='UserDatViewDisplay'>
-                UserDataViewDisplay
+            <div className='UserDataViewDisplay'>
+                {
+                    name != null
+                    ? <div className='UserInformation'>
+                        <div className='UserInformationLabel'>Imię:</div>
+                        <div className='UserInformationValue'>{name}</div>
+                    </div>
+                    : null
+                }
+
+                {
+                    surname != null
+                    ? <div className='UserInformation'>
+                        <div className='UserInformationLabel'>Nazwisko:</div>
+                        <div className='UserInformationValue'>{surname}</div>
+                    </div>
+                    : null
+                }
+
+                {
+                    description != null
+                    ? <div className='UserDescription'>
+                        <div className='UserDescriptionLabel'>O mnie:</div>
+                        <div className='UserDescriptionValue'>{description}</div>
+                    </div>
+                    : null
+                }
             </div>
         )
+        else
+            return(
+                <div className='UserDataViewDisplay'>
+                    <div className='UserDescription'>
+                        <div className='UserDescriptionLabel'>Brak informacji:</div>
+                        <div className='UserDescriptionValue'>Ten użytkownik nie udostępnił żadnych informacji o sobie</div>
+                    </div>
+                </div>
+            )
 
     }
         

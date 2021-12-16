@@ -208,7 +208,8 @@
 
 
                     //Color
-                    background-color: white;
+                    background-color: $main-color-12;
+                    color: white;
 
 
                 }
@@ -272,6 +273,144 @@
 
                 //Color
                 color: $main-color-8;
+            }
+
+
+            //UserDataView
+            .UserDataViewDisplay {
+
+                //Size
+                width: 100%;
+                height: 90%;
+
+
+                //Padding
+                padding: 20px;
+
+
+                //UserInformation
+                .UserInformation {
+
+                    //Size
+                    width: 100%;
+                    height: 100px;
+
+
+                    //Margin
+                    margin-bottom: 20px;
+
+
+                    //Flex
+                    display: flex;
+                    flex-direction: row;
+
+
+                    //Color
+                    background-color: $main-color-11;
+
+
+                    //Border
+                    border: 2px solid $main-color-2;
+
+
+
+                    //UserInformationLabel
+                    .UserInformationLabel {
+
+                        //Size
+                        width: 40%;
+                        height: 100%;
+
+
+                        //Flex
+                        display: flex;
+                        align-items: center;
+
+
+                        //Font
+                        font-family: $roboto;
+                        font-size: 40px;
+
+
+                        //Padding
+                        padding: 10px;
+
+
+                        //Border
+                        border-right: 2px solid $main-color-2;
+                    }
+
+
+                    //UserInformationValue
+                    .UserInformationValue {
+
+                        //Size
+                        width: 60%;
+                        height: 100%;
+
+
+                        //Flex
+                        display: flex;
+                        align-items: center;
+
+
+                        //Font
+                        font-family: $noto;
+                        font-size: 40px;
+
+
+                        //Padding
+                        padding: 10px;
+
+
+                        //Color
+                        background-color: $main-color-12;
+                    }
+                }
+
+
+                //UserDescription
+                .UserDescription {
+                    @extend .UserInformation;
+
+                    
+                    //Size
+                    width: 100%;
+                    height: 300px;
+
+                    
+                    //Flex
+                    flex-direction: column;
+
+
+                    //UserDesriptionLabel
+                    .UserDescriptionLabel {
+                        @extend .UserInformationLabel;
+
+                        
+                        //Size
+                        width: 100%;
+                        height: 30%;
+                    }
+
+
+                    //UserDescriptionValue
+                    .UserDescriptionValue {
+                        @extend .UserInformationValue;
+
+                        //Size
+                        width: 100%;
+                        height: 70%;
+
+
+                        //Flex
+                        align-items: flex-start;
+
+
+                        //Font
+                        font-size: 25px;
+                    }
+                }
             }
         }
     }
