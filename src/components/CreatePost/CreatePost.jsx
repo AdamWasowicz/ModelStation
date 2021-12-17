@@ -24,12 +24,24 @@ const CreatePost = () => {
     const [files, setFiles] = useState({});
 
 
+    //Functions
+    const ValidateForm = () => {
+        if (title.length <= 0)
+            return false;
+        
+        return true;
+    }
+
+
     //Handlers
     const handleTitleChange = (event) => setTitle(event.target.value);
     const handleTextChange = (event) => setText(event.target.value);
     const handleFileChange = (event) => setFiles(event.target.files);
     const handlePostCategoryNameChange = (event) => setPostCategoryName(event.target.value);
-    const handleUpload = async () => await uploadPost(JSON.parse(window.localStorage.getItem('jwt')), title, text, postCategoryName, files);
+    const handleUpload = async () => 
+    ValidateForm()
+    ? await uploadPost(JSON.parse(window.localStorage.getItem('jwt')), title, text, postCategoryName, files)
+    : alert('Niepoprawnie wypełniony formularz');
 
 
     if (isLoggedIn) {
