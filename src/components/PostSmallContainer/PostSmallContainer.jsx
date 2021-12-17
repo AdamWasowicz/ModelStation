@@ -24,7 +24,7 @@ const PostSmallContainer = () => {
         q_title, q_categoryName, q_sortOrder, q_sortArgument } = useContext(StoreContext);
 
     const { loading, error, hasMore } = postQueryExecutor(
-        q_categoryName, q_title, "", currentPage, 3, q_sortOrder, q_sortArgument, posts, setPosts
+        q_categoryName, q_title, "", currentPage, 6, q_sortOrder, q_sortArgument, posts, setPosts
     );
 
 

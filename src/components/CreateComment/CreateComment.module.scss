@@ -200,8 +200,10 @@ $upload-button-color: yellowgreen;
 
 
             &:hover {
+                
                 border: 3px solid $save-color-1;
                 color: $save-color-1;
+                cursor: pointer;
             }
         }
     }

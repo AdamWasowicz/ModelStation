@@ -77,8 +77,10 @@ $like-button-height-percent: 30%;
                 border-radius: 10px;
 
                 &:hover {
+
                     border: 2px solid $like-up-color-1;
                     color: $like-up-color-1;
+                    cursor: pointer;
                 }
 
                 &-Active {
@@ -123,8 +125,10 @@ $like-button-height-percent: 30%;
                 border-radius: 10px;
 
                 &:hover {
+                    
                     border: 2px solid $like-down-color-1;
                     color: $like-down-color-1;
+                    cursor: pointer;
                 }
 
                 &-Active {
@@ -228,6 +232,14 @@ $like-button-height-percent: 30%;
 
                 //Text
                 text-align: center;
+
+
+                //Hover
+                &:hover {
+
+                    //Cursor
+                    cursor: pointer;
+                }
 
 
                 .UserName {

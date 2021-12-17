@@ -8,7 +8,7 @@ const style = bemCssModules(PostBannerContainerStyles);
 
 
 //Components
-import PostBanner from '../PostBanner';
+import PostBanner from '../PostBanner_OLD';
 
 
 const PostBannerContainer = ({ setPostData, postsArray }) => {   

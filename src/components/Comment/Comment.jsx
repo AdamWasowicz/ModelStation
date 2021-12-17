@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useContext } from 'react';
-import { useParams } from 'react-router';
+import { useParams, useNavigate } from 'react-router';
 import {StoreContext} from '../../store/StoreProvider'
 import { API_address, fileStorageGetUserImage } from '../../API_routes';
 
@@ -39,6 +39,10 @@ const Comment = ({ commentObject, HandleCommentDeletion }) => {
 
     //useContext
     const { isLoggedIn } = useContext(StoreContext);
+
+
+    //useNavigate
+    const navigate = useNavigate();
 
 
     //useParams
@@ -115,6 +119,7 @@ const Comment = ({ commentObject, HandleCommentDeletion }) => {
         setVisible(false);
         HandleCommentDeletion(id)
     }
+    const RedirectToUserProfile = () => navigate('/user/' + commentObject.userName);
 
 
     //Functions
@@ -184,11 +189,13 @@ const Comment = ({ commentObject, HandleCommentDeletion }) => {
 
             <div className='Main'>
                 <div className='UserInformation'>
-                    <div className='UserNameLabel'>
-                        U/
-                        <div className='UserName'>
-                            {comment.userName}
-                        </div>
+                    <div 
+                        className='UserNameLabel'
+                        onClick={RedirectToUserProfile}>
+                            U/
+                            <div className='UserName'>
+                                {comment.userName}
+                            </div>
                     </div>
 
                     <img 

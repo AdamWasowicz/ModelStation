@@ -23,6 +23,8 @@ const SearchBar = () => {
     //ResetCurrentPageNumber
     useEffect( () => {
         setCurrentPage(1);
+        set_q_Title('');
+        set_q_CategoryName('');
     }, [] )
 
     useEffect( () => {

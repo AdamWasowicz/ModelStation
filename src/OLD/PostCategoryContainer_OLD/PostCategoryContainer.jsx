@@ -8,7 +8,7 @@ const style = bemCssModules(PostCategoryContainerStyle);
 
 
 //Components
-import PostCategory from '../PostCategory/PostCategory';
+import PostCategory from '../PostCategory_OLD/PostCategory';
 
 
 //Helpers

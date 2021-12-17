@@ -53,6 +53,7 @@ const User = () => {
 
     //useEffect
     useEffect(() => {
+        setUserObject(null);
         GetUserProfile();
     }, [])
 
@@ -131,6 +132,7 @@ const User = () => {
         : null;
     }
     const SwitchEditModeHandler = () => setEditMode(!editMode);
+    const NavigateToUserPostsHandler = () => (userObject != null ? navigate('/userposts/' + userObject.userName) : null);
 
 
     //SubViews
@@ -243,7 +245,9 @@ const User = () => {
                     </div>
 
                     <div className='UserStats'>
-                        <div className='StatContainer'>
+                        <div 
+                            className='StatContainer-Posts'
+                            onClick={NavigateToUserPostsHandler}>
                             <div className='StatLabel'>Posty:</div>
                             <div className='StatValue'>{userObject.amountOfPosts}</div>
                         </div>
@@ -272,7 +276,7 @@ const User = () => {
                 </div>
 
                 {
-                    isLoggedIn && parseJwt(ReadLocalStorage('jwt')).UserId == userId
+                    isLoggedIn && parseJwt(ReadLocalStorage('jwt')).UserId == userObject?.id
                         ? <div className='ManipulationPanel'>
                             <button
                                 className={

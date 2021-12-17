@@ -147,7 +147,7 @@
                 //Flex
                 display: flex;
                 flex-direction: row;
-                
+
 
                 //StatLabel
                 .StatLabel {
@@ -212,6 +212,104 @@
                     color: white;
 
 
+                }
+            }
+
+
+            //StatContainer-Posts
+            .StatContainer-Posts {
+                @extend .StatContainer;
+
+                //Color
+                color: $main-color-8;
+                border: 2px solid $main-color-2;
+
+
+                //Hover
+                &:hover .StatLabel {
+
+                    //Color
+                    color: $main-color-10;
+                    border-color: $main-color-10;
+
+
+                    //Cursor
+                    cursor: pointer;
+                }
+
+                &:hover .StatValue {
+
+                    //Color
+                    color: $main-color-10;
+                    border-color: $main-color-10;
+
+
+                    //Cursor
+                    cursor: pointer;
+                }
+
+
+                //StatLabel
+                .StatLabel {
+
+                    //Size
+                    width: 60%;
+                    height: 100%;
+
+
+                    //Padding
+                    padding: 10px;
+
+
+                    //Font
+                    font-family: $roboto;
+                    font-size: 35px;
+
+
+                    //Flex
+                    display: flex;
+                    align-items: center;
+
+
+                    //Color
+                    color: $main-color-8;
+                    background-color: $main-color-11;
+                    //border: 2px solid $main-color-2;
+                }
+
+
+                //StatValue
+                .StatValue {
+
+                    //Size
+                    width: 40%;
+                    height: 100%;
+
+
+                    //Padding
+                    padding: 10px;
+
+
+                    //Font
+                    font-family: $roboto;
+                    font-size: 45px;
+                    font-weight: 900;
+
+
+                    //Flex
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+
+                    //Border
+                    //border: 2px solid $main-color-2;
+                    //border-left: none;
+
+
+                    //Color
+                    background-color: $main-color-12;
+                    color: white;
                 }
             }
         }
@@ -578,6 +676,10 @@
                 color: $main-color-8;
                 background-color: $main-color-1;
                 border-color: $main-color-8;
+
+
+                //Cursor
+                cursor: pointer;
             }
 
             
@@ -588,6 +690,10 @@
                 color: $edit-color-1;
                 background-color: $main-color-1;
                 border-color: $edit-color-1;
+
+
+                //Cursor
+                cursor: pointer;
             }    
 
 
@@ -608,6 +714,10 @@
                     color: white;
                     background-color: $main-color-12;
                     border-color: white;
+
+
+                    //Cursor
+                    cursor: pointer;
                 }
             }
 

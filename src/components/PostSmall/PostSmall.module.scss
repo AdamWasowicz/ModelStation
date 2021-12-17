@@ -230,6 +230,14 @@ $like-arrow-font-size: 50px;
                     color: $main-color-8;
 
 
+                    //Hover
+                    &:hover {
+
+                        //Cursor
+                        cursor: pointer;
+                    }
+
+
                     .UserName {
                         display: inline;
                         color: $main-color-5;
@@ -284,6 +292,14 @@ $like-arrow-font-size: 50px;
                 //Color
                 color: $main-color-5;
                 border-bottom: 2px solid $main-color-2;
+
+
+                //Hover
+                &:hover {
+
+                    //Cursor
+                    cursor: pointer;
+                }
             }
         }
 
@@ -322,6 +338,14 @@ $like-arrow-font-size: 50px;
                 background-color: $main-color-9;
                 border-bottom: 2px solid $main-color-2;
                 color: white;
+
+
+                //Hover
+                &:hover {
+
+                    //Cursor
+                    cursor: pointer;
+                }
             }
 
 

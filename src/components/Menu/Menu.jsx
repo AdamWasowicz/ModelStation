@@ -43,7 +43,10 @@ const Menu = () => {
         navigate('/');
     }
     const ChangeRegisterFormOpenHandler = () => setRegisterFormOpen(!registerFormOpen);
-    const handleGoToUserProfileOnClick = () => navigate(`user/` + ReadLocalStorage('user').id)
+    const handleGoToUserProfileOnClick = () => 
+    {
+        navigate(`/myprofile/` + ReadLocalStorage('user').userName);
+    }
 
     return (
         <div className='Menu'>

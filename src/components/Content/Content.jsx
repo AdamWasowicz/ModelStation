@@ -7,10 +7,10 @@ import StoreProvider, { StoreContext } from '../../store/StoreProvider';
 //Components
 import CreatePost from '../CreatePost';
 import PostSmallContainer from '../PostSmallContainer';
-import EditPost from '../EditPost';
 import PostBigContainer from '../PostBigContainer';
 import AccountCreated from '../AccountCreated';
 import User from '../User';
+import UserPosts from '../UserPosts';
 
 
 //Styles
@@ -32,16 +32,26 @@ const Content = () => {
 
     }, [])
 
+    //Maybe it is stupid but it works
+    const MyProfile = () => {
+        return(
+         <div>
+                <User/>
+            </div>
+        )
+    }
+
     return (
         <React.Fragment>
             <div className={style()}>
                 <Routes>
                     <Route path='/' element={<PostSmallContainer/>}/>
-                    <Route path='createpost' element={<CreatePost/>}/>
-                    <Route path='editpost' element={<EditPost/>}/>
-                    <Route path='post/:postId' element={<PostBigContainer/>}/>
-                    <Route path='accountcreated' element={<AccountCreated/>}/>
-                    <Route path='user/:userId' element={<User/>}/>
+                    <Route path='/createpost' element={<CreatePost/>}/>
+                    <Route path="/post/:postId" element={<PostBigContainer/>}/>
+                    <Route path='/accountcreated' element={<AccountCreated/>}/>
+                    <Route path="/user/:userId" element={<User/>}/>
+                    <Route path='/myprofile/:userId' element={<MyProfile/>}/>
+                    <Route path="/userposts/:userName" element={<UserPosts/>}/>
                 </Routes> 
             </div>
         </React.Fragment>

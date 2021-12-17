@@ -27,6 +27,7 @@ const Header = () => {
             <div className={block('bannerImage')} alt='bannerImage'>Image</div>
             <Routes>
                 <Route path='/' element={<SearchBarContainer/>}/> 
+                <Route path='/userPosts/:userName' element={<SearchBarContainer/>}/> 
             </Routes>
         </header>
     )

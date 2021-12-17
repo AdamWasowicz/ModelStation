@@ -13,12 +13,12 @@ const style = bemCssModules(EditPostStyles);
 
 
 //Components
-import NotLoggedException from '../NotLoggedException';
-import Loading from '../Loading';
-import UserHasNoPostsException from '../UserHasNoPostsException';
-import Error from '../Error';
-import PostCategoryContainer from '../PostCategoryContainer';
-import PostBannerContainer from '../PostBannerContainer';
+import NotLoggedException from '../../components/NotLoggedException';
+import Loading from '../../components/Loading';
+import UserHasNoPostsException from '../../components/UserHasNoPostsException';
+import Error from '../../components/Error';
+import PostCategoryContainer from '../PostCategoryContainer_OLD';
+import PostBannerContainer from '../PostBannerContainer_OLD';
 
 
 const EditPost = () => {

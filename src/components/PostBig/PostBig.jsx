@@ -143,6 +143,8 @@ const PostBig = ({editMode, postObject}) => {
         alert("Pomyślnie usunięto post");
         navigate('../');
     }
+    const RedirectToUserProfile = () => navigate('/user/' + post.userName);
+
     
     
     //EditModeHandlers
@@ -201,7 +203,9 @@ const PostBig = ({editMode, postObject}) => {
             <div className='Main'>
                 <div className='Information'>
                     <div className='UserNameANDpostCategory'>
-                        <h4 className='UserNameLabel'>U/
+                        <h4 
+                            className='UserNameLabel'
+                            onClick={RedirectToUserProfile}>U/
                             <div className='UserName'>
                                 {post.userName}
                             </div>

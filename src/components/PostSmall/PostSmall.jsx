@@ -20,6 +20,8 @@ const PostSmall = React.forwardRef((postObject, ref) => {
     //Post
     const post = postObject.postObject;
 
+    console.log(postObject);
+
     //useState
     const [id, setId] = useState(postObject.postObject.id);
     const [photos, setPhotos] = useState([]);
@@ -61,10 +63,8 @@ const PostSmall = React.forwardRef((postObject, ref) => {
         }
     }
     const RedirectToPostBig = () => {
-        navigate(`post/` + id);
+        navigate(`/post/` + post.id);
     }
-    
-
     
     //Handlers
     const likeUpButtonHandler = async () => {
@@ -112,6 +112,7 @@ const PostSmall = React.forwardRef((postObject, ref) => {
     const handleReditect = (event) => {
         RedirectToPostBig();
     }
+    const RedirectToUserProfile = () => navigate('/user/' + post.userName);
 
 
     return (
@@ -137,11 +138,14 @@ const PostSmall = React.forwardRef((postObject, ref) => {
                     </div>
                 </div>
 
-                <div className='Main' onClick={handleReditect}>
+                <div className='Main'>
                     <div className='Information'>
                         <div className='UserNameANDpostCategory'>
-                            <h4 className='UserNameLabel'>U/
-                                <div className='UserName'>
+                            <h4 
+                                className='UserNameLabel'
+                                onClick={RedirectToUserProfile}>U/
+                                <div 
+                                    className='UserName'>
                                     {post.userName}
                                 </div>
                             </h4>
@@ -158,14 +162,18 @@ const PostSmall = React.forwardRef((postObject, ref) => {
                             }
                         </div>
 
-                        <div className='Title'>
+                        <div 
+                            className='Title'
+                            onClick={handleReditect}>
                             {post.title}
                         </div>
                     </div>
 
                     <div className='PostContent'>
-                        <div className='Text'>
-                            {post.text}
+                        <div 
+                            className='Text'
+                            onClick={handleReditect}>
+                                {post.text}
                         </div>
 
                         {

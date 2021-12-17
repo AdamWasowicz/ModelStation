@@ -68,6 +68,12 @@ export async function LikePostHelper_GET(jwt, postId) {
     let error = false;
     let value = 0;
 
+    if (jwt == null)
+    {
+        error = true;
+        return {error, value};
+    }
+
     await axios({
         method: 'GET',
         url: `${API_address}${likePost_API_route}` + postId,

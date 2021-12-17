@@ -198,6 +198,8 @@
 
             //Hover
             &:hover .DropDownContent {
+
+                //Display
                 display: block;
             }
 
@@ -250,6 +252,10 @@
 
                     //Color
                     color: $main-color-8-2;
+
+
+                    //Cursor
+                    cursor: pointer;
                 }
 
 
@@ -269,6 +275,10 @@
 
                     //Color
                     color: $main-color-10;
+
+
+                    //Cursor
+                    cursor: pointer;
                 }
             }
 
@@ -345,6 +355,10 @@
 
                         //Color
                         color: $main-color-8-2;
+
+
+                        //Cursor
+                        cursor: pointer;
                     }
 
 
@@ -364,6 +378,10 @@
 
                         //Color
                         color: $main-color-10;
+
+
+                        //Cursor
+                        cursor: pointer;
                     }
 
 
