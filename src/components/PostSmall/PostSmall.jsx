@@ -11,8 +11,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { default as PostSmallStyles } from './PostSmall.module.scss'
 const style = bemCssModules(PostSmallStyles);
 
+
 //Helpers
 import { LikePostHelper_GET, LikedPostHelper_POST } from '../../helpers/PostHelper';
+
+
+//Components
+import ImageModal from '../ImageModal';
 
 
 
@@ -28,7 +33,12 @@ const PostSmall = React.forwardRef((postObject, ref) => {
     const [currentLikeStatus, setCurrentLikeStatus] = useState(0);
     const [amountOfLikes, setAmountOfLikes] = useState(post.likes);
     const [error, setError] = useState(false);
+    const [modalOpen, setModalOpen] = useState(false);
+
+
+    //useNavigare
     const navigate = useNavigate();
+
 
     //useContext
     const { isLoggedIn } = useContext(StoreContext);
@@ -113,7 +123,8 @@ const PostSmall = React.forwardRef((postObject, ref) => {
         RedirectToPostBig();
     }
     const RedirectToUserProfile = () => navigate('/user/' + post.userName);
-
+    const OpenImageModal = () => setModalOpen(true);
+    const CloseImageModal = () => setModalOpen(false);
 
     return (
         <React.Fragment>
@@ -179,11 +190,19 @@ const PostSmall = React.forwardRef((postObject, ref) => {
                         {
                             photos.length != 0 
                             ? (<div className='Photos'>
-                                <img src={photos[0]} className='image'/>
-                            </div>) 
+                                <img 
+                                    src={photos[0]} 
+                                    className='image'
+                                    onClick={OpenImageModal}/></div>) 
                             : null}
                     </div>
                 </div>
+
+                {
+                    modalOpen && photos[0] != null
+                    ? <ImageModal handleOnClose={CloseImageModal} imgFullSrc={photos[0]}/>
+                    : null
+                }
             </div>
         </React.Fragment>
     )

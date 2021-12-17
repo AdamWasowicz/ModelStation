@@ -1,0 +1,17 @@
+@import '../../StyleConstants.scss';
+
+.ImageModal {
+
+    //Border
+    border: 2px solid $main-color-2;
+
+    img {
+
+        //Size
+        max-width: 1500px;
+
+
+        //Object
+        object-fit: contain;
+    }
+}

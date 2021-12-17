@@ -15,6 +15,7 @@ import { LikePostHelper_GET, LikedPostHelper_POST, updatePost} from '../../helpe
 
 //Components
 import DeletePostModal from './DeletePostModal';
+import ImageModal from '../ImageModal';
 
 
 const PostBig = ({editMode, postObject}) => {
@@ -38,6 +39,7 @@ const PostBig = ({editMode, postObject}) => {
     const [currEditMode, setCurrEditMode] = useState(editMode);
     const [currDeleteMode, setCurrentDeleteMode] = useState(false);
     const [error, setError] = useState(false);
+    const [modalOpen, setModalOpen] = useState(false);
 
 
     //useContext
@@ -52,6 +54,7 @@ const PostBig = ({editMode, postObject}) => {
     const navigate = useNavigate();
 
 
+    //useEffect
     useEffect(() => {
         CheckIfUserLikedPost();
 
@@ -144,7 +147,8 @@ const PostBig = ({editMode, postObject}) => {
         navigate('../');
     }
     const RedirectToUserProfile = () => navigate('/user/' + post.userName);
-
+    const OpenImageModal = () => setModalOpen(true);
+    const CloseImageModal = () => setModalOpen(false);
     
     
     //EditModeHandlers
@@ -253,7 +257,10 @@ const PostBig = ({editMode, postObject}) => {
                     }
 
                     {post.files.length != 0 ? (<div className='Photos'>
-                        <img src={`${API_address}${fileStorageName_API_route}${post.files[0].storageName}`} className='image' />
+                        <img 
+                            src={`${API_address}${fileStorageName_API_route}${post.files[0].storageName}`} 
+                            className='image' 
+                            onClick={OpenImageModal}/>
                     </div>) : null}
                 </div>
             </div>
@@ -295,6 +302,12 @@ const PostBig = ({editMode, postObject}) => {
                     handleOnCancel={ExitDeleteModeHandler }
                     handleOnDeletion={AfterDeletionHandler}
                 />
+                : null
+            }
+
+            {
+                modalOpen && post.files.length != 0
+                ? <ImageModal handleOnClose={CloseImageModal} imgFullSrc={`${API_address}${fileStorageName_API_route}${post.files[0].storageName}`}/>
                 : null
             }
         </div>

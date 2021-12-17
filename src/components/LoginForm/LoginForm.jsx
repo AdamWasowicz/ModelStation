@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 
 
 //Components
-import Modal from '../Modal/Modal';
+import Modal from '../Modal';
 import { StoreContext } from '../../store/StoreProvider';
 import { LoginHelper } from '../../helpers/AccountHelper';
 

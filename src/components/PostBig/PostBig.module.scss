@@ -77,6 +77,10 @@ $like-arrow-down-active-color: red;
                 &:hover {
                     border: 2px solid $like-up-color-1;
                     color: $like-up-color-1;
+
+
+                    //Cursor
+                    cursor: pointer;
                 }
 
                 &-Active {
@@ -98,6 +102,10 @@ $like-arrow-down-active-color: red;
                     &:hover {
                         border: 2px solid $like-up-color-2;
                         color: $like-up-color-2;
+
+
+                        //Cursor
+                        cursor: pointer;
                     }
                 }
 
@@ -124,6 +132,10 @@ $like-arrow-down-active-color: red;
                 &:hover {
                     border: 2px solid $like-down-color-1;
                     color: $like-down-color-1;
+
+
+                    //Cursor
+                    cursor: pointer;
                 }
 
                 &-Active {
@@ -145,6 +157,10 @@ $like-arrow-down-active-color: red;
                     &:hover {
                         border: 2px solid $like-down-color-2;
                         color: $like-down-color-2;
+
+
+                        //Cursor
+                        cursor: pointer;
                     }
                 }
             }
