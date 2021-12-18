@@ -28,7 +28,13 @@ const UserPosts = () => {
 
     //useParams
     const userName = useParams().userName;
+    console.log(userName);
 
+
+    //useEffect
+    useEffect( () => {
+        setPosts([]);
+    }, [])
 
     //LoadPosts
     const {loading, error, hasMore} = postQueryExecutor(q_categoryName, q_title,userName, currentPage, 4, q_sortOrder, q_sortArgument, posts, setPosts);

@@ -104,7 +104,7 @@ export async function ChangePassword(currentPassword, newPassword, setLoading, s
     });
 }
 
-export async function DeleteAccount(currentPassword, setLoading, setIsLoggedIn, setView, setError) {
+export async function DeleteAccount(currentPassword, setLoading, setIsLoggedIn, setView, setError, setDeleteModalOpen) {
     const jwt = JSON.parse(window.localStorage.getItem('jwt'));
 
     await axios({
@@ -121,6 +121,7 @@ export async function DeleteAccount(currentPassword, setLoading, setIsLoggedIn, 
             alert('Pomyślnie usunięto konto');
             setIsLoggedIn(false);
             setLoading(false);
+            setDeleteModalOpen(false);
         }
         else {
             setError(result.data);

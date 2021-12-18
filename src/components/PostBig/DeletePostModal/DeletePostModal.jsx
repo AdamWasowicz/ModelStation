@@ -35,9 +35,9 @@ const DeletePostModal = ({postObject, handleOnCancel, handleOnDeletion}) => {
 
     return (
         <Modal 
-        closeOnBackgroundClick={false} 
-        isOpen={true} 
-        handleOnClose={null}>
+            closeOnBackgroundClick={false} 
+            isOpen={true} 
+            handleOnClose={null}>
             <div className='DeletePostModal'>
                 <div className='Information'>
                     Czy napewno chcesz usunąć ten post?

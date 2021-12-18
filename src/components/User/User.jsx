@@ -11,6 +11,7 @@ import { API_address, fileStorageGetUserImage } from '../../API_routes';
 
 //Components
 import Loading from '../Loading';
+import DeleteAccountModal from './DeleteAccountModal';
 
 
 //Helpers
@@ -49,13 +50,15 @@ const User = () => {
     const [e_name, setE_Name] = useState('');
     const [e_surname, setE_Surname] = useState('');
     const [e_description, setE_Description] = useState('');
-    //Edit
+    //Flags
     const [editMode, setEditMode] = useState(false);
+    const [deleteModalOpen, setDeleteModalOpen] = useState(false);
     //changePasswordsFields
     const [currentPassword, setCurrentPassword] = useState('');
     const [newPassword, setNewPassword] = useState('')
     const [repeatNewPassword, setRepeatNewPassword] = useState('');
     const [pcValidationMsg, setPcValidationMsg] = useState('');
+
 
 
     //useEffect
@@ -112,6 +115,10 @@ const User = () => {
             alert('Niepoprawnie uzupełniony profil');
 
     }
+    const DeleteAccountHandler = async(cPassword, sLoading, sError) => {
+        await DeleteAccount(cPassword, sLoading, setIsLoggedIn, setView, sError, setDeleteModalOpen);
+    }
+    //Other
     const ChangePasswordOnClick = async () => {
         ValidatePasswordChangeForm()
             ? await ChangePassword(currentPassword, newPassword, setLoading, setIsLoggedIn, setView, setError) : alert('Niepoprawnie wypełniony formularz');
@@ -260,7 +267,7 @@ const User = () => {
                 <div className='PasswordControl'>
                     <div className='Information'>Zmiana hasła:</div>
                     <div className={error != -2 ? 'Field' : 'Field-Invalid'}>
-                        <div className='FieldLabel'>Poprzednie hasło:</div>
+                        <div className='FieldLabel'>Obecne hasło:</div>
                         <input
                             type='password'
                             className='FieldValue'
@@ -293,8 +300,20 @@ const User = () => {
                     </button>
                 </div>
 
-                <div className='DeleteAccount'>
+                <div className='DeleteAccountControl'>
+                    {
+                        deleteModalOpen
+                        ? <DeleteAccountModal 
+                            DeleteAction={DeleteAccountHandler}
+                            OnCancel={ () => setDeleteModalOpen(false) }/>
+                        : null
+                    }
 
+                    <button
+                        className='DeleteAccount'
+                        onClick={() => setDeleteModalOpen(true)}>
+`                           Usuń konto
+                    </button>
                 </div>
             </div>
         )

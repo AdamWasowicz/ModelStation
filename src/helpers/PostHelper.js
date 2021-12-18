@@ -185,7 +185,7 @@ export default function postQueryExecutor(PostCategory, Title, UserName, Current
         let params = {
         PostCategory: PostCategory, 
         Title: Title,
-        UserName: '',
+        UserName: UserName,
         CurrentPage: CurrentPage,
         NumberOfPosts: NumberOfPosts,
         OrderByDirection: GetSortOrder(SortOrder),

@@ -722,9 +722,17 @@
                         height: 100%;
 
 
+                        //Padding
+                        padding: 10px;
+
+
                         //Font
                         font-family: $noto;
                         font-size: 30px;
+
+
+                        //Text
+                        letter-spacing: 2px;
                         
 
                         //InputSpecfic
@@ -793,9 +801,6 @@
                 }
 
             }
-
-
-          
         }
 
 
