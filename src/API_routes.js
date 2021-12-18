@@ -10,6 +10,8 @@ export const fileStorageGetUserImage = '/api/v1/filestorage/file/id';
 //Account
 export const login_API_route = "/api/v1/account/login";
 export const register_API_route = "/api/v1/user";
+export const changeUserPassword_API_route = '/api/v1/account';
+export const deleteAccount_API_route = '/api/v1/account';
 //LikedPost
 export const likePost_API_route = "/api/v1/likedpost/post/id/";
 export const likedPost_create_or_edit_API_route = "/api/v1/likedpost/create_or_edit";

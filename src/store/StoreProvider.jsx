@@ -1,4 +1,5 @@
 import React, { createContext, useState } from "react";
+import { useEffect } from "react/cjs/react.development";
 
 require("regenerator-runtime/runtime");
 
@@ -21,6 +22,12 @@ const StoreProvider = ( { children} ) => {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(JSON.parse(window.localStorage.getItem('jwt')) ? true : false);
+
+
+    useEffect( () => {
+        if (isLoggedIn == false)
+            window.localStorage.clear();
+    }, [isLoggedIn])
 
     return (
         <StoreContext.Provider value={{
