@@ -15,7 +15,7 @@ import DeleteAccountModal from './DeleteAccountModal';
 
 
 //Helpers
-import { GetUserProfileById, PatchUserProfile } from '../../helpers/PostHelper';
+import { GetUserProfileById, PatchUserProfile, UploadUserProfileImage } from '../../helpers/PostHelper';
 import { DeleteAccount, ChangePassword } from '../../helpers/AccountHelper';
 
 
@@ -58,6 +58,8 @@ const User = () => {
     const [newPassword, setNewPassword] = useState('')
     const [repeatNewPassword, setRepeatNewPassword] = useState('');
     const [pcValidationMsg, setPcValidationMsg] = useState('');
+    //PictureChange
+    const [files, setFiles] = useState(null);
 
 
 
@@ -118,17 +120,25 @@ const User = () => {
     const DeleteAccountHandler = async(cPassword, sLoading, sError) => {
         await DeleteAccount(cPassword, sLoading, setIsLoggedIn, setView, sError, setDeleteModalOpen);
     }
-    //Other
     const ChangePasswordOnClick = async () => {
         ValidatePasswordChangeForm()
             ? await ChangePassword(currentPassword, newPassword, setLoading, setIsLoggedIn, setView, setError) : alert('Niepoprawnie wypełniony formularz');
     }
+    const UploadNewUserProfileImageOnClick = async () => {
+        files != null 
+        ? await UploadUserProfileImage(files, setLoading, setError, setView)
+        : alert('Nie wybrano zdjęcia');
+    }
+    //Other
     const RenderSubView = (view) => {
         if (view == 0)
             return UserDataView();
 
         if (view == 1)
             return UserAccountControlView();
+
+        if (view == 2)
+            return ChangePictureView();
 
         if (view == 12)
             return AccountChangeFailed();
@@ -166,6 +176,7 @@ const User = () => {
     //Other
     const SwitchEditModeHandler = () => setEditMode(!editMode);
     const NavigateToUserPostsHandler = () => (userObject != null ? navigate('/userposts/' + userObject.userName) : null);
+    //View
     const SwitchToAccountPanelHandler = () => {
         setEditMode(false);
         setView(1);
@@ -174,10 +185,15 @@ const User = () => {
         setEditMode(false);
         setView(0);
     }
+    const SwitchToPictureViewHandler = () => {
+        setEditMode(false);
+        setView(2);
+    }
     //PasswordChangeHandlers
     const CurrentPasswordChangeHandler = (event) => setCurrentPassword(event.target.value);
     const NewPasswordChangeHandler = (event) => setNewPassword(event.target.value);
     const RepeatNewPasswordChangeHandler = (event) => setRepeatNewPassword(event.target.value);
+    const handleFileChange = (event) => setFiles(event.target.files);
 
 
 
@@ -257,6 +273,7 @@ const User = () => {
             </div>
         )
     }
+
     //UserChangePassword
     const UserAccountControlView = () => {
         return (
@@ -316,6 +333,8 @@ const User = () => {
             </div>
         )
     }
+
+    //AccountChangeFailed
     const AccountChangeFailed = () => {
         return (
             <div className='AccountChangeFailed'>
@@ -329,6 +348,39 @@ const User = () => {
                     onClick={SwitchToAccountPanelHandler}>
                     Powrót
                 </button>
+            </div>
+        )
+    }
+
+    //ChangePictureView
+    const ChangePictureView = () => {
+
+        return (
+            <div className='ChangePictureView'>
+                <div className='InfoContainer'>
+                    <div className='Information'>Zmiana zdjęcia</div>
+                    <div className='Description'>
+                        Aby zmienić swoje zdjęcie profilowe najpierw wybierz zdjęcie a następnie naciśnij przcisk, po pomyślnej zmianie zdjęcia odśwież strone aby zobaczyć zmiany
+                    </div>
+                </div>
+
+                <div className='InputContainer'>
+                    <div className='InputField'>
+                        <div className='InputFieldLabel'>Zdjęcie: </div>
+                        <input 
+                            className='FileInput' 
+                            type="file" 
+                            id="file" 
+                            accept=".png, .jpg, .jpeg" 
+                            onChange={handleFileChange} />
+                    </div>
+
+                    <button 
+                        className='Button'
+                        onClick={UploadNewUserProfileImageOnClick}>
+                            Wyślij
+                    </button>
+                </div>
             </div>
         )
     }
@@ -427,6 +479,16 @@ const User = () => {
                                 }
                                 onClick={SwitchToAccountPanelHandler}>
                                 Konto
+                            </button>
+
+                            <button
+                                className={
+                                    view == 2
+                                        ? 'SwitchButton-Active'
+                                        : 'SwitchButton'
+                                }
+                                onClick={SwitchToPictureViewHandler}>
+                                Zdjęcie
                             </button>
                         </div>
                         : null

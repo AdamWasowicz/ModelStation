@@ -872,6 +872,221 @@
         }
 
 
+        //ChangePictureView
+        .ChangePictureView {
+
+            //Size
+            width: 740px;
+            height: 100%;
+
+
+            //Padding
+            padding: 20px;
+
+
+            //Flex
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+
+
+            //InfoContainer
+            > .InfoContainer {
+
+                //Size
+                width: 100%;
+                height: 400px;
+
+
+                //Information
+                .Information {
+
+                    //Size
+                    width: 100%;
+                    height: 100px;
+
+
+                    //Font
+                    font-family: $roboto;
+                    font-size: 55px;
+
+
+                    //Text
+                    letter-spacing: 4px;
+                    text-align: center;
+
+
+                    //Color
+                    color: $main-color-8;
+                }
+
+
+                //Description
+                .Description {
+
+                    //Size
+                    width: 100%;
+                    height: 300px;
+
+
+                    //Padding
+                    padding: 10px;
+
+
+                    //Font
+                    font-family: $noto;
+                    font-size: 35px;
+
+
+                    //Text
+                    text-align: center;
+
+
+                    //Border
+                    border: 2px solid $main-color-2;
+
+
+                    //Color
+                    color: white;
+                    background-color: $main-color-11;
+                }
+            }
+
+
+            //InputContainer
+            > * ~  .InputContainer {
+                
+                //Size
+                width: 100%;
+                height: 300px;
+
+
+                //Flex
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+
+
+                //InputField
+                .InputField {
+
+                    //Size
+                    width: 100%;
+                    height: 100px;
+
+                    
+                    //Margin
+                    margin-bottom: 20px;
+
+                    
+                    //Flex
+                    display: flex;
+
+                    
+                    //Margin
+                    margin-left: auto;
+                    margin-right: auto;
+
+
+                    border: 2px solid $main-color-2;
+
+
+                    //InputLabel
+                    .InputFieldLabel {
+
+                        //Size
+                        width: 30%;
+                        height: 100%;
+
+
+                        //Padding
+                        padding: 10px;
+
+
+                        //Font
+                        font-family: $roboto;
+                        font-size: 45px;
+
+
+                        //Flex
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+
+                        //Color
+                        color: $main-color-8;
+                        background-color: $main-color-11;
+
+
+                        //Border
+                        border-right: 1px solid $main-color-2;
+                    }
+
+
+                    > * ~ input {
+
+                        //Size
+                        width: 70%;
+                        height: 100%;
+                        
+
+                        //Font
+                        font-size: 40px;
+
+
+                        //Color
+                        color: white;
+                    }
+                }
+
+
+                //Button
+                > * ~ .Button {
+
+                    //Size
+                    width: 80%;
+                    height: 100px;
+
+
+                    //Margin
+                    margin-left: auto;
+                    margin-right: auto;
+
+
+                    //Font
+                    font-family: $roboto;
+                    font-size: 50px;
+
+
+                    //Text
+                    letter-spacing: 5px;
+
+
+                    //Border
+                    border: 4px solid white;
+                    border-radius: 30px;
+
+
+                    //Color
+                    color: white;
+                    background-color: $main-color-11;
+
+
+                    //Hover
+                    &:hover {
+
+                        //Color
+                        color: $main-color-10;
+                        border-color: $main-color-10;
+                        background-color: $main-color-1;
+                    }
+                }
+            }
+        }
+
+
         //AccountChangeFailed 
         .AccountChangeFailed {
 
@@ -928,8 +1143,6 @@
 
                     //Color
                     color: $main-color-10;
-
-
                 }
 
 
@@ -958,7 +1171,6 @@
 
                     //Color
                     color: white;
-
                 }
             }
 
@@ -1004,7 +1216,6 @@
                 }
             }
         }
-
     }
 
     
@@ -1109,7 +1320,6 @@
                     cursor: pointer;
                 }
             }
-
         }
     }
 }

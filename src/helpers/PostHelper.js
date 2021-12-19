@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_address, getPostByUserId, getUserPosts_APU_route, likePost_API_route, likedPost_create_or_edit_API_route, postCategory_GET_API_route, patchPost_API_route, uploadPost_API_route, deletePost_API_route, getUserProfileById_API_route, patchUserProfileData_API_route
+import { API_address, getPostByUserId, getUserPosts_APU_route, likePost_API_route, likedPost_create_or_edit_API_route, postCategory_GET_API_route, patchPost_API_route, uploadPost_API_route, deletePost_API_route, getUserProfileById_API_route, patchUserProfileData_API_route, uploadUserProfileImage_API_route
 } from "../API_routes";
 import { StoreContext } from "../store/StoreProvider";
 import react, {useState, useEffect} from 'react';
@@ -276,7 +276,7 @@ export async function updatePost(postId, postTitle, postText, postCategoryName, 
     return result;
 }
 
-export async function uploadPost(jwt, title, text, categoryName, images) {
+export async function uploadPost(jwt, title, text, categoryName, images, navigate) {
     var result = 0;
 
     //FormData
@@ -307,10 +307,12 @@ export async function uploadPost(jwt, title, text, categoryName, images) {
     }).then(function (response) {
         console.log(response);
         result = 1;
+        navigate('/');
     }).catch(function (response)
     {
         console.log(response);
         result = -1;
+        alert('Nie udało się utworzyć postu');
     });
 
     return result;
@@ -339,6 +341,7 @@ export async function deletePost(postId) {
     return result;
 }
 
+//User
 export async function GetUserProfileById(id, setUserObject, setLoading) {
 
     await axios({
@@ -382,4 +385,71 @@ export async function PatchUserProfile(name, surname, description, setLoading)
     
     setLoading(false);
     return;
+}
+
+export async function UploadUserProfileImage(file, setLoading, setError, setView) {
+
+    setLoading(true);
+    setError(false);
+
+    console.log(file);
+
+    const jwt = JSON.parse(window.localStorage.getItem('jwt'));
+
+    //https://stackoverflow.com/questions/38552003/how-to-decode-jwt-token-in-javascript-without-using-a-library
+    function parseJwt (token) {
+        var base64Url = token.split('.')[1];
+        var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+    
+        return JSON.parse(jsonPayload);
+    };
+
+
+    const jwtObject = parseJwt(jwt);
+
+
+    //FormData
+    let bodyFormData = new FormData();
+    bodyFormData.append('UserId', jwtObject.UserId);
+    bodyFormData.append("ContentType", "USER");
+
+    let images = file;
+    if (images != null)
+    {
+        console.log(images);
+        images = [...images];
+        console.log(images);
+        //images.forEach( (img) => {
+        //    console.log(img)
+        //    bodyFormData.append("Files", img);
+        //});
+        bodyFormData.append("File", images[0]);
+    }
+
+    console.log(bodyFormData);
+
+
+
+    axios({
+        method: "POST",
+        url: `${API_address}${uploadUserProfileImage_API_route}`,
+        data: bodyFormData,
+        headers: { 
+            "content-type": "multipart/form-data",
+            Authorization: "Bearer " + jwt
+        },
+    }).then(function (response) {
+        alert('Pomyślnie zmieniono zdjęcie');
+        setView(0);
+        setLoading(false);
+
+    }).catch(function (response)
+    {
+        setView(12)
+        setError(-1);
+        setLoading(false);
+    });
 }

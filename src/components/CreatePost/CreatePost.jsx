@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext, useRef, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { uploadPost } from '../../helpers/PostHelper';
 import StoreProvider, { StoreContext } from '../../store/StoreProvider';
 
@@ -15,6 +16,10 @@ const CreatePost = () => {
 
     //useContext
     const { isLoggedIn } = useContext(StoreContext);
+
+
+    //useNavigate
+    const navigate = useNavigate();
 
 
     //useState
@@ -40,7 +45,7 @@ const CreatePost = () => {
     const handlePostCategoryNameChange = (event) => setPostCategoryName(event.target.value);
     const handleUpload = async () => 
     ValidateForm()
-    ? await uploadPost(JSON.parse(window.localStorage.getItem('jwt')), title, text, postCategoryName, files)
+    ? await uploadPost(JSON.parse(window.localStorage.getItem('jwt')), title, text, postCategoryName, files, navigate)
     : alert('Niepoprawnie wypełniony formularz');
 
 
