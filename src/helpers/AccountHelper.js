@@ -117,20 +117,26 @@ export async function DeleteAccount(currentPassword, setLoading, setIsLoggedIn, 
             Authorization: "Bearer " + jwt
         },
     }).then(result => {
-        if (result.status === 200) {
+        if (result.data === 0) {
             alert('Pomyślnie usunięto konto');
             setIsLoggedIn(false);
             setLoading(false);
             setDeleteModalOpen(false);
         }
         else {
+            if (result.data == -2)
+                alert('Niepoprawne hasło');
+
             setError(result.data);
             setLoading(false);
         }
 
     }).catch(e => {
-        setError(result.data);
+        console.log(e);
+        setError(e.data);
+        setView(12);
         setLoading(false);
+        setDeleteModalOpen(false);
     });
 }
 

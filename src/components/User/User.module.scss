@@ -626,6 +626,11 @@
         .UserAccountControlView {
             @extend .UserDataView;
 
+            //Flex
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+
             
 
             //PasswordControl
@@ -644,6 +649,10 @@
                     //Font
                     font-family: $noto;
                     font-size: 40px;
+
+
+                    //Margin
+                    margin-bottom: 20px;
 
 
                     //Color
@@ -799,7 +808,66 @@
                         color: $main-color-6;
                     }
                 }
+            }
 
+
+            //DeleteAccountControl
+            .DeleteAccountControl {
+                @extend .PasswordControl;
+
+
+                //Flex
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+
+
+                //Button
+                .DeleteAccount {
+
+                    //Size
+                    width: 60%;
+                    height: 70px;
+
+
+                    //Margin
+                    margin-left: auto;
+                    margin-right: auto;
+
+
+                    //Font
+                    font-family: $roboto;
+                    font-size: 30px;
+
+
+                    //Color
+                    background-color: $main-color-12;
+                    color: white;
+
+
+                    //Border
+                    border-radius: 20px;
+                    border: 2px solid white;
+
+
+                    //Hover
+                    &:hover {
+                        
+                        //Color
+                        border-color: $main-color-10;
+                        color: $main-color-10;
+                        background-color: black;
+                    }
+
+
+                    //Active
+                    &:active {
+
+                        //Color
+                        border-color: $main-color-6;
+                        color: $main-color-6;
+                    }
+                }
             }
         }
 

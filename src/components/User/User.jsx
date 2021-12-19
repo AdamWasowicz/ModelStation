@@ -130,9 +130,6 @@ const User = () => {
         if (view == 1)
             return UserAccountControlView();
 
-        if (view == 11)
-            return <div>OK</div>
-
         if (view == 12)
             return AccountChangeFailed();
     }
@@ -309,10 +306,11 @@ const User = () => {
                         : null
                     }
 
+                    <div className='Information'>Usuwanie konta:</div>
                     <button
                         className='DeleteAccount'
                         onClick={() => setDeleteModalOpen(true)}>
-`                           Usuń konto
+                            Usuń konto
                     </button>
                 </div>
             </div>

@@ -9,6 +9,7 @@ import { default as DeleteAccountModaltyles } from './DeleteAccountModal.module.
 
 //Components
 import Modal from '../../Modal';
+import { Navigate } from 'react-router';
 
 
 const DeleteAccountModal = ({ DeleteAction, OnCancel }) => {
@@ -48,8 +49,11 @@ const DeleteAccountModal = ({ DeleteAction, OnCancel }) => {
 
     //Handlers
     const DeleteButtonClickHandler = () => {
-        if (ValidateForm())
+        if (ValidateForm()) {
+            
             DeleteAction(password, setLoading, setError);
+            Navigate('/');
+        }
         else
             alert('Niepoprawnie wypełniony formularz');
     }
@@ -112,7 +116,7 @@ const DeleteAccountModal = ({ DeleteAction, OnCancel }) => {
                 <button
                         className='Button'
                         onClick={DeleteButtonClickHandler}>
-                        Zmień hasło
+                        Usuń konto
                 </button>
             </div>
         </Modal>

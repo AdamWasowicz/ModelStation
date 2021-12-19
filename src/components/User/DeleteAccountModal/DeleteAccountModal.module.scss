@@ -319,4 +319,47 @@
             }
         }
     }
+
+
+    //Button
+    .Button {
+        
+        //Size
+        width: 70%;
+        height: 100px;
+
+
+        //Margin
+        margin-left: auto;
+        margin-right: auto;
+
+
+        //Font
+        font-family: $roboto;
+        font-size: 45px;
+
+
+        //Text
+        letter-spacing: 3px;
+
+
+        //Color
+        color: white;
+        background-color: $main-color-11;
+
+
+        //Border
+        border: 4px solid white;
+        border-radius: 30px;
+
+
+        //Hover
+        &:hover {
+
+            //Color
+            color: $main-color-10;
+            background-color: $main-color-1;
+            border-color: $main-color-10;
+        }
+    }
 }
