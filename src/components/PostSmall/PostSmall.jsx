@@ -128,7 +128,12 @@ const PostSmall = React.forwardRef((postObject, ref) => {
 
     return (
         <React.Fragment>
-            <div className='PostSmall' ref={ref} >
+            <div className= {
+                                photos.length == 0 
+                                ? 'PostSmall-Short'
+                                : 'PostSmall'
+                            } 
+                            ref={ref} >
                 <div className="likeSideBar">
                     <div className='likeContainer'>
                         <button className={currentLikeStatus == 1 

@@ -49,29 +49,39 @@ const RegisterForm = ({ OnCloseHandler }) => {
     //Functions
     const ValidateForm = () => {
 
+        let email_V = false;
+        let login_V = false;
+        let password_V = false;
+
+
         if (!(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)))
-        {
             setEmailValid(-1);
-        }
         else
+        {
             setEmailValid(1);
+            email_V = true;
+        }
 
 
-        if (login.length == 0)
-        {
+        if (login.length < 8)
             setLoginValid(-1)
-        }
         else
-            setLoginValid(1);
-
-        if (password.length == 0)
         {
-            setPasswordValid(-1)
+            setLoginValid(1);
+            login_V = true;
         }
-        else
-            setPasswordValid(1);
 
-        if (emailValid == 1 && loginValid == 1 && passwordValid == 1)
+
+        if (password.length < 8)
+            setPasswordValid(-1)
+        else
+        {
+            setPasswordValid(1);
+            password_V = true;
+        }
+
+
+        if (email_V && login_V && password_V)
             return true
         else
             return false;
@@ -80,11 +90,8 @@ const RegisterForm = ({ OnCloseHandler }) => {
     const CreateNewAccount = async () => {
         if (ValidateForm() == true)
         {
-            await Register(email, login, password, setRegisterResult);
+            await Register(email, login, password, setRegisterResult, navigate, OnCloseHandler);
             ClearInputs();
-            OnCloseHandler();
-            navigate('./accountcreated');
-
         }
         else
             alert("Niepoprawnie wypełniony formularz");

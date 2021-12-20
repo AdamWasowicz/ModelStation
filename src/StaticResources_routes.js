@@ -1,6 +1,5 @@
 //Import
-import userBaseImageRobot from './staticResources/userDefaultImageRobot.jpg';
-import userBaseImagePerson from './staticResources/userDefaultImage.jpg';
+import userBaseImagePerson from './staticResources/userDefaultImage.png';
 import Barbatos from './staticResources/RegisterBannerImage.jpg';
 import Quant from './staticResources/loginFormImage.jpg';
 

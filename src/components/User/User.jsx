@@ -97,6 +97,10 @@ const User = () => {
         }
     }, [userObject])
 
+    useEffect( () => {
+        GetUserProfile();
+    }, [view])
+
 
     //Functions
     const ReplaceDisplayValuesForEditValues = () => {
@@ -118,7 +122,7 @@ const User = () => {
 
     }
     const DeleteAccountHandler = async(cPassword, sLoading, sError) => {
-        await DeleteAccount(cPassword, sLoading, setIsLoggedIn, setView, sError, setDeleteModalOpen);
+        await DeleteAccount(cPassword, sLoading, setIsLoggedIn, setView, sError, setDeleteModalOpen, navigate);
     }
     const ChangePasswordOnClick = async () => {
         ValidatePasswordChangeForm()

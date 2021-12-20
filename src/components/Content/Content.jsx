@@ -11,6 +11,7 @@ import PostBigContainer from '../PostBigContainer';
 import AccountCreated from '../AccountCreated';
 import User from '../User';
 import UserPosts from '../UserPosts';
+import Error from '../Error';
 
 
 //Styles
@@ -52,6 +53,7 @@ const Content = () => {
                     <Route path="/user/:userId" element={<User/>}/>
                     <Route path='/myprofile/:userId' element={<MyProfile/>}/>
                     <Route path="/userposts/:userName" element={<UserPosts/>}/>
+                    <Route path='/error' elment={<Error/>}/>
                 </Routes> 
             </div>
         </React.Fragment>

@@ -43,6 +43,10 @@
         height: 100%;
 
 
+        //Color
+        background-color: $main-color-11;
+
+
         //Title
         .Title {
 
@@ -72,7 +76,7 @@
 
             //Color
             background-color: $main-color-1;
-            color: white;
+            color: $main-color-8;
 
 
             //Border
@@ -348,6 +352,7 @@
                     //Color
                     color: $main-color-8;
                     border-color: $main-color-8;
+                    background-color: $main-color-1;
 
 
                     //Transistion
@@ -365,6 +370,7 @@
                     //Color
                     color: $main-color-10;
                     border-color: $main-color-10;
+                    background-color: $main-color-1;
 
 
                     //Transistion

@@ -180,7 +180,11 @@ const PostBig = ({editMode, postObject}) => {
 
 
     return (
-        <div className='PostBig'>
+        <div className={
+                            post.files?.length == 0
+                            ? 'PostBig-Short'
+                            : 'PostBig'
+                        }>
             <div className='likeSideBar'>
                 <div className='likeContainer'>
                     <button className={currentLikeStatus == 1

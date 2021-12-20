@@ -34,7 +34,7 @@ export async function LoginHelper(login, password, setLoggedIn)
       return error; 
 }
 
-export async function Register(email, login, password, setRegisterStatus) {
+export async function Register(email, login, password, setRegisterStatus, navigate, OnCloseHandler) {
 
     let resultCode = 400;
 
@@ -47,21 +47,24 @@ export async function Register(email, login, password, setRegisterStatus) {
             password: password
         },
     }).then(result => {
-        console.log(result);
         if (result.status === 201)
         {
             resultCode = result.code;
             setRegisterStatus(1);
+            OnCloseHandler();
+            navigate('/accountcreated');
         }
         else
         {
             resultCode = result.code;
+            navigate('/error')
             setRegisterStatus(-1)
         }
 
     }).catch(e => {
-        console.log(e);
+        
         resultCode = e.code;
+        navigate('/error')
         setRegisterStatus(-1)
     });
     
@@ -104,7 +107,7 @@ export async function ChangePassword(currentPassword, newPassword, setLoading, s
     });
 }
 
-export async function DeleteAccount(currentPassword, setLoading, setIsLoggedIn, setView, setError, setDeleteModalOpen) {
+export async function DeleteAccount(currentPassword, setLoading, setIsLoggedIn, setView, setError, setDeleteModalOpen, navigate) {
     const jwt = JSON.parse(window.localStorage.getItem('jwt'));
 
     await axios({
@@ -122,6 +125,7 @@ export async function DeleteAccount(currentPassword, setLoading, setIsLoggedIn, 
             setIsLoggedIn(false);
             setLoading(false);
             setDeleteModalOpen(false);
+            navigate('/');
         }
         else {
             if (result.data == -2)
