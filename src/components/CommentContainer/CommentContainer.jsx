@@ -14,6 +14,8 @@ import { GetCommentsByPostId, GetCommentById } from '../../helpers/CommentHelper
 //Components
 import Comment from '../Comment';
 import CreateComment from '../CreateComment';
+import NotLoggedException from '../CreateComment/NotLoggedException';
+import NoContentException from './NoContentException';
 
 //Functions
 
@@ -50,19 +52,6 @@ const CommentContainer = () => {
     const GetNewComment = async (commentId) => {
         await GetCommentById(commentId, setComments, comments, setLoading);
     }
-    const sortCommentsByLastEditDate = (c1, c2) => {
-
-        const d1 = new Date(c1.lastEditDate);
-        const d2 = new Date(c2.lastEditDate);
-
-        if (d1 > d2)
-            return -1;
-        
-        if (d1 < d2)
-            return 1;
-
-        return 0;
-    }
 
     //Handlers
     const HandleCommentDeletion = (commentId) => {
@@ -85,22 +74,21 @@ const CommentContainer = () => {
     
 
     return (
-        <React.Fragment>
+        <div className='CommentContainer'>
             {
                 isLoggedIn
-                ? <CreateComment HandleChange={HandleNewCommentAdd}/>
-                : null
+                    ? <CreateComment HandleChange={HandleNewCommentAdd} />
+                    : <NotLoggedException />
             }
-            <div className='CommentContainer'>
-                {
-                    comments.length > 0 
-                    ? comments.map( (comment, index) => {
-                        return <Comment commentObject={comment} key={index} HandleCommentDeletion={HandleCommentDeletion}/>
+
+            {
+                comments.length > 0
+                    ? comments.map((comment, index) => {
+                        return <Comment commentObject={comment} key={index} HandleCommentDeletion={HandleCommentDeletion} />
                     })
-                    : null
-                }
-            </div>
-        </React.Fragment>
+                    : <NoContentException/>
+            }
+        </div>
     )
 };
 

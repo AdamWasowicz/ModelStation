@@ -1,0 +1,69 @@
+@import '../../../StyleConstants.scss';
+
+
+.CommentContainer > .NotLoggedException {
+
+    //Size
+    width: 100%;
+    height: 250px;
+
+    //Position
+    margin-bottom: 20px;
+
+
+    //Flex
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+
+    //Border
+    border: 2px solid $main-color-8;
+    border-radius: 20px;
+
+
+    //Color
+    background-color: $main-color-9;
+
+
+    //Information
+    > .Information {
+
+        //Size
+        width: 100%;
+        height: 40%;
+
+
+        //Font
+        font-size: 40px;
+
+
+        //Text
+        letter-spacing: 5px;
+    }
+
+
+    //Description
+    > .Description {
+        
+        //Size
+        width: 100%;
+        height: 60%;
+
+
+         //Font
+         font-family: $noto;
+         font-size: 50px;
+
+
+        //Flex
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+
+        //Font
+        font-family: $noto;
+        font-size: 40px;
+    }
+}

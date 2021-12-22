@@ -1,0 +1,109 @@
+@import '../../../StyleConstants.scss';
+
+
+.CommentContainer>.NoContentException {
+
+    //Size
+    width: 100%;
+    height: 250px;
+
+
+    //Padding
+    padding: 20px;
+
+    
+    //Position
+    margin-bottom: 20px;
+
+
+    //Flex
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+
+    //Border
+    border: 2px solid $main-color-8;
+    border-radius: 20px;
+
+
+    //Color
+    background-color: $main-color-9;
+
+
+    //Information
+    >.Information {
+
+        //Size
+        width: 100%;
+        height: 40%;
+
+
+        //Font
+        font-family: $roboto;
+        font-size: 40px;
+        font-weight: 700;
+
+
+        //Padding
+        padding: 10px;
+
+
+        //Margin
+        margin-left: auto;
+        margin-right: auto;
+
+
+        //Text
+        text-align: center;
+        letter-spacing: 5px;
+
+
+        //Color
+        color: $main-color-8;
+    }
+
+
+    //Description
+    >.Description {
+
+        //Size
+        width: 100%;
+        height: 60%;
+
+
+        //Flex
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+
+        //Padding
+        padding: 10px;
+
+
+        //Margin
+        margin-left: auto;
+        margin-right: auto;
+
+
+        //Font
+        font-family: $noto;
+        font-size: 40px;
+        font-weight: 400;
+
+
+        //Text
+        text-align: center;
+
+
+        //Color
+        color: white;
+        background-color: $main-color-11;
+
+
+        //Border
+        border: 2px solid $main-color-2;
+        border-radius: 20px;
+    }
+}

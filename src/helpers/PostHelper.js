@@ -419,18 +419,9 @@ export async function UploadUserProfileImage(file, setLoading, setError, setView
     let images = file;
     if (images != null)
     {
-        console.log(images);
         images = [...images];
-        console.log(images);
-        //images.forEach( (img) => {
-        //    console.log(img)
-        //    bodyFormData.append("Files", img);
-        //});
         bodyFormData.append("File", images[0]);
     }
-
-    console.log(bodyFormData);
-
 
 
     axios({
@@ -442,9 +433,11 @@ export async function UploadUserProfileImage(file, setLoading, setError, setView
             Authorization: "Bearer " + jwt
         },
     }).then(function (response) {
+        UpdateLocalStorage();
         alert('Pomyślnie zmieniono zdjęcie');
         setView(0);
         setLoading(false);
+
 
     }).catch(function (response)
     {
@@ -452,4 +445,21 @@ export async function UploadUserProfileImage(file, setLoading, setError, setView
         setError(-1);
         setLoading(false);
     });
-}
+};
+
+async function UpdateLocalStorage () {
+
+    let user = JSON.parse(window.localStorage.getItem('user'));
+    const id = user.userName;
+
+    await axios({
+        method: 'GET',
+        url: `${API_address}${getUserProfileById_API_route}/${id}`
+    }).then(result => {
+        user.file = result.data.file;
+        window.localStorage.removeItem('user');
+        window.localStorage.setItem('user', JSON.stringify(user))
+    }).catch(e => {
+        console.log(e);
+    });
+};
