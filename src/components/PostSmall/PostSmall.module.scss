@@ -5,7 +5,7 @@ $like-arrow-font-size: 50px;
 .PostSmall {
     //Size
     width: 100%;
-    height: 700px;
+    height: 750px;
     max-height: 750px;
     min-width: 600px;
 
@@ -200,7 +200,39 @@ $like-arrow-font-size: 50px;
         .Information {
             //Size
             width: 100%;
-            height: 20%;
+            height: 30%;
+
+
+            //Date
+            .Date {
+
+                //Size
+                width: 100%;
+                height: 20%;
+
+
+                //Padding
+                padding: 10px;
+
+
+                //Font
+                font-family: $roboto;
+                font-size: 20px;
+
+
+                //Text
+                text-align: right;
+                letter-spacing: 5px;
+
+
+                //Color
+                color: white;
+
+
+                //Border
+                border-bottom: 2px solid $main-color-2;
+
+            }
 
 
 
@@ -208,7 +240,7 @@ $like-arrow-font-size: 50px;
             .UserNameANDpostCategory {
                 //Size
                 width: 100%;
-                height: 50%;
+                height: 30%;
 
 
                 //Padding
@@ -322,7 +354,7 @@ $like-arrow-font-size: 50px;
         .PostContent {
             //Size
             width: 100%;
-            height: 80%;
+            height: 70%;
 
 
             flex-grow: 1;
@@ -393,12 +425,187 @@ $like-arrow-font-size: 50px;
 }
 
 .PostSmall-Short {
-    @extend .PostSmall;
-
+    //Size
+    width: 100%;
     height: 400px;
+    max-height: 750px;
+    min-width: 600px;
 
 
-    >.Main {
+    //Position
+    margin-bottom: 40px;
+    margin-left: auto;
+    margin-right: auto;
+
+
+    //Overflow
+    overflow: hidden;
+
+
+    //Flex
+    display: flex;
+    flex-direction: row;
+
+
+    //Color
+    background-color: $main-color-9;
+    border: 2px solid $main-color-8;
+    border-radius: 20px;
+    box-shadow: 12px 13px 24px 0px $main-color-9;
+
+
+    //Like SideBar
+    .likeSideBar {
+        //Size
+        flex-basis: 10%;
+        padding: 10px;
+
+
+        .likeContainer {
+
+            //Size
+            height: 300px;
+
+            //Flex
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+
+
+            //LikeUp Button
+            .likeUpButton {
+                //Size
+                width: 80%;
+                height: 25%;
+
+
+                //Font
+                font-size: $like-arrow-font-size;
+
+
+                //Color
+                color: white;
+                background-color: $main-color-11;
+                border: 2px solid $main-color-5;
+                border-radius: 10px;
+
+                &:hover {
+                    border: 2px solid $like-up-color-1;
+                    color: $like-up-color-1;
+
+
+                    //Cursor
+                    cursor: pointer;
+                }
+
+                &-Active {
+                    @extend .likeUpButton;
+
+                    //Size
+                    width: 80%;
+                    height: 25%;
+
+
+                    //Font
+                    font-size: $like-arrow-font-size;
+
+
+                    //Color
+                    border: 2px solid $like-up-color-1;
+                    color: $like-up-color-1;
+
+                    &:hover {
+                        border: 2px solid $like-up-color-2;
+                        color: $like-up-color-2;
+
+
+                        //Cursor
+                        cursor: pointer;
+                    }
+                }
+
+            }
+
+
+            //LikeDownButton
+            .likeDownButton {
+                //Size
+                width: 80%;
+                height: 25%;
+
+
+                //Font
+                font-size: $like-arrow-font-size;
+
+
+                //Color
+                color: white;
+                background-color: $main-color-11;
+                border: 2px solid $main-color-5;
+                border-radius: 10px;
+
+                &:hover {
+                    border: 2px solid $like-down-color-1;
+                    color: $like-down-color-1;
+
+
+                    //Cursor
+                    cursor: pointer;
+                }
+
+                &-Active {
+                    @extend .likeDownButton;
+
+                    //Size
+                    width: 80%;
+                    height: 25%;
+
+
+                    //Font
+                    font-size: $like-arrow-font-size;
+
+
+                    //Color
+                    border: 2px solid $like-down-color-1;
+                    color: $like-down-color-1;
+
+                    &:hover {
+                        border: 2px solid $like-down-color-2;
+                        color: $like-down-color-2;
+
+
+                        //Cursor
+                        cursor: pointer;
+                    }
+                }
+            }
+
+
+            //LikeCounter
+            .likeCounter {
+                //Size
+                width: 80%;
+                height: 20%;
+
+
+                //Flex
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+
+
+                //Color
+                background-color: $main-color-11;
+                border: 2px solid $main-color-5;
+                color: $main-color-5;
+            }
+        }
+    }
+
+
+    .Main {
 
         //Size
         width: 100%;
@@ -417,14 +624,46 @@ $like-arrow-font-size: 50px;
         >.Information {
             //Size
             width: 100%;
-            height: 150px;
+            height: 45%;
+
+
+            //Date
+            .Date {
+
+                //Size
+                width: 100%;
+                height: 25%;
+
+
+                //Padding
+                padding: 10px;
+
+
+                //Font
+                font-family: $roboto;
+                font-size: 20px;
+
+
+                //Text
+                text-align: right;
+                letter-spacing: 5px;
+
+
+                //Color
+                color: white;
+
+
+                //Border
+                border-bottom: 2px solid $main-color-2;
+
+            }
 
 
             //UserNameANDpostCategory
             .UserNameANDpostCategory {
                 //Size
                 width: 100%;
-                height: 50%;
+                height: 30%;
 
 
                 //Padding
@@ -507,7 +746,7 @@ $like-arrow-font-size: 50px;
             .Title {
                 //Size
                 width: 100%;
-                height: 50%;
+                height: 45%;
 
 
                 //Padding
@@ -536,17 +775,17 @@ $like-arrow-font-size: 50px;
         }
 
 
-        >*~.PostContent {
+        > .PostContent {
             //Size
             width: 100%;
-            height: 40%;
+            height: 60%;
 
 
             //Text
-            >.Text {
+            .Text {
                 //Size
                 width: 100%;
-                height: 1000%;
+                height: 100%;
 
 
                 //Padding
@@ -560,7 +799,7 @@ $like-arrow-font-size: 50px;
 
 
                 //Color
-                background-color: $main-color-9;
+                //background-color: $main-color-9;
                 border-bottom: 2px solid $main-color-2;
                 color: white;
 

@@ -5,7 +5,7 @@ import { API_address, fileStorageName_API_route } from '../../API_routes';
 
 
 //Styles
-import { faArrowUp, faArrowDown, faEdit, faTrashAlt, faSave } from "@fortawesome/free-solid-svg-icons";
+import { faPlus as faArrowUp, faMinus as faArrowDown, faEdit, faTrashAlt, faSave } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { default as PostBigStyles } from './PostBig.module.scss'
 
@@ -98,6 +98,32 @@ const PostBig = ({editMode, postObject}) => {
     }
 
     const PatchPost = async () => await updatePost(postId, edit_postTitle, edit_postText, edit_postCategory.name, setError);
+
+    const DisplayDate = () => {
+        let dateObj = new Date(post.creationDate);
+
+        const month = String(dateObj.getMonth()).padStart(2, '0');
+        const day = String(dateObj.getDate()).padStart(2, '0');
+        const year = dateObj.getFullYear();
+        const output = day  + '.'+ month  + '.' + year;
+
+        return output;
+    }
+    const DisplayLikes = () => {
+
+        let likes = amountOfLikes;
+        if (likes > 1000)
+        {
+            let front = Math.floor(likes / 1000);
+            let back = likes - front;
+            back = Math.floor(back / 100);
+
+            return `${front}.${back}k`;
+        }
+
+        else 
+            return likes;
+    }
     
 
 
@@ -195,7 +221,7 @@ const PostBig = ({editMode, postObject}) => {
                     </button>
 
                     <div className='likeCounter'>
-                        {amountOfLikes}
+                        {DisplayLikes()}
                     </div>
 
                     <button className={
@@ -210,6 +236,7 @@ const PostBig = ({editMode, postObject}) => {
 
             <div className='Main'>
                 <div className='Information'>
+                    <div className='Date'>{DisplayDate()}</div>
                     <div className='UserNameANDpostCategory'>
                         <h4 
                             className='UserNameLabel'

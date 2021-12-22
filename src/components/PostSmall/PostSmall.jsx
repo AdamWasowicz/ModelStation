@@ -6,7 +6,7 @@ import { StoreContext } from '../../store/StoreProvider';
 
 
 //Styles
-import { faArrowUp, faArrowDown } from "@fortawesome/free-solid-svg-icons";
+import { faPlus as faArrowUp, faMinus as faArrowDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { default as PostSmallStyles } from './PostSmall.module.scss'
 const style = bemCssModules(PostSmallStyles);
@@ -24,8 +24,6 @@ import ImageModal from '../ImageModal';
 const PostSmall = React.forwardRef((postObject, ref) => {
     //Post
     const post = postObject.postObject;
-
-    console.log(postObject);
 
     //useState
     const [id, setId] = useState(postObject.postObject.id);
@@ -74,6 +72,31 @@ const PostSmall = React.forwardRef((postObject, ref) => {
     }
     const RedirectToPostBig = () => {
         navigate(`/post/` + post.id);
+    }
+    const DisplayDate = () => {
+        let dateObj = new Date(post.creationDate);
+
+        const month = String(dateObj.getMonth()).padStart(2, '0');
+        const day = String(dateObj.getDate()).padStart(2, '0');
+        const year = dateObj.getFullYear();
+        const output = day  + '.'+ month  + '.' + year;
+
+        return output;
+    }
+    const DisplayLikes = () => {
+
+        let likes = amountOfLikes;
+        if (likes > 1000)
+        {
+            let front = Math.floor(likes / 1000);
+            let back = likes - front;
+            back = Math.floor(back / 100);
+
+            return `${front}.${back}k`;
+        }
+
+        else 
+            return likes;
     }
     
     //Handlers
@@ -126,6 +149,7 @@ const PostSmall = React.forwardRef((postObject, ref) => {
     const OpenImageModal = () => setModalOpen(true);
     const CloseImageModal = () => setModalOpen(false);
 
+
     return (
         <React.Fragment>
             <div className= {
@@ -143,7 +167,7 @@ const PostSmall = React.forwardRef((postObject, ref) => {
                         </button>
 
                         <div className='likeCounter'>
-                            {amountOfLikes}
+                            {DisplayLikes()}
                         </div>
 
                         <button className={currentLikeStatus == -1 
@@ -156,6 +180,7 @@ const PostSmall = React.forwardRef((postObject, ref) => {
 
                 <div className='Main'>
                     <div className='Information'>
+                        <div className='Date'>{DisplayDate()}</div>
                         <div className='UserNameANDpostCategory'>
                             <h4 
                                 className='UserNameLabel'
