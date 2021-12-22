@@ -96,7 +96,7 @@ const Menu = () => {
                                 <button className='DropDownContentItem'>
                                     <Link
                                         className='DropDownContentItemLink' to="createpost">
-                                        Nowy post
+                                            Nowy post
                                     </Link>
                                 </button>
 
@@ -106,7 +106,7 @@ const Menu = () => {
                                     ? <button className='DropDownContentItem'>
                                         <Link
                                             className='DropDownContentItemLink' to="adminpanel">
-                                            Admin
+                                                Panel Admina
                                         </Link>
                                     </button>
                                     : null
@@ -114,7 +114,7 @@ const Menu = () => {
 
                                 <button className='DropDownContentItem'
                                     onClick={handleLogOut}>
-                                    Wyloguj
+                                        Wyloguj
                                 </button>
                             </div>
 
