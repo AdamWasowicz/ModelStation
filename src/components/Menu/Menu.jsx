@@ -4,6 +4,10 @@ import bemCssModules from 'bem-css-modules'
 import { StoreContext } from '../../store/StoreProvider';
 
 
+//Resources
+import { AccessLevels } from '../../API_constants';
+
+
 //Styles
 import { default as MenuStyles } from './Menu.module.scss'
 const style = bemCssModules(MenuStyles);
@@ -26,6 +30,10 @@ const Menu = () => {
 
     //useNavigate
     const navigate = useNavigate();
+
+
+    //Constants
+    const role = ReadLocalStorage('user')?.role;
 
 
     //Context
@@ -91,6 +99,18 @@ const Menu = () => {
                                         Nowy post
                                     </Link>
                                 </button>
+
+
+                                {
+                                    role.accessLevel >= AccessLevels.IsModerator
+                                    ? <button className='DropDownContentItem'>
+                                        <Link
+                                            className='DropDownContentItemLink' to="adminpanel">
+                                            Admin
+                                        </Link>
+                                    </button>
+                                    : null
+                                }
 
                                 <button className='DropDownContentItem'
                                     onClick={handleLogOut}>

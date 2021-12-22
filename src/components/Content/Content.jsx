@@ -9,6 +9,7 @@ import CreatePost from '../CreatePost';
 import PostSmallContainer from '../PostSmallContainer';
 import PostBigContainer from '../PostBigContainer';
 import AccountCreated from '../AccountCreated';
+import AdminPanel from '../AdminPanel';
 import User from '../User';
 import UserPosts from '../UserPosts';
 import Error from '../Error';
@@ -36,7 +37,7 @@ const Content = () => {
     //Maybe it is stupid but it works
     const MyProfile = () => {
         return(
-         <div>
+            <div>
                 <User/>
             </div>
         )
@@ -54,6 +55,7 @@ const Content = () => {
                     <Route path='/myprofile/:userId' element={<MyProfile/>}/>
                     <Route path="/userposts/:userName" element={<UserPosts/>}/>
                     <Route path='/error' elment={<Error/>}/>
+                    <Route path='adminpanel' element={<AdminPanel/>}/>
                 </Routes> 
             </div>
         </React.Fragment>

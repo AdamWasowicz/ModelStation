@@ -1,0 +1,151 @@
+@import '../../../StyleConstants.scss';
+
+
+.NoPermissionException {
+
+   //Size
+   width: $component-base-width;
+   height: $component-base-height;
+
+
+   //Padding
+   padding: 20px;
+
+
+   //Margin
+   margin-left: auto;
+   margin-right: auto;
+   margin-bottom: 20px;
+
+
+   //Flex
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   align-items: center;
+
+   
+   //Color
+   background-color: $main-color-1;
+
+
+   //Border
+   border: 2px solid $main-color-8;
+
+
+    //Information
+    > .Information {
+        //Size
+        width: 100%;
+
+
+        //Font
+        font-family: $roboto;
+        font-size: 90px;
+        font-weight: 700;
+
+
+        //Padding
+        padding: 10px;
+
+
+        //Margin
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 0px;
+
+
+        //Text
+        text-align: center;
+
+
+        //Color
+        color: $main-color-8;
+    }
+
+
+    //Description 
+    .Description {
+        //Size
+        width: 90%;
+        height: 50%;
+
+
+        //Padding
+        padding: 10px;
+
+
+        //Font
+        font-family: $noto;
+        font-size: 30px;
+        font-weight: 400;
+
+
+        //Text
+        text-align: center;
+
+
+        //Color
+        color: white;
+        background-color: $main-color-11;
+
+
+        //Border
+        border: 2px solid $main-color-2;
+        border-radius: 20px;
+    }
+
+
+    //GoBuckButton
+    .GoBackButton {
+
+        //Size
+        width: 80%;
+        height: 100px;
+
+
+        //Border
+        border-radius: 20px;
+        border: 2px solid white;
+
+
+        //Font
+        font-family: $roboto;
+        font-size: 40px;
+        font-weight: 400;
+
+
+        //Color
+        color: white;
+        background-color: $main-color-11;
+
+
+        //Overflow
+        overflow: hidden;
+
+
+        //Hover
+        &:hover {
+
+            //Color
+            color: $main-color-8;
+            border-color: $main-color-8;
+
+
+            //Cursor
+            cursor: pointer;
+        }
+
+
+        //Active
+        &:active {
+            //Color
+            color: $main-color-10;
+            border-color: $main-color-10;
+
+
+            //Cursor
+            cursor: pointer;
+        }
+    }
+}
