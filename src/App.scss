@@ -1,6 +1,36 @@
+@import './StyleConstants.scss';
+
 *
 {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+
+//ScrollBar
+body::-webkit-scrollbar {
+
+    //Size
+    width: 1.0em;
+}
+
+body::-webkit-scrollbar-track{
+
+    //Color
+    background-color: $main-color-11;
+    border: 2px solid $main-color-2;
+}
+
+::-webkit-scrollbar-thumb {
+
+    //Color
+    background-color: $main-color-8;
+
+
+    &:active {
+
+        //Color
+        background-color: $main-color-8-2;
+    }
 }

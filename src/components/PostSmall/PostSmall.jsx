@@ -6,10 +6,9 @@ import { StoreContext } from '../../store/StoreProvider';
 
 
 //Styles
-import { faPlus as faArrowUp, faMinus as faArrowDown } from "@fortawesome/free-solid-svg-icons";
+import { faPlus as faArrowUp, faMinus as faArrowDown, faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { default as PostSmallStyles } from './PostSmall.module.scss'
-const style = bemCssModules(PostSmallStyles);
 
 
 //Helpers
@@ -33,6 +32,9 @@ const PostSmall = React.forwardRef((postObject, ref) => {
     const [error, setError] = useState(false);
     const [modalOpen, setModalOpen] = useState(false);
 
+    //MultiImage
+    const [currentImage, setCurrentImage] = useState(0);
+
 
     //useNavigare
     const navigate = useNavigate();
@@ -50,9 +52,11 @@ const PostSmall = React.forwardRef((postObject, ref) => {
             urlArray.push(`${API_address}${fileStorageName_API_route}${element.storageName}`)
         })
 
-        setPhotos(urlArray);
-        
+        console.log(post.files.length);
+
+        setPhotos(urlArray); 
     }, []);
+
     useEffect( () => {
         CheckIfUserLikedPost();
 
@@ -148,6 +152,12 @@ const PostSmall = React.forwardRef((postObject, ref) => {
     const RedirectToUserProfile = () => navigate('/user/' + post.userName);
     const OpenImageModal = () => setModalOpen(true);
     const CloseImageModal = () => setModalOpen(false);
+    const NextImageHandler = () => {
+        setCurrentImage(currentImage + 1);
+    }
+    const PreviousImageHandler = () =>{
+        setCurrentImage(currentImage - 1);
+    }
 
 
     return (
@@ -219,18 +229,60 @@ const PostSmall = React.forwardRef((postObject, ref) => {
 
                         {
                             photos.length != 0 
-                            ? (<div className='Photos'>
-                                <img 
-                                    src={photos[0]} 
-                                    className='image'
-                                    onClick={OpenImageModal}/></div>) 
-                            : null}
+                            ? (
+                                <div className='Photos'>
+                                    <div className='Top'>
+                                        <div className='ButtonContainer'>
+                                            {
+                                                currentImage != 0
+                                                ? <div 
+                                                    className='Button'
+                                                    onClick={PreviousImageHandler}>
+                                                    <FontAwesomeIcon icon={faChevronLeft} />
+                                                </div>
+                                                : null
+                                            }
+                                        </div>
+
+                                        <div className='Bottom'>
+                                            <img 
+                                                src={photos[currentImage]} 
+                                                className='image'
+                                                onClick={OpenImageModal}
+                                            />
+
+                                            {
+                                                post.files.length > 1
+                                                ? <div className='Page'>
+                                                    {`${currentImage + 1} / ${post.files.length}`}
+                                                </div>
+                                                : null
+                                            }
+                                        
+                                        </div>
+
+                                        <div className='ButtonContainer'>
+                                            {
+                                                currentImage < post.files.length - 1 && post.files.length > 1
+                                                ? <div 
+                                                    className='Button'
+                                                    onClick={NextImageHandler}>
+                                                        <FontAwesomeIcon icon={faChevronRight} />
+                                                </div>
+                                                : null
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            ) 
+                            : null
+                        }
                     </div>
                 </div>
 
                 {
                     modalOpen && photos[0] != null
-                    ? <ImageModal handleOnClose={CloseImageModal} imgFullSrc={photos[0]}/>
+                    ? <ImageModal handleOnClose={CloseImageModal} imgFullSrc={photos[currentImage]}/>
                     : null
                 }
             </div>

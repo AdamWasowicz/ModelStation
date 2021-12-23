@@ -1,3 +1,6 @@
+@import '../../StyleConstants.scss';
+
+
 .modal
 {
     //Position
@@ -17,5 +20,32 @@
         //Background blur
         backdrop-filter: blur(3px);
         filter: brightness(40%);
+    }
+
+    //ScrollBar
+    &::-webkit-scrollbar {
+
+        //Size
+        width: 1.0em;
+    }
+
+    &::-webkit-scrollbar-track {
+
+        //Color
+        background-color: $main-color-11;
+        border: 2px solid $main-color-2;
+    }
+
+    &::-webkit-scrollbar-thumb {
+
+        //Color
+        background-color: $main-color-10;
+
+
+        &:active {
+
+            //Color
+            background-color: $main-color-6;
+        }
     }
 }

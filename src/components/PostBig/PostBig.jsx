@@ -9,7 +9,7 @@ import { ReadLocalStorage } from '../../Fuctions';
 
 
 //Styles
-import { faPlus as faArrowUp, faMinus as faArrowDown, faEdit, faTrashAlt, faSave } from "@fortawesome/free-solid-svg-icons";
+import { faPlus as faArrowUp, faMinus as faArrowDown, faEdit, faTrashAlt, faSave, faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { default as PostBigStyles } from './PostBig.module.scss'
 
@@ -33,6 +33,8 @@ const PostBig = ({editMode, postObject}) => {
     const [photos, setPhotos] = useState(postObject.files);
     const [currentLikeStatus, setCurrentLikeStatus] = useState(0);
     const [amountOfLikes, setAmountOfLikes] = useState(postObject.likes);
+    //MultiImage
+    const [currentImage, setCurrentImage] = useState(0);
 
     //EditModePost
     const [edit_postTitle, setEdit_postTitle] = useState(postTitle);
@@ -60,6 +62,20 @@ const PostBig = ({editMode, postObject}) => {
 
     //useNavigate
     const navigate = useNavigate();
+
+
+    //useEffect
+    useEffect( () => {
+        let urlArray = [];
+
+        post.files.forEach(element => {
+            urlArray.push(`${API_address}${fileStorageName_API_route}${element.storageName}`)
+        })
+
+        console.log(post.files.length);
+
+        setPhotos(urlArray); 
+    }, []);
 
 
     //useEffect
@@ -183,6 +199,13 @@ const PostBig = ({editMode, postObject}) => {
     const RedirectToUserProfile = () => navigate('/user/' + post.userName);
     const OpenImageModal = () => setModalOpen(true);
     const CloseImageModal = () => setModalOpen(false);
+    const NextImageHandler = () => {
+        setCurrentImage(currentImage + 1);
+    }
+    const PreviousImageHandler = () =>{
+        setCurrentImage(currentImage - 1);
+    }
+
     
     
     //EditModeHandlers
@@ -284,23 +307,59 @@ const PostBig = ({editMode, postObject}) => {
                     </div>
                 </div>
 
-                <div className='PostContent'
-                >
-                    {
-                        currEditMode
-                            ? <textarea className='EditText' type='text'
-                                value={edit_postText}
-                                onChange={ChangeEdit_postTextHandler}>
-                            </textarea>
-                            : <div className='Text'>{postText}</div>
-                    }
+                <div className='PostContent'>
+                    <div className='Text'>{postText}</div>
 
-                    {post.files.length != 0 ? (<div className='Photos'>
-                        <img 
-                            src={`${API_address}${fileStorageName_API_route}${post.files[0].storageName}`} 
-                            className='image' 
-                            onClick={OpenImageModal}/>
-                    </div>) : null}
+                    {
+                            photos.length != 0 
+                            ? (
+                                <div className='Photos'>
+                                    <div className='Top'>
+                                        <div className='ButtonContainer'>
+                                            {
+                                                currentImage != 0
+                                                ? <div 
+                                                    className='Button'
+                                                    onClick={PreviousImageHandler}>
+                                                    <FontAwesomeIcon icon={faChevronLeft} />
+                                                </div>
+                                                : null
+                                            }
+                                        </div>
+
+                                        <div className='Bottom'>
+                                            <img 
+                                                src={photos[currentImage]} 
+                                                className='image'
+                                                onClick={OpenImageModal}
+                                            />
+
+                                            {
+                                                post.files.length > 1
+                                                ? <div className='Page'>
+                                                    {`${currentImage + 1} / ${post.files.length}`}
+                                                </div>
+                                                : null
+                                            }
+                                        
+                                        </div>
+
+                                        <div className='ButtonContainer'>
+                                            {
+                                                currentImage < post.files.length - 1 && post.files.length > 1
+                                                ? <div 
+                                                    className='Button'
+                                                    onClick={NextImageHandler}>
+                                                        <FontAwesomeIcon icon={faChevronRight} />
+                                                </div>
+                                                : null
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            ) 
+                            : null
+                        }
                 </div>
             </div>
             {
@@ -346,7 +405,7 @@ const PostBig = ({editMode, postObject}) => {
 
             {
                 modalOpen && post.files.length != 0
-                ? <ImageModal handleOnClose={CloseImageModal} imgFullSrc={`${API_address}${fileStorageName_API_route}${post.files[0].storageName}`}/>
+                ? <ImageModal handleOnClose={CloseImageModal} imgFullSrc={photos[currentImage]}/>
                 : null
             }
         </div>

@@ -75,7 +75,7 @@ const CreatePost = () => {
 
                             <div className='InputField'>
                                 <div className='InputFieldLabel'>Zdjęcie: </div>
-                                <input className='FileInput' type="file" id="file" accept=".png, .jpg, .jpeg" onChange={handleFileChange} />
+                                <input className='FileInput' multiple='true' type="file" id="file" accept=".png, .jpg, .jpeg" onChange={handleFileChange} />
                             </div>
 
                             <button className='Button' onClick={handleUpload}>
