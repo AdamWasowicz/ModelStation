@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_address, login_API_route, register_API_route, changeUserPassword_API_route, deleteAccount_API_route } from "../API_routes";
+import { API_address, login_API_route, register_API_route, changeUserPassword_API_route, deleteAccount_API_route, unbanUser_API_route, banUser_API_route, changeRole_API_route, changeUserPassword_Admin_API_route} from "../API_routes";
 
 
 export async function LoginHelper(login, password, setLoggedIn)
@@ -107,6 +107,42 @@ export async function ChangePassword(currentPassword, newPassword, setLoading, s
     });
 }
 
+export async function ChangePasswordByUserName(userName, newPassword, setLoading, setError) {
+    setLoading(true);
+    const jwt = JSON.parse(window.localStorage.getItem('jwt'));
+
+    await axios({
+        method: 'PATCH',
+        url: `${API_address}${changeUserPassword_Admin_API_route}`,
+        data: {
+            userName: userName,
+            currentPassword: '',
+            newPassword: newPassword
+        },
+        headers: {
+            Authorization: "Bearer " + jwt
+        },
+    }).then(result => {
+        if (result.data == 0) {
+            alert('Pomyślnie zmieniono hasło');
+            setLoading(false);
+            return;
+        }
+        else {
+            setError(result.data);
+            alert('Nie udało się zmienić hasła');
+            setLoading(false);
+            return;
+        }
+
+    }).catch(e => {
+        alert('Nie udało się zmienić hasła');
+        setError(e.data);
+        setLoading(false);
+        return;
+    });
+}
+
 export async function DeleteAccount(currentPassword, setLoading, setIsLoggedIn, setView, setError, setDeleteModalOpen, navigate) {
     const jwt = JSON.parse(window.localStorage.getItem('jwt'));
 
@@ -144,5 +180,109 @@ export async function DeleteAccount(currentPassword, setLoading, setIsLoggedIn, 
     });
 }
 
+export async function BanUser(userName, setLoading, setError) {
+    const jwt = JSON.parse(window.localStorage.getItem('jwt'));
 
+    setLoading(true);
+
+    await axios({
+        method: 'PATCH',
+        url: `${API_address}${banUser_API_route}/${userName}`,
+        headers: {
+            Authorization: "Bearer " + jwt
+        },
+    }).then(result => {
+        if (result.status === 200)
+        {
+            alert('Zbanowano użytkownika: ' + userName);
+            setLoading(false);
+            return;
+        }
+        else
+        {
+            setError(-1);
+            alert('Nie udało się zbanować użytkownika');
+            setLoading(false);
+            return;
+        }
+
+    }).catch(e => {
+        setError(-2);
+        alert('Nie udało się zbanować użytkownika');
+        setLoading(false);
+        return;
+    });
+}
+
+export async function UnBanUser(userName, setLoading, setError) {
+
+    const jwt = JSON.parse(window.localStorage.getItem('jwt'));
+    setLoading(true);
+
+    await axios({
+        method: 'PATCH',
+        url: `${API_address}${unbanUser_API_route}/${userName}`,
+        headers: {
+            Authorization: "Bearer " + jwt
+        },
+    }).then(result => {
+        if (result.status === 200)
+        {
+            alert('Odbanowano użytkownika: ' + userName);
+            setLoading(false);
+            return;
+        }
+        else
+        {
+            setError(-1);
+            alert('Nie udało się odbanować użytkownika')
+            setLoading(false);
+            return;
+        }
+
+    }).catch(e => {
+        setError(-2)
+        alert('Nie udało się odbanować użytkownika')
+        setLoading(false);
+        return;
+    });
+}
+
+export async function ChangeRole(userName, roleId, setLoading, setError) {
+
+    const jwt = JSON.parse(window.localStorage.getItem('jwt'));
+    setLoading(true);
+
+    await axios({
+        method: 'PATCH',
+        url: `${API_address}${changeRole_API_route}`,
+        data: {
+            userName: userName,
+            newRoleId: roleId
+        },
+        headers: {
+            Authorization: "Bearer " + jwt
+        },
+    }).then(result => {
+        if (result.status === 200)
+        {
+            alert('Zmieniono role użytkownika: ' + userName);
+            setLoading(false);
+            return;
+        }
+        else
+        {
+            setError(-1);
+            alert('Nie udało się zmienić role użytkownika')
+            setLoading(false);
+            return;
+        }
+
+    }).catch(e => {
+        setError(-2)
+        alert('Nie udało się zmienić role użytkownika')
+        setLoading(false);
+        return;
+    });
+}
 

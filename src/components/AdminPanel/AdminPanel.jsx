@@ -4,8 +4,12 @@ import { StoreContext } from '../../store/StoreProvider';
 
 
 //Resources
-import { ReadLocalStorage } from '../../Fuctions';
+import { ReadLocalStorage, parseJwt } from '../../Fuctions';
 import { AccessLevels, RoleIds } from '../../API_constants';
+
+
+//Helpers
+import {ChangeRole, UnBanUser, BanUser, ChangePasswordByUserName} from '../../helpers/AccountHelper';
 
 
 //Components
@@ -25,7 +29,7 @@ const AdminPanel = () => {
 
 
     //Constants
-    const role = ReadLocalStorage('user').role;
+    const role = ReadLocalStorage('jwt') != null ? parseJwt(ReadLocalStorage('jwt')) : null;
 
 
     //useContext
@@ -48,6 +52,7 @@ const AdminPanel = () => {
 
 
 
+
     //Handlers
     //RoleChange
     const RoleChange_UserNameChangeHandler = (event) => {
@@ -56,12 +61,21 @@ const AdminPanel = () => {
     const RoleChange_RoleIdChangeHandler = (event) => {
         setRC_roleId(event.target.value);
     }
+    const ChangeRoleOnClick = async () => {
+        await ChangeRole(RC_userName, RC_roleId, setLoading, setError);
+    }
     //BanStatusChange
     const BanStatusChange_ActionIdChangeHandler = (event) => {
         setBS_actionId(event.target.value);
     }
     const BanStatusChange_UserNameChangeHandler = (event) => {
         setBS_userName(event.target.value);
+    }
+    const BanUserOnClick = async () => {
+        await BanUser(BS_userName, setLoading, setError);
+    }
+    const UnBanUserOnClick = async () => {
+        await UnBanUser(BS_userName, setLoading, setError);
     }
     //PasswordChange
     const PasswordChange_UserNameChangeHandler = (event) => {
@@ -70,17 +84,21 @@ const AdminPanel = () => {
     const PasswordChange_PasswordChangeHandler = (event) => {
         setPC_password(event.target.value);
     }
+    const ChangePasswordOnClick = async () => {
+        await ChangePasswordByUserName(PC_userName, PC_password, setLoading, setError);
+    }
 
 
 
 
 
+    if (loading)
+        return (<Loading/>);
 
-
-    if (isLoggedIn == false) 
+    else if (isLoggedIn == false) 
         return (<NotLoggedException/>);
     
-    else if (role.accessLevel < AccessLevels.IsModerator)
+    else if (role != null && role.AccessLevel < AccessLevels.IsModerator)
         return (<NoPermissionException/>);
 
     else
@@ -106,13 +124,17 @@ const AdminPanel = () => {
                                 <option value={RoleIds.User}>Użytkownik</option>
                                 <option value={RoleIds.Moderator}>Moderator</option>
                                 {
-                                    role.accessLevel >= AccessLevels.IsAdmin
+                                    role.AccessLevel >= AccessLevels.IsAdmin
                                     ? <option value={RoleIds.Admin}>Admin</option>
                                     : null
                                 }
                         </select>
 
-                        <button className='SendButton'>Wykonaj</button>
+                        <button 
+                            className='SendButton'
+                            onClick={ChangeRoleOnClick}>
+                                Wykonaj
+                        </button>
                     </div>
 
                     <div className='BanPanelContainer'>
@@ -132,7 +154,15 @@ const AdminPanel = () => {
                             onChange={BanStatusChange_UserNameChangeHandler}>
                         </input>
 
-                        <button className='SendButton'>Wykonaj</button>
+                        <button 
+                            className='SendButton'
+                            onClick={
+                                BS_actionId == 0
+                                ? BanUserOnClick
+                                : UnBanUserOnClick
+                            }>
+                                Wykonaj
+                        </button>
                     </div>
 
                     <div className='PasswordChangeContainer'>
@@ -155,7 +185,11 @@ const AdminPanel = () => {
                             onChange={PasswordChange_PasswordChangeHandler}>
                         </input>
 
-                        <button className='SendButton'>Wykonaj</button>
+                        <button 
+                            className='SendButton'
+                            onClick={ChangePasswordOnClick}>
+                                Wykonaj
+                        </button>
                     </div>
                 </div>
             </div>

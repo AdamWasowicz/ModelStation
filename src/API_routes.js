@@ -12,7 +12,11 @@ export const fileStorageGetUserImage = '/api/v1/filestorage/file/id';
 export const login_API_route = "/api/v1/account/login";
 export const register_API_route = "/api/v1/user";
 export const changeUserPassword_API_route = '/api/v1/account';
+export const changeUserPassword_Admin_API_route = '/api/v1/account/user/password';
 export const deleteAccount_API_route = '/api/v1/account';
+export const changeRole_API_route = '/api/v1/role';
+export const banUser_API_route = '/api/v1/user/ban/name'
+export const unbanUser_API_route = '/api/v1/user/unban/name'
 //LikedPost
 export const likePost_API_route = "/api/v1/likedpost/post/id/";
 export const likedPost_create_or_edit_API_route = "/api/v1/likedpost/create_or_edit";
@@ -33,9 +37,3 @@ export const getCommentById_API_route = '/api/v1/comment';
 //LikedComment
 export const getLikedComment_APi_route = '/api/v1/likedcomment/comment/id';
 export const patchLikedComment_API_route = '/api/v1/likedcomment/create_or_edit'
-
-
-
-
-//Functions
-//const jwt = JSON.parse(window.localStorage.getItem('jwt'));
