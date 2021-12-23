@@ -10,6 +10,7 @@ import { LikeCommentHelper_GET, LikedCommentHelper_PATCH, Comment_PATCH } from '
 
 //Resources
 import { UserBaseImage } from '../../StaticResources_routes.js';
+import { ReadLocalStorage } from '../../Fuctions';
 
 
 //Components
@@ -35,6 +36,10 @@ const Comment = ({ commentObject, HandleCommentDeletion }) => {
     const [editMode, setEditMode] = useState(false);
     const [deleteMode, setDeleteMode] = useState(false);
     const [visible, setVisible] = useState(true);
+
+
+    //Constants
+    const role = ReadLocalStorage('jwt') != null ? parseJwt(ReadLocalStorage('jwt')) : null;
 
 
     //useContext
@@ -221,7 +226,7 @@ const Comment = ({ commentObject, HandleCommentDeletion }) => {
             </div>
 
             {
-                isLoggedIn == true && parseJwt(JSON.parse(window.localStorage.getItem('jwt'))).UserId == comment.userId
+                isLoggedIn == true && parseJwt(JSON.parse(window.localStorage.getItem('jwt'))).UserId == comment.userId || (role != null && role.AccessLevel >= 6)
                 ? <div className='ManipulationPanel'>
 
                     <button className={editMode ? 'EditButton-Active' : 'EditButton'} onClick={EditModeChangeHandler}>

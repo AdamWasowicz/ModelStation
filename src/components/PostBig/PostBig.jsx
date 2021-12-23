@@ -4,6 +4,10 @@ import { useParams, useNavigate } from 'react-router';
 import { API_address, fileStorageName_API_route } from '../../API_routes';
 
 
+//Resources
+import { ReadLocalStorage } from '../../Fuctions';
+
+
 //Styles
 import { faPlus as faArrowUp, faMinus as faArrowDown, faEdit, faTrashAlt, faSave } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -44,6 +48,10 @@ const PostBig = ({editMode, postObject}) => {
 
     //useContext
     const { isLoggedIn, posts } = useContext(StoreContext);
+
+
+    //Constants
+    const role = ReadLocalStorage('jwt') != null ? parseJwt(ReadLocalStorage('jwt')) : null;
 
 
     //useParams
@@ -296,7 +304,7 @@ const PostBig = ({editMode, postObject}) => {
                 </div>
             </div>
             {
-                isLoggedIn == true && parseJwt(JSON.parse(window.localStorage.getItem('jwt'))).UserId == post.userId
+                isLoggedIn == true && parseJwt(JSON.parse(window.localStorage.getItem('jwt'))).UserId == post.userId || (role != null && role.AccessLevel >= 6)
                 ? <div className='ManipulationPanel'>
                     <button className={
                         currEditMode
