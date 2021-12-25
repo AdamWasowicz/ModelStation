@@ -6,6 +6,8 @@ import { StoreContext } from '../../store/StoreProvider';
 //Resources
 import { UserBaseImage } from '../../StaticResources_routes.js';
 import { API_address, fileStorageGetUserImage } from '../../API_routes';
+import { CommentValidationParams } from '../../API_constants';
+
 
 
 //Styles
@@ -39,24 +41,32 @@ const CreateComment = ({HandleChange}) => {
 
 
     //Handlers
-    const handleCommentTextChange = (event) => setCommentText(event.target.value);
-    const hanldeCommentUpload = (event) => UploadComment();
+    const handleCommentTextChange = (event) => {
+        event.target.value.length <= CommentValidationParams.Text_Max
+        ? setCommentText(event.target.value)
+        : null
+    }
+    const hanldeCommentUpload = () => {
+        UploadComment()
+    }
     
 
 
     //Functions
     const UploadComment = async () => {
         if (ValidateForm()) {
-            const result = await Post_Comment(commentText, postId, HandleChange);
+            await Post_Comment(commentText, postId, HandleChange);
             ClearInput();
         }
         else {
             alert("Komentarz musi mieć przynajmniej jeden znak oraz nie być dłuższy niż 256 znaków")
         }
     }
-    const ClearInput = () => setCommentText("");
+    const ClearInput = () => {
+        setCommentText("")
+    }
     const ValidateForm = () => {
-        if (commentText.length > 0 && commentText.length < 256)
+        if (commentText.length >= CommentValidationParams.Text_Min && commentText.length < CommentValidationParams.Text_Max)
             return true;
         
         return false;

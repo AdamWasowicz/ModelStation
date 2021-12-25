@@ -112,8 +112,6 @@ export async function LikedPostHelper_POST(jwt, newValue, postId)
         },
     }).then(result => {
         if (result.status === 200) {
-            console.log(result);
-
             result = true;
             error = false;
         } else {
@@ -127,7 +125,6 @@ export async function LikedPostHelper_POST(jwt, newValue, postId)
         error = true;
     });
 
-    console.log('LikePostHelper_POST : END')
     return error;
 }
 
@@ -169,8 +166,6 @@ export default function postQueryExecutor(PostCategory, Title, UserName, Current
     }
     const GetSortArgument = (sortArgument) => {
 
-        console.log(sortArgument);
-
         if (sortArgument == 0)
             return 'NONE';
 
@@ -191,8 +186,6 @@ export default function postQueryExecutor(PostCategory, Title, UserName, Current
         OrderByDirection: GetSortOrder(SortOrder),
         OrderByAtribute: GetSortArgument(SortAtr)
         }
-
-        console.log(params);
 
         return params;
     }
@@ -231,7 +224,7 @@ export default function postQueryExecutor(PostCategory, Title, UserName, Current
 
         }).catch(e => {
 
-            console.log(res);
+            console.log(e);
             if (axios.isCancel(e)) return
             setError(true);
             setLoading(false);
@@ -263,7 +256,6 @@ export async function updatePost(postId, postTitle, postText, postCategoryName, 
             Authorization: "Bearer " + jwt
         },
     }).then(function (response) {
-        console.log(response);
         result = 1;
     }).catch(function (response)
     {
@@ -287,9 +279,7 @@ export async function uploadPost(jwt, title, text, categoryName, images, navigat
         bodyFormData.append("PostCategoryName", categoryName);
     if (images != null)
     {
-        console.log(images);
         images = [...images];
-        console.log(images);
         images.forEach( (img) => {
             bodyFormData.append("Files", img);
         });
@@ -305,7 +295,6 @@ export async function uploadPost(jwt, title, text, categoryName, images, navigat
             Authorization: "Bearer " + jwt
         },
     }).then(function (response) {
-        console.log(response);
         result = 1;
         navigate('/');
     }).catch(function (response)
@@ -329,7 +318,6 @@ export async function deletePost(postId) {
             Authorization: "Bearer " + jwt
         },
     }).then(function (response) {
-        console.log(response);
         result = 1;
     }).catch(function (response)
     {
@@ -391,8 +379,6 @@ export async function UploadUserProfileImage(file, setLoading, setError, setView
 
     setLoading(true);
     setError(false);
-
-    console.log(file);
 
     const jwt = JSON.parse(window.localStorage.getItem('jwt'));
 

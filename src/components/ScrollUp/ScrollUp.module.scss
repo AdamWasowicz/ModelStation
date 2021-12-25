@@ -1,0 +1,136 @@
+@import '../../StyleConstants.scss';
+
+
+//Constants
+$fade-in-time: 0.3s;
+
+
+//Animations
+@keyframes FadeIn {
+
+    from {
+
+        bottom: -75px;
+        right: 75px;
+    }
+    to {
+
+        bottom: 75px;
+        right: 75px
+    }
+}
+
+@keyframes FadeOut {
+
+    0% {
+
+        bottom: 75px;
+        right: 75px;
+    }
+    100% {
+
+        bottom: -100px;
+        right: 75px;
+    }
+}
+
+
+
+.ScrollUp {
+
+    //Size
+    width: 100px;
+    height: 100px;
+
+
+    //Position
+    position: fixed;
+    bottom: 75px;
+    right: 75px;
+
+
+    //Flex
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    //Font
+    font-size: 65px;
+
+
+    //Color
+    color: white;
+    background-color: $main-color-11;
+
+
+    //Border
+    border: 2px solid white;
+
+
+    //Animation
+    animation-name: FadeIn;
+    animation-duration: $fade-in-time;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+
+
+    //:hover
+    &:hover {
+
+        //Color
+        color: $main-color-8;
+        border-color: $main-color-8;
+        background-color: $main-color-1;
+    }
+
+
+    //:active
+    &:active
+    {
+
+        //Color
+        color: $main-color-10;
+        border-color: $main-color-10;
+        background-color: $main-color-1;
+    }
+}
+
+.ScrollUp-Hidden {
+
+    //Size
+    width: 100px;
+    height: 100px;
+
+
+    //Position
+    position: fixed;
+    bottom: -300px;
+    right: -300px;
+
+
+    //Flex
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    //Font
+    font-size: 65px;
+
+
+    //Color
+    color: white;
+    background-color: $main-color-11;
+
+
+    //Border
+    border: 2px solid white;
+
+
+    //Animation
+    animation-name: FadeOut;
+    animation-duration: $fade-in-time;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+}

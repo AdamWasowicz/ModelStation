@@ -13,6 +13,7 @@ import AdminPanel from '../AdminPanel';
 import User from '../User';
 import UserPosts from '../UserPosts';
 import Error from '../Error';
+import ScrollUp from '../ScrollUp';
 
 
 //Styles
@@ -44,21 +45,21 @@ const Content = () => {
     }
 
     return (
-        <React.Fragment>
-            <div className={style()}>
-                <Routes>
-                    <Route path='/' element={<PostSmallContainer/>}/>
-                    <Route path='/createpost' element={<CreatePost/>}/>
-                    <Route path="/post/:postId" element={<PostBigContainer/>}/>
-                    <Route path='/accountcreated' element={<AccountCreated/>}/>
-                    <Route path="/user/:userId" element={<User/>}/>
-                    <Route path='/myprofile/:userId' element={<MyProfile/>}/>
-                    <Route path="/userposts/:userName" element={<UserPosts/>}/>
-                    <Route path='/error' elment={<Error/>}/>
-                    <Route path='adminpanel' element={<AdminPanel/>}/>
-                </Routes> 
-            </div>
-        </React.Fragment>
+        <div className={style()}>
+            <Routes>
+                <Route path='/' element={<PostSmallContainer />} />
+                <Route path='/createpost' element={<CreatePost />} />
+                <Route path="/post/:postId" element={<PostBigContainer />} />
+                <Route path='/accountcreated' element={<AccountCreated />} />
+                <Route path="/user/:userId" element={<User />} />
+                <Route path='/myprofile/:userId' element={<MyProfile />} />
+                <Route path="/userposts/:userName" element={<UserPosts />} />
+                <Route path='/error' elment={<Error />} />
+                <Route path='adminpanel' element={<AdminPanel />} />
+            </Routes>
+
+            <ScrollUp/>
+        </div>
     )
 }
 

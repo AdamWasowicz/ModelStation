@@ -85,7 +85,6 @@ export async function ChangePassword(currentPassword, newPassword, setLoading, s
             Authorization: "Bearer " + jwt
         },
     }).then(result => {
-        console.log(result);
         if (result.data == 0) {
             alert('Pomyślnie zmieniono hasło');
             setIsLoggedIn(false);

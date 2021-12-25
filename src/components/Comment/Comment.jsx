@@ -1,7 +1,6 @@
 import React, {useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router';
 import {StoreContext} from '../../store/StoreProvider'
-import { API_address, fileStorageGetUserImage } from '../../API_routes';
 
 
 //Helpers
@@ -10,7 +9,9 @@ import { LikeCommentHelper_GET, LikedCommentHelper_PATCH, Comment_PATCH } from '
 
 //Resources
 import { UserBaseImage } from '../../StaticResources_routes.js';
-import { ReadLocalStorage } from '../../Fuctions';
+import { ReadLocalStorage, parseJwt } from '../../Fuctions';
+import { API_address, fileStorageGetUserImage } from '../../API_routes';
+import { CommentValidationParams } from '../../API_constants';
 
 
 //Components
@@ -30,9 +31,7 @@ const Comment = ({ commentObject, HandleCommentDeletion }) => {
     const [commentText, setCommentText] = useState(commentObject.text);
     const [editCommentText, setEditCommentText] = useState(commentObject.text);
     const [currentLikeStatus, setCurrentLikeStatus] = useState(0);
-    const [amountOfLikes, setAmountOfLikes] = useState(0);
-    const [error, setError] = useState(false);
-    const [loading, setLoading] = useState(true);
+    const [amountOfLikes, setAmountOfLikes] = useState(commentObject.likes);
     const [editMode, setEditMode] = useState(false);
     const [deleteMode, setDeleteMode] = useState(false);
     const [visible, setVisible] = useState(true);
@@ -101,13 +100,19 @@ const Comment = ({ commentObject, HandleCommentDeletion }) => {
             setAmountOfLikes(amountOfLikes - 1);
         }
     }
-    const TextAreaChangeHandler = (event) => setEditCommentText(event.target.value);
-    const EditModeChangeHandler = (event) => {
+    const TextAreaChangeHandler = (event) => {
+        event.target.value.length <= CommentValidationParams.Text_Max
+        ? setEditCommentText(event.target.value)
+        : null
+    }
+    const EditModeChangeHandler = () => {
         setEditCommentText(commentText);
         setEditMode(!editMode);
     }
-    const EnterDeleteModeHandler = (event) => setDeleteMode(true);
-    const SendPatchHandler = (event) => {
+    const EnterDeleteModeHandler = () => {
+        setDeleteMode(true)
+    }
+    const SendPatchHandler = () => {
         if (ValidateForm())
         {
             PatchComment();
@@ -124,33 +129,24 @@ const Comment = ({ commentObject, HandleCommentDeletion }) => {
         setVisible(false);
         HandleCommentDeletion(id)
     }
-    const RedirectToUserProfile = () => navigate('/user/' + commentObject.userName);
+    const RedirectToUserProfile = () => {
+        navigate('/user/' + commentObject.userName)
+    }
 
 
     //Functions
-    //https://stackoverflow.com/questions/38552003/how-to-decode-jwt-token-in-javascript-without-using-a-library
-    function parseJwt (token) {
-        var base64Url = token.split('.')[1];
-        var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-        var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-        }).join(''));
-    
-        return JSON.parse(jsonPayload);
-    };
     const CheckIfUserLikedComment = async () => {
         if (isLoggedIn)
         {
-            const { error, value} = await LikeCommentHelper_GET(comment.id);
-            setCurrentLikeStatus(value);
+            const { error, value} = await LikeCommentHelper_GET(comment.id, setCurrentLikeStatus);
         }
     }
     const PatchComment = async () => {
-        await Comment_PATCH(editCommentText, postId);
+        await Comment_PATCH(editCommentText, comment.id);
         setCommentText(editCommentText);
     }
     const ValidateForm = () => {
-        if (commentText.length > 0 && commentText.length < 256)
+        if (editCommentText.length >= CommentValidationParams.Text_Min && editCommentText.length < CommentValidationParams.Text_Max)
             return true;
         
         return false;

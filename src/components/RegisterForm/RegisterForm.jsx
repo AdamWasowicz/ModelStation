@@ -5,6 +5,7 @@ import { StoreContext } from '../../store/StoreProvider';
 
 //Resources
 import { RegisterImage } from '../../StaticResources_routes';
+import { UserValidationParams } from '../../API_constants';
 
 
 //Component
@@ -63,7 +64,7 @@ const RegisterForm = ({ OnCloseHandler }) => {
         }
 
 
-        if (login.length < 8)
+        if (!(login.length >= UserValidationParams.UserName_Min && login.length <= UserValidationParams.UserName_Max))
             setLoginValid(-1)
         else
         {
@@ -72,7 +73,7 @@ const RegisterForm = ({ OnCloseHandler }) => {
         }
 
 
-        if (password.length < 8)
+        if (!(password.length >= UserValidationParams.Password_Min && password.length <= UserValidationParams.Password_Max))
             setPasswordValid(-1)
         else
         {

@@ -26,7 +26,7 @@ export async function GetCommentsByPostId(postId, setComments, setLoading)
     return { error, data };
 }
 
-export async function LikeCommentHelper_GET(commentId) {
+export async function LikeCommentHelper_GET(commentId, setLikeValue) {
     const jwt = JSON.parse(window.localStorage.getItem('jwt'));
     let error = false;
     let value = 0;
@@ -39,13 +39,15 @@ export async function LikeCommentHelper_GET(commentId) {
             Authorization: "Bearer " + jwt
         },
     }).then(result => {
+        console.log(result);
+        console.log(result.data.value)
         if (result.status === 200) {
-            value = result.data.value;
+            setLikeValue(result.data.value);
         } else {
-            value = 0;
-            error = true;
+            setLikeValue(0);
         }
     }).catch(e => {
+        setLikeValue(0);
         value = 0;
         error = true;
     });
@@ -57,6 +59,8 @@ export async function LikedCommentHelper_PATCH(newValue, commentId)
 {
     const jwt = JSON.parse(window.localStorage.getItem('jwt'));
     let error = false;
+
+    console.log('Hello:', newValue, commentId)
 
     await axios({
         method: 'PATCH',
@@ -70,7 +74,6 @@ export async function LikedCommentHelper_PATCH(newValue, commentId)
         },
     }).then(result => {
         if (result.status === 200) {
-            console.log(result);
             error = false;
         } else {
             error = true;
@@ -114,22 +117,22 @@ export async function Post_Comment(text, postId, HandleNewCommentAdd) {
     return result;
 }
 
-export async function Comment_PATCH(text, postId) {
+export async function Comment_PATCH(text, commentId) {
     var result = 0;
     const jwt = JSON.parse(window.localStorage.getItem('jwt'));
 
+
     axios({
-        method: "POST",
+        method: "PATCH",
         url: `${API_address}${patchComment_API_route}`,
         data: {
             text: text,
-            postId: postId
+            id: commentId
         },
         headers: {
             Authorization: "Bearer " + jwt
         },
     }).then(function (response) {
-        console.log(response);
         result = 1;
     }).catch(function (response)
     {
@@ -145,7 +148,6 @@ export async function Comment_DELETE(commentId)
     const jwt = JSON.parse(window.localStorage.getItem('jwt'));
     let error = false;
     const url = `${API_address}${deleteComment_API_route}/${commentId}`
-    console.log(url)
 
     await axios({
         method: 'DELETE',
@@ -154,7 +156,6 @@ export async function Comment_DELETE(commentId)
             Authorization: "Bearer " + jwt
         }
     }).then(result => {
-        console.log(result);
         error = false;
 
     }).catch(e => {

@@ -17,7 +17,6 @@ import CreateComment from '../CreateComment';
 import NotLoggedException from '../CreateComment/NotLoggedException';
 import NoContentException from './NoContentException';
 
-//Functions
 
 const CommentContainer = () => {
 
@@ -25,8 +24,8 @@ const CommentContainer = () => {
     const [comments, setComments] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
-    const [newComment, setNewComment] = useState(false);
-    const [changeOccured, setChangeOccured] = useState(false);
+    //const [newComment, setNewComment] = useState(false);
+    //const [changeOccured, setChangeOccured] = useState(false);
 
 
     //useParams

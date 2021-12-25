@@ -52,8 +52,6 @@ const PostSmall = React.forwardRef((postObject, ref) => {
             urlArray.push(`${API_address}${fileStorageName_API_route}${element.storageName}`)
         })
 
-        console.log(post.files.length);
-
         setPhotos(urlArray); 
     }, []);
 

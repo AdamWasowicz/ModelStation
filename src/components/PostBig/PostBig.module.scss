@@ -270,11 +270,6 @@ $like-arrow-down-active-color: red;
                     font-weight: 400;
                     font-size: 30px;
 
-
-
-                    //Padding
-                    //padding: 10px;
-
                     box-sizing: border-box;
                     display: block;
 
@@ -286,6 +281,14 @@ $like-arrow-down-active-color: red;
                     .UserName {
                         display: inline;
                         color: $main-color-5;
+                    }
+
+                    
+                    //:hover
+                    &:hover {
+                        
+                        //Cursor
+                        cursor: pointer;
                     }
                 }
 
@@ -321,7 +324,7 @@ $like-arrow-down-active-color: red;
                 .EditPostCategory {
                     //Size
                     width: 40%;
-                    height: 80%;
+                    height: 100%;
 
 
                     //Padding
@@ -418,14 +421,11 @@ $like-arrow-down-active-color: red;
             width: 100%;
             height: 70%;
 
+
+            //Flex
             flex-grow: 1;
-
-
-
             display: flex;
             flex-direction: column;
-
-
 
 
             //Text
@@ -527,6 +527,14 @@ $like-arrow-down-active-color: red;
                         //Size
                         width: 10%;
                         height: 100%;
+
+
+                        //:hover
+                        &:hover {
+
+                            //Cursor
+                            cursor: pointer;
+                        }
 
 
                         //Button

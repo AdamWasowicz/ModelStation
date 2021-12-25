@@ -7,6 +7,7 @@ import { StoreContext } from '../../store/StoreProvider';
 import { UserBaseImage } from '../../StaticResources_routes';
 import { parseJwt, ReadLocalStorage } from '../../Fuctions';
 import { API_address, fileStorageGetUserImage } from '../../API_routes';
+import { UserValidationParams, RoleIds } from '../../API_constants';
 
 
 //Components
@@ -24,7 +25,6 @@ import { default as UserStyles } from './User.module.scss'
 
 
 const User = () => {
-
     //useParams
     const userId = useParams().userId;
 
@@ -57,7 +57,6 @@ const User = () => {
     const [currentPassword, setCurrentPassword] = useState('');
     const [newPassword, setNewPassword] = useState('')
     const [repeatNewPassword, setRepeatNewPassword] = useState('');
-    const [pcValidationMsg, setPcValidationMsg] = useState('');
     //PictureChange
     const [files, setFiles] = useState(null);
 
@@ -109,7 +108,9 @@ const User = () => {
         setDescription(e_description);
     }
     //API
-    const GetUserProfile = async () => GetUserProfileById(userId, setUserObject, setLoading);
+    const GetUserProfile = async () => {
+        GetUserProfileById(userId, setUserObject, setLoading)
+    }
     const PatchUserProfileOnClick = async () => {
         if (ValidateEditUserDataForm()) {
             setLoading(true);
@@ -149,37 +150,65 @@ const User = () => {
     }
     //Validators
     const ValidateEditUserDataForm = () => {
-        if (!(e_name?.length < 64))
+        if (!(e_name?.length < UserValidationParams.Name_Max))
             return false;
 
-        if (!(e_surname?.length < 64))
+        if (!(e_surname?.length < UserValidationParams.Surname_Max))
             return false;
 
-        if (e_description > 256)
+        if (e_description > UserValidationParams.Description_Max)
             return false;
 
         return true;
     }
     const ValidatePasswordChangeForm = () => {
-        if (newPassword.length > 0 && newPassword == repeatNewPassword && currentPassword.length > 0)
+        if (newPassword.length >= UserValidationParams.Password_Min && newPassword.length <= UserValidationParams.Password_Max
+             && 
+             newPassword == repeatNewPassword
+             && 
+             currentPassword.length >= UserValidationParams.Password_Min && currentPassword.length <= UserValidationParams.Password_Max)
             return true;
 
         return false;
+    }
+    const DisplayRole = () => {
+        switch (userObject.role.id){
+            case RoleIds.User:
+                return "Użytkownik";
+
+            case RoleIds.Moderator:
+                return "Moderator";
+
+            case RoleIds.Admin:
+                return "Admin";
+        }
     }
 
 
     //Handlers
     //ProfileHandlers
-    const e_NameChangeHandler = (event) => setE_Name(event.target.value);
-    const e_SurnameChangeHandler = (event) => setE_Surname(event.target.value);
+    const e_NameChangeHandler = (event) => {
+        event.target.value.length <= UserValidationParams.Name_Max
+        ? setE_Name(event.target.value)
+        : null
+    }
+    const e_SurnameChangeHandler = (event) => {
+        event.target.value.length <= UserValidationParams.Surname_Max
+        ? setE_Surname(event.target.value)
+        : null
+    }
     const e_DescriptionChangeHandler = (event) => {
-        event.target.value.length <= 256
-            ? setE_Description(event.target.value)
-            : null;
+        event.target.value.length <= UserValidationParams.Description_Max
+        ? setE_Description(event.target.value)
+        : null;
     }
     //Other
-    const SwitchEditModeHandler = () => setEditMode(!editMode);
-    const NavigateToUserPostsHandler = () => (userObject != null ? navigate('/userposts/' + userObject.userName) : null);
+    const SwitchEditModeHandler = () => { 
+        setEditMode(!editMode);
+    }
+    const NavigateToUserPostsHandler = () => {
+        (userObject != null ? navigate('/userposts/' + userObject.userName) : null)
+    }
     //View
     const SwitchToAccountPanelHandler = () => {
         setEditMode(false);
@@ -194,14 +223,27 @@ const User = () => {
         setView(2);
     }
     //PasswordChangeHandlers
-    const CurrentPasswordChangeHandler = (event) => setCurrentPassword(event.target.value);
-    const NewPasswordChangeHandler = (event) => setNewPassword(event.target.value);
-    const RepeatNewPasswordChangeHandler = (event) => setRepeatNewPassword(event.target.value);
-    const handleFileChange = (event) => setFiles(event.target.files);
+    const CurrentPasswordChangeHandler = (event) => {
+        event.target.value.length <= UserValidationParams.Password_Max
+        ? setCurrentPassword(event.target.value)
+        : null
+    }
+    const NewPasswordChangeHandler = (event) => { 
+        event.target.value.length <= UserValidationParams.Password_Max
+        ? setNewPassword(event.target.value)
+        : null
+    }
+    const RepeatNewPasswordChangeHandler = (event) => {
+        event.target.value.length <= UserValidationParams.Password_Max
+        ? setRepeatNewPassword(event.target.value)
+        : null
+    }
+    const handleFileChange = (event) => {
+        setFiles(event.target.files)
+    }
 
 
-
-
+    
     //SubViews
     //UserDataView
     const UserDataView = () => {
@@ -407,6 +449,8 @@ const User = () => {
                             </div>
                         </div>
 
+                        
+
                         <img
                             className='UserImage'
                             src={
@@ -415,6 +459,13 @@ const User = () => {
                                     : UserBaseImage
                             }>
                         </img>
+
+                        <div className='UserRoleLabel'>
+                            Rola:
+                            <div className='UserRole'>
+                                {DisplayRole()}
+                            </div>
+                        </div>
                     </div>
 
                     <div className='UserStats'>

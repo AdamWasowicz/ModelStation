@@ -18,7 +18,6 @@ const AccountCreated = () => {
 
     //Handler
     const GoBackClickHandler = () => navigate('/');
-    const GoToRuleSetClickHandler = () => navigate('./ruleset');
 
 
     return (
@@ -29,14 +28,8 @@ const AccountCreated = () => {
             </div>
 
             <div className='InformationMessage'>
-                Podczas korzystania z serwisu przestrzegaj regulaminu i bądź uprzejmy dla innych użytkowników ale przedewszystkim baw się dobrze.
+                Zaloguj się na swoje konto i zacznij korzystać z możliwości serwisu ModelStation, mamy nadzieje że miło spędzisz czas.
             </div>
-
-            <button 
-                    className='RuleSetButton'
-                    onClick={GoToRuleSetClickHandler}>
-                        Regulamin
-            </button>
 
             <button 
                 className='GoBackButton'

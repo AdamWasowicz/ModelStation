@@ -5,13 +5,15 @@ import { API_address, fileStorageName_API_route } from '../../API_routes';
 
 
 //Resources
-import { ReadLocalStorage } from '../../Fuctions';
+import { ReadLocalStorage, parseJwt } from '../../Fuctions';
+import { PostCategoryValidationParams, PostValidationParams } from '../../API_constants';
 
 
 //Styles
 import { faPlus as faArrowUp, faMinus as faArrowDown, faEdit, faTrashAlt, faSave, faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { default as PostBigStyles } from './PostBig.module.scss'
+
 
 //Helpers
 import { LikePostHelper_GET, LikedPostHelper_POST, updatePost} from '../../helpers/PostHelper';
@@ -21,7 +23,6 @@ import { LikePostHelper_GET, LikedPostHelper_POST, updatePost} from '../../helpe
 import DeletePostModal from './DeletePostModal';
 import ImageModal from '../ImageModal';
 
-
 const PostBig = ({editMode, postObject}) => {
 
     //useState
@@ -29,7 +30,11 @@ const PostBig = ({editMode, postObject}) => {
     const [post, setPostObject] = useState(postObject);
     const [postTitle, setPostTitle] = useState(postObject.title);
     const [postText, setPostText] = useState(postObject.text);
-    const [postCategory, setPostCategory] = useState({id: postObject.postCategoryId, name: postObject.postCategoryName != '' ? postObject.postCategoryName : ''});
+    const [postCategory, setPostCategory] = useState(   
+            postObject?.postCategoryName != null
+            ? postObject.postCategoryName
+            : null
+    );
     const [photos, setPhotos] = useState(postObject.files);
     const [currentLikeStatus, setCurrentLikeStatus] = useState(0);
     const [amountOfLikes, setAmountOfLikes] = useState(postObject.likes);
@@ -49,7 +54,7 @@ const PostBig = ({editMode, postObject}) => {
 
 
     //useContext
-    const { isLoggedIn, posts } = useContext(StoreContext);
+    const { isLoggedIn } = useContext(StoreContext);
 
 
     //Constants
@@ -71,8 +76,6 @@ const PostBig = ({editMode, postObject}) => {
         post.files.forEach(element => {
             urlArray.push(`${API_address}${fileStorageName_API_route}${element.storageName}`)
         })
-
-        console.log(post.files.length);
 
         setPhotos(urlArray); 
     }, []);
@@ -100,28 +103,22 @@ const PostBig = ({editMode, postObject}) => {
         }
     }
 
-    //https://stackoverflow.com/questions/38552003/how-to-decode-jwt-token-in-javascript-without-using-a-library
-    function parseJwt (token) {
-        var base64Url = token.split('.')[1];
-        var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-        var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-        }).join(''));
-    
-        return JSON.parse(jsonPayload);
-    };
-
     const ValidateForm = () => {
-        if (!(edit_postTitle.length > 0 && edit_postTitle.length <= 32 ))
-            return null;
+        if (!(edit_postTitle.length > PostValidationParams.Title_Min && edit_postTitle.length < PostValidationParams.Title_Max))
+            return false;
         
-        if (!(edit_postText.length > 0 && edit_postTitle.length <= 256))
-            return null;
+        if (!(edit_postText.length > PostValidationParams.Text_Min && edit_postTitle.length <= PostValidationParams.Title_Max))
+            return false;
+
+        if (!(edit_postCategory.length < PostCategoryValidationParams.Name_Max))
+            return false;
 
         return true;
     }
 
-    const PatchPost = async () => await updatePost(postId, edit_postTitle, edit_postText, edit_postCategory.name, setError);
+    const PatchPost = async () => {
+        await updatePost(postId, edit_postTitle, edit_postText, edit_postCategory, setError)
+    }
 
     const DisplayDate = () => {
         let dateObj = new Date(post.creationDate);
@@ -189,16 +186,28 @@ const PostBig = ({editMode, postObject}) => {
             setAmountOfLikes(amountOfLikes - 1)
         }
     }
-    const ChangeEditModeHandler = () => setCurrEditMode(!currEditMode);
-    const EnterDeleteModeHandler = () => setCurrentDeleteMode(true);
-    const ExitDeleteModeHandler = () => setCurrentDeleteMode(false);
+    const ChangeEditModeHandler = () => {
+        setCurrEditMode(!currEditMode)
+    }
+    const EnterDeleteModeHandler = () => {
+        setCurrentDeleteMode(true)
+    }
+    const ExitDeleteModeHandler = () => {
+        setCurrentDeleteMode(false)
+    }
     const AfterDeletionHandler = () => {
         alert("Pomyślnie usunięto post");
         navigate('../');
     }
-    const RedirectToUserProfile = () => navigate('/user/' + post.userName);
-    const OpenImageModal = () => setModalOpen(true);
-    const CloseImageModal = () => setModalOpen(false);
+    const RedirectToUserProfile = () => { 
+        navigate('/user/' + post.userName)
+    }
+    const OpenImageModal = () => { 
+        setModalOpen(true)
+    }
+    const CloseImageModal = () => {
+        setModalOpen(false)
+    }
     const NextImageHandler = () => {
         setCurrentImage(currentImage + 1);
     }
@@ -209,11 +218,19 @@ const PostBig = ({editMode, postObject}) => {
     
     
     //EditModeHandlers
-    const ChangeEdit_postTitleHandler = (event) => setEdit_postTitle(event.target.value);
-    const ChangeEdit_postTextHandler = (event) => setEdit_postText(event.target.value);
+    const ChangeEdit_postTitleHandler = (event) => {
+        event.target.value.length <= PostValidationParams.Title_Max
+        ? setEdit_postTitle(event.target.value)
+        : null
+    }
+    const ChangeEdit_postTextHandler = (event) => {
+        event.target.value.length <= PostValidationParams.Text_Max
+        ? setEdit_postText(event.target.value)
+        : null
+    }
     const ChangeEdit_postCategoryHandler = (event) => {
-        let newpcObject = {id: 0, name: event.target.value };
-        setEdit_postCategory(newpcObject);
+        if (event.target.value.length <= PostCategoryValidationParams.Name_Max)
+            setEdit_postCategory(event.target.value);
     }
     const SendPatchHandler = () => {
         if (ValidateForm()) {
@@ -231,7 +248,7 @@ const PostBig = ({editMode, postObject}) => {
                 alert('Wystłąpił błąd podczas zmiany danych posta');
         }
         else 
-            alert("Nowa treść postu zawiera błędy");
+            alert(`Teść posta powinna mieć od ${PostValidationParams.Text_Min} do ${PostValidationParams.Text_Max} znaków\nTytuł powinnien mieć od ${PostValidationParams.Title_Min} do ${PostValidationParams.Title_Max} znaków\nKategoria powinna mieć do ${PostCategoryValidationParams.Name_Max} znaków`);
     }
 
 
@@ -279,15 +296,15 @@ const PostBig = ({editMode, postObject}) => {
                         {
                             currEditMode
                             ? <input className='EditPostCategory'
-                            value={edit_postCategory.name}
+                            value={edit_postCategory}
                             onChange={ChangeEdit_postCategoryHandler}
                             >
                             </input>
-                            : (postCategory.name != '' && postCategory.name != null
+                            : (postCategory != '' && postCategory != null
                                 ? <h4 className='PostCategoryLabel'>
                                     C/
                                     <div className='PostCategoryField'>
-                                        {postCategory.name}
+                                        {postCategory}
                                         </div>
                                     </h4>
                                 : null)
@@ -308,7 +325,14 @@ const PostBig = ({editMode, postObject}) => {
                 </div>
 
                 <div className='PostContent'>
-                    <div className='Text'>{postText}</div>
+                    {
+                        currEditMode
+                            ? <textarea className='EditText' type='text'
+                                value={edit_postText}
+                                onChange={ChangeEdit_postTextHandler}>
+                            </textarea>
+                            : <div className='Text'>{postText}</div>
+                    }
 
                     {
                             photos.length != 0 

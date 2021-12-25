@@ -46,16 +46,12 @@
             flex-direction: column;
             justify-content: space-around;
 
-            height: 40%;
+            height: 50%;
             min-width: 250px;
 
 
             //Padding
             padding: 10px;
-
-
-            //Border
-            //border-bottom: 2px solid $main-color-8;
 
 
             //UserNameLabel
@@ -91,6 +87,40 @@
             }
 
 
+            //UserRoleLabel
+            .UserRoleLabel {
+
+                //Font
+                font-family: $roboto;
+                font-weight: 400;
+                font-size: 30px;
+
+
+                //Padding
+                padding: 10px;
+
+
+                //Display
+                box-sizing: border-box;
+                display: block;
+
+
+                //color
+                color: $main-color-8;
+
+
+                //Text
+                text-align: center;
+
+
+                .UserRole {
+
+                    display: inline;
+                    color: $main-color-5;
+                }
+            }
+
+
             //UserImage
             .UserImage {
                 //Size
@@ -120,7 +150,7 @@
             
             //Size
             width: 100%;
-            height: 35%;
+            height: 25%;
 
 
             //Padding
@@ -274,7 +304,6 @@
                     //Color
                     color: $main-color-8;
                     background-color: $main-color-11;
-                    //border: 2px solid $main-color-2;
                 }
 
 
@@ -300,12 +329,7 @@
                     display: flex;
                     align-items: center;
                     justify-content: center;
-
-
-                    //Border
-                    //border: 2px solid $main-color-2;
-                    //border-left: none;
-
+                    
 
                     //Color
                     background-color: $main-color-12;
@@ -519,7 +543,7 @@
 
                         //Font
                         font-family: $noto;
-                        font-size: 30px;
+                        font-size: 20px;
 
 
                         //Padding
