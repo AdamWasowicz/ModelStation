@@ -102,7 +102,7 @@ const Menu = () => {
 
 
                                 {
-                                    role.accessLevel >= AccessLevels.IsModerator
+                                    role?.accessLevel >= AccessLevels.IsModerator
                                     ? <button className='DropDownContentItem'>
                                         <Link
                                             className='DropDownContentItemLink' to="adminpanel">

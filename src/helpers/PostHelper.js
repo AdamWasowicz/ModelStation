@@ -271,14 +271,19 @@ export async function updatePost(postId, postTitle, postText, postCategoryName, 
 export async function uploadPost(jwt, title, text, categoryName, images, navigate) {
     var result = 0;
 
+    console.log('up');
     //FormData
     let bodyFormData = new FormData();
     bodyFormData.append('Title', title);
     bodyFormData.append("Text", text);
     if (categoryName.length > 0)
         bodyFormData.append("PostCategoryName", categoryName);
-    if (images != null)
+
+    console.log(images);
+
+    if (images.length > 0)
     {
+        console.log('images');
         images = [...images];
         images.forEach( (img) => {
             bodyFormData.append("Files", img);

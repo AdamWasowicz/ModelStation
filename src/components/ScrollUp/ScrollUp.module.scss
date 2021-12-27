@@ -11,12 +11,12 @@ $fade-in-time: 0.3s;
     from {
 
         bottom: -75px;
-        right: 75px;
+        right: 35px;
     }
     to {
 
         bottom: 75px;
-        right: 75px
+        right: 35px
     }
 }
 
@@ -25,12 +25,12 @@ $fade-in-time: 0.3s;
     0% {
 
         bottom: 75px;
-        right: 75px;
+        right: 35px;
     }
     100% {
 
         bottom: -100px;
-        right: 75px;
+        right: 35px;
     }
 }
 
@@ -46,7 +46,7 @@ $fade-in-time: 0.3s;
     //Position
     position: fixed;
     bottom: 75px;
-    right: 75px;
+    right: 35px;
 
 
     //Flex

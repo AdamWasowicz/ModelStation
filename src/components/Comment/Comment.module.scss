@@ -40,10 +40,7 @@ $like-button-height-percent: 30%;
 
         //Size
         height: 100%;
-
-        //Flex
-        flex-basis: 10%;
-        //flex-grow: 1;
+        width: 10%;
 
 
         //LikeContainer
@@ -184,7 +181,7 @@ $like-button-height-percent: 30%;
         //Flex
         display: flex;
         flex-direction: row;
-        flex-grow: 7;
+        width: 80%;
 
 
         border-left: 2px solid $main-color-8;
@@ -350,7 +347,7 @@ $like-button-height-percent: 30%;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
-        flex-basis: 10%;
+        width: 10%;
 
 
 

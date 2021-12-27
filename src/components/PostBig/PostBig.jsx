@@ -133,13 +133,14 @@ const PostBig = ({editMode, postObject}) => {
     const DisplayLikes = () => {
 
         let likes = amountOfLikes;
-        if (likes > 1000)
+        if (Math.abs(likes) > 1000)
         {
+            likes = Math.abs(likes);
             let front = Math.floor(likes / 1000);
-            let back = likes - front;
+            let back = likes - (front * 1000);
             back = Math.floor(back / 100);
 
-            return `${front}.${back}k`;
+            return `${amountOfLikes < 0 ? '-' : ''}${front}.${back}k`;
         }
 
         else 

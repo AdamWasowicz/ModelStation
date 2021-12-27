@@ -102,7 +102,6 @@ const RegisterForm = ({ OnCloseHandler }) => {
         setEmail('');
         setLogin('');
         setPassword('');
-        setValidationMessage('');
     }
 
 

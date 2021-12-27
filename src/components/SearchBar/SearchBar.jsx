@@ -40,17 +40,12 @@ const SearchBar = () => {
         set_q_CategoryName(event.target.value);
     }
     const DateClickHandler = () => {
-        if (q_sortArgument == 2)
-            set_q_SortArgument(0);
-        else
-            set_q_SortArgument(2); 
+        
+        set_q_SortArgument(2); 
     }
     const LikeClickHandler = () => {
 
-        if (q_sortArgument == 1)
-            set_q_SortArgument(0); 
-        else
-            set_q_SortArgument(1); 
+        set_q_SortArgument(1); 
     }
     const ASC_ClickHandler = () => {
         if (q_sortOrder != 1)

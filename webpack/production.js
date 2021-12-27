@@ -30,6 +30,16 @@ module.exports = {
 					}
 				]
 			},
+
+			
+			{
+				test: /\.(jpg|png|svg)$/,
+				loader: 'file-loader',
+				options: {
+				  limit: 25000,
+				},
+			},
+			
 			{
 				test: /\.(s(a|c)ss|css)$/,
 				exclude: /\.module.(s(a|c)ss)$/,
@@ -51,7 +61,6 @@ module.exports = {
 		new MiniCssExtractPlugin({
 			filename: 'style.[contenthash:6].css',
 			chunkFilename: 'style.[contenthash:6].css',
-			publicPath: './'
 		}),
 	],
 };

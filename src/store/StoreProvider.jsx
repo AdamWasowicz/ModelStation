@@ -15,8 +15,8 @@ const StoreProvider = ( { children} ) => {
     //SerchBar
     const [q_title, set_q_Title] = useState('');
     const [q_categoryName, set_q_CategoryName] = useState('');
-    const [q_sortOrder, set_q_SortOrder] = useState(1);
-    const [q_sortArgument, set_q_SortArgument] = useState(0);
+    const [q_sortOrder, set_q_SortOrder] = useState(-1);
+    const [q_sortArgument, set_q_SortArgument] = useState(2);
 
 
 
