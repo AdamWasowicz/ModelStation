@@ -1,7 +1,5 @@
 //Import
 import userBaseImagePerson from './staticResources/userDefaultImage.png';
-import Barbatos from './staticResources/RegisterBannerImage.jpg';
-import Quant from './staticResources/loginFormImage.jpg';
 import Brushes from './staticResources/Brushes.jpg';
 import Paints from './staticResources/Paints.jpg';
 import Box from './staticResources/Box.jpg'

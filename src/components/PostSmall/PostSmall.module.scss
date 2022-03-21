@@ -35,7 +35,7 @@ $like-arrow-font-size: 50px;
     //Like SideBar
     .likeSideBar {
         //Size
-        flex-basis: 10%;
+        flex-basis: 13%;
         padding: 10px;
 
 
@@ -172,6 +172,12 @@ $like-arrow-font-size: 50px;
                 flex-direction: column;
                 justify-content: space-around;
                 align-items: center;
+
+
+                //Font
+                font-family: $noto;
+                font-size: 25px;
+                font-weight: 400;
 
 
                 //Color

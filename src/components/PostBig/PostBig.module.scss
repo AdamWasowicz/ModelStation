@@ -41,7 +41,7 @@ $like-arrow-down-active-color: red;
     //Like SideBar
     .likeSideBar {
         //Size
-        flex-basis: 10%;
+        flex-basis: 13%;
         padding: 10px;
 
 
@@ -178,6 +178,12 @@ $like-arrow-down-active-color: red;
                 flex-direction: column;
                 justify-content: space-around;
                 align-items: center;
+
+
+                //Font
+                font-family: $noto;
+                font-size: 25px;
+                font-weight: 400;
 
 
                 //Color
